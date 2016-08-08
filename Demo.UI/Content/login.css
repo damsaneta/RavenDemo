@@ -1,0 +1,27 @@
+﻿
+.rememberMeCheck{
+    margin-left: 0px;
+    padding-left: 0px !important;
+}
+.remCheckbox{
+    bottom: 5px;
+}
+.forgotLnk {
+    margin-top: 10px;
+    display: block;
+}
+
+.or-box {
+    position: relative;
+    border-top: 1px solid #dfdfdf;
+    padding-top: 20px;
+    margin-top: 20px;
+}
+
+.checkbox {
+    left: 5px;
+}
+
+.account-box .btn:hover {
+    color: #fff;
+}

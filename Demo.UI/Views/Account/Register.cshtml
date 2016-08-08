@@ -1,0 +1,41 @@
+﻿@model RavenDemo.Models.RegisterUserModel
+@{
+    ViewBag.Title = "Rejestracja";
+}
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="~/Content/register.css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<hgroup class="title" style ="text-align: center;">
+    <h1>@ViewBag.Title</h1>
+    <h4>Utwórz nowe konto</h4>
+</hgroup>
+
+<fieldset>
+    
+    <div class="format">
+
+        <div>
+            @using (Html.BeginForm("Register", "Account", FormMethod.Post))
+            {
+
+                @Html.ValidationSummary(true)
+                @Html.EditorFor(m => m.UserName)
+                @Html.EditorFor(m => m.Password)
+                @Html.EditorFor(m => m.ConfirmPassword)
+                @Html.EditorFor(m => m.FirstName)
+                @Html.EditorFor(m => m.LastName)
+                <div class="form-group">
+                    @Html.EnumDropDownListFor(m => m.Role, new {@class = "form-control"})
+                    @Html.ValidationMessageFor(m => m.Role)
+                </div>
+                <div class="center">
+                    <button type="submit" class="btn-lg btn-primary">Zarejestruj</button>
+                </div>
+            }
+        </div>
+    </div>
+</fieldset>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

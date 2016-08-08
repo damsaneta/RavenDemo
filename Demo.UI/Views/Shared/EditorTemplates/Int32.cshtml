@@ -1,0 +1,6 @@
+﻿@model Int32?
+
+<div class="form-group">
+    @Html.TextBoxFor(m => m, new { @class = "form-control", placeholder = WebUtility.HtmlDecode(Html.DisplayNameFor(m => m).ToHtmlString()), autofocus = "autofocus" })
+    @Html.ValidationMessageFor(m => m)
+</div>
