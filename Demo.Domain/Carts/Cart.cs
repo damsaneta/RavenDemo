@@ -9,6 +9,10 @@ namespace Demo.Domain.Carts
 {
     public class Cart : Entity
     {
+        protected Cart()
+        {
+        }
+
         public Cart(Client client)
         {
             Client = client;

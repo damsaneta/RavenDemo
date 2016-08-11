@@ -9,6 +9,10 @@ namespace Demo.Domain.Carts
 {
     public class CartItem
     {
+        protected CartItem()
+        {
+        }
+
         public CartItem(Product product, int amount)
         {
             Product = product;

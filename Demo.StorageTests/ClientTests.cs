@@ -1,19 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Transactions;
+﻿using System.Linq;
 using Demo.Domain;
 using Demo.Domain.Clients;
-using Demo.Domain.Products;
 using Demo.Domain.Shared;
 using Demo.Domain.Users;
 using FluentAssertions;
 using NUnit.Framework;
-using Raven.Abstractions.Data;
 using Raven.Client.Document;
+using Raven.Client.Linq;
 
 namespace Demo.StorageTests
 {
@@ -35,31 +28,100 @@ namespace Demo.StorageTests
             store.Dispose();
         }
 
-        //[SetUp]
-        //public void Setup()
-        //{
-        //    // Czyszczenie bazy
-        //    store.DatabaseCommands.GlobalAdmin.DeleteDatabase("RavenTest", true);
-        //    store.DatabaseCommands.GlobalAdmin.EnsureDatabaseExists("RavenTest");
-        //}
-
-      
+        [SetUp]
+        public void Setup()
+        {
+            // Czyszczenie bazy
+            store.DatabaseCommands.GlobalAdmin.DeleteDatabase("RavenTest", true);
+            store.DatabaseCommands.GlobalAdmin.EnsureDatabaseExists("RavenTest");
+        }
 
         [Test]
         public void Client_add_test()
         {
+            var entity1 = new User("mojUser1", "Aneta", "Dams", CryptoHelper.Hash("aneta"), Role.Client);
             using (var session = store.OpenSession())
             {
-                var user = session.Load<User>("users/10");
-                var entity = new Client("Client T1", user, new Address("Toruń", "Podmurna", "87-100 Toruń", "10/2", "999888777"));
+                session.Store(entity1);
+                session.SaveChanges();
+            }
+
+            using (var session = store.OpenSession())
+            {
+                var user = session.Load<User>(entity1.Id);
+                user.Should().NotBeNull();
+                user.LastName.Should().Be("Dams");
+
+                var entity = new Client(user, new Address("Toruń", "Podmurna", "87-100 Toruń", "10/2", "999888777"));
                 session.Store(entity);
                 session.SaveChanges();
-                var id = entity.Id;
+                entity.Id.Should().NotBeNullOrEmpty();
+            }
+        }  
+
+        [Test]
+        public void Client__include()
+        {
+            string id;
+            var entity1 = new User("mojUser1", "Aneta", "Dams", CryptoHelper.Hash("aneta"), Role.Client);
+            using (var session = store.OpenSession())
+            {
+                session.Store(entity1);
+                session.SaveChanges();
+            }
+
+            using (var session = store.OpenSession())
+            {
+                var user = session.Load<User>(entity1.Id);
+                user.Should().NotBeNull();
+                user.LastName.Should().Be("Dams");
+
+                var entity = new Client(user, new Address("Toruń", "Podmurna", "87-100 Toruń", "10/2", "999888777"));
+                session.Store(entity);
+                session.SaveChanges();
+                id = entity.Id;
                 id.Should().NotBeNullOrEmpty();
+            }
+
+            using (var session = store.OpenSession())
+            {
+                //var client = session.Include<Client>(x => x.User).Load<Client>(id);
+                //var client1 = session.Include("User").Load<Client>(id);
+                //client.Should().BeSameAs(client1);
+            }
+
+        }
+        [Test]
+        public void Client_simple_querry()
+        {
+            using (var session = store.OpenSession())
+            {
+                for(int i = 1; i <20; i++)
+                {
+                    var entity1 = new User("user"+i, "test", "testLastName"+i, CryptoHelper.Hash("aneta"), Role.Client);
+                    session.Store(entity1);
+                }
+               
+                session.SaveChanges();
+            }
+
+            using (var session = store.OpenSession())
+            {
+                var result = session.Query<User>().Where(x => x.FirstName == "test").ToList();
+                result.Count.Should().Be(19);
+            }
+
+            using (var session = store.OpenSession())
+            {
+                var result = from user in session.Query<User>() where user.FirstName == "test" select user;
+                result.ToList().Count.Should().Be(19);
             }
         }
 
-     
+        
+        
+
+
 
         //[Test]
         //public void Client_add_and_load_in_the_same_session_test()

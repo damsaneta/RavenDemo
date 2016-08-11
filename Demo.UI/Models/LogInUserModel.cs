@@ -2,7 +2,7 @@
 
 namespace Demo.UI.Models
 {
-    public class SignInUserModel
+    public class LogInUserModel
     {
         [Required(ErrorMessage = "Pole {0} jest wymagane")]
         [Display(Name = "Login")]

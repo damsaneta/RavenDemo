@@ -4,6 +4,10 @@ namespace Demo.Domain.Users
 {
     public class User : Entity
     {
+        protected User()
+        {
+        }
+
         public User(string userName, string firstName, string lastName, byte[] password, Role role)
         {
             UserName = userName;
@@ -15,7 +19,7 @@ namespace Demo.Domain.Users
 
         public string UserName { get; private set; }
 
-        public string FirstName { get; set; }
+        public string FirstName { get; private set; }
 
         public string LastName { get; private set; }
 

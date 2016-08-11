@@ -6,6 +6,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Demo.Domain;
+using Demo.Domain.Users;
+using FluentAssertions;
 
 namespace Demo.StorageTests
 {
@@ -27,25 +30,32 @@ namespace Demo.StorageTests
             store.Dispose();
         }
 
-        //[SetUp]
-        //public void Setup()
-        //{
-        //    // Czyszczenie bazy
-        //    store.DatabaseCommands.GlobalAdmin.DeleteDatabase("RavenTest", true);
-        //    store.DatabaseCommands.GlobalAdmin.EnsureDatabaseExists("RavenTest");
-        //}
+        [SetUp]
+        public void Setup()
+        {
+            // Czyszczenie bazy
+            store.DatabaseCommands.GlobalAdmin.DeleteDatabase("RavenTest", true);
+            store.DatabaseCommands.GlobalAdmin.EnsureDatabaseExists("RavenTest");
+        }
         [Test]
         public void Product_add_test()
         {
+            
+            var entity = new Product("product", "opis", 100);
             using (var session = store.OpenSession())
-            {
-                for (var i = 1; i < 10; i++)
-                {
-                    var entity = new Product("product" + i, "opis", 100 + i);
-                    session.Store(entity);
-                }
+            {  
+                session.Store(entity);
                 session.SaveChanges();
             }
+
+            using(var session = store.OpenSession())
+            {
+                var entity1 = session.Load<Product>(entity.Id);
+                entity1.Should().NotBeNull();
+                entity1.Name.Should().Be("product");
+
+            }
+        
         }
 
         [Test]

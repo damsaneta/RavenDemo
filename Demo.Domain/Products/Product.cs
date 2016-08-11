@@ -4,6 +4,10 @@ namespace Demo.Domain.Products
 {
     public class Product :Entity
     {
+        protected Product()
+        {
+        }
+
         public Product(string name, string description, decimal price)
         {
             Name = name;

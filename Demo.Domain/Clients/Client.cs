@@ -5,16 +5,17 @@ namespace Demo.Domain.Clients
 {
     public class Client : Entity
     {
-        public Client(string name, User user, Address address)
+        protected Client()
         {
-            Name = name;
-            User = user;
+        }
+
+        public Client(User user, Address address)
+        {
+            UserId = user.Id;
             Address = address;
         }
 
-        public string Name { get; private set; }
-
-        public User User { get; private set; }
+        public string UserId { get; private set; }
 
         public Address Address { get; private set; }
     }
