@@ -8,8 +8,10 @@ using NUnit.Framework;
 using Raven.Client.Document;
 using Raven.Client.Linq;
 
+
 namespace Demo.StorageTests
 {
+
     [TestFixture]
     public class ClientTests
     {
@@ -59,38 +61,6 @@ namespace Demo.StorageTests
             }
         }  
 
-        [Test]
-        public void Client__include()
-        {
-            string id;
-            var entity1 = new User("mojUser1", "Aneta", "Dams", CryptoHelper.Hash("aneta"), Role.Client);
-            using (var session = store.OpenSession())
-            {
-                session.Store(entity1);
-                session.SaveChanges();
-            }
-
-            using (var session = store.OpenSession())
-            {
-                var user = session.Load<User>(entity1.Id);
-                user.Should().NotBeNull();
-                user.LastName.Should().Be("Dams");
-
-                var entity = new Client(user, new Address("Toruń", "Podmurna", "87-100 Toruń", "10/2", "999888777"));
-                session.Store(entity);
-                session.SaveChanges();
-                id = entity.Id;
-                id.Should().NotBeNullOrEmpty();
-            }
-
-            using (var session = store.OpenSession())
-            {
-                //var client = session.Include<Client>(x => x.User).Load<Client>(id);
-                //var client1 = session.Include("User").Load<Client>(id);
-                //client.Should().BeSameAs(client1);
-            }
-
-        }
         [Test]
         public void Client_simple_querry()
         {

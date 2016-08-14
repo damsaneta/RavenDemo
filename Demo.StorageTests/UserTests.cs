@@ -66,7 +66,7 @@ namespace Demo.StorageTests
             {
                 var entity2 = session.Load<User>(entity1.Id);
                 entity2.Should().NotBeNull();
-                entity2.FirstName = "Damian";
+               // entity2.FirstName = "Damian";
                 session.SaveChanges();
             }
 

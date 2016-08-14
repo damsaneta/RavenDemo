@@ -1,6 +1,7 @@
 ﻿using Demo.Domain.Shared;
 using Demo.Domain.Users;
 
+
 namespace Demo.Domain.Clients
 {
     public class Client : Entity

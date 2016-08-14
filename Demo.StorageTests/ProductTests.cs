@@ -1,13 +1,6 @@
 ﻿using Demo.Domain.Products;
 using NUnit.Framework;
 using Raven.Client.Document;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Demo.Domain;
-using Demo.Domain.Users;
 using FluentAssertions;
 
 namespace Demo.StorageTests
