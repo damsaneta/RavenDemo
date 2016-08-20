@@ -1,5 +1,4 @@
-﻿using Demo.Domain.Clients;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using Raven.Client.Document;
 using System;
 using System.Collections.Generic;
@@ -11,7 +10,6 @@ using Demo.Domain.Shared;
 using Demo.Domain.Users;
 using FluentAssertions;
 using Demo.Domain.Products;
-using Demo.Domain.Carts;
 using Raven.Client.UniqueConstraints;
 
 namespace Demo.StorageTests
@@ -178,9 +176,20 @@ namespace Demo.StorageTests
             using (var session = store.OpenSession())
             {
                 var result = session.LoadByUniqueConstraint<User1>(x => x.UserName, "client");
+            } 
+        }
+        [Test]
+        public void Bulk_insert_operation()
+        {
+            using (var bulkInsert = store.BulkInsert())
+            {
+                for (var i = 0; i < 10000; i++)
+                {
+                    var entity = new User("username" +i, "firstName" + i, "lastName" + i, CryptoHelper.Hash("1234"), Role.Client);
+                    bulkInsert.Store(entity);
+                }
             }
 
-          
         }
     }
 }

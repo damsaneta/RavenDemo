@@ -8,7 +8,6 @@ using Demo.Domain.Users;
 using NUnit.Framework;
 using Demo.Domain.Products;
 using Raven.Client.Document;
-using Demo.Domain.Clients;
 using Demo.Domain.Shared;
 using FluentAssertions;
 using Raven.Client;

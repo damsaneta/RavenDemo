@@ -1,6 +1,5 @@
 ﻿using System.Linq;
 using Demo.Domain;
-using Demo.Domain.Clients;
 using Demo.Domain.Shared;
 using Demo.Domain.Users;
 using FluentAssertions;

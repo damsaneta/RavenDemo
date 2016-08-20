@@ -4,8 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Demo.Domain;
-using Demo.Domain.Carts;
-using Demo.Domain.Clients;
+using Demo.Domain.Orders;
 using Demo.Domain.Products;
 using Demo.Domain.Shared;
 using NUnit.Framework;
@@ -94,7 +93,7 @@ namespace Demo.StorageTests
             {
                 var cart = session.Load<Cart>(cartId);
                 cart.Should().NotBeNull();
-                cart.Client.UserId.Should().Be(userId);
+                cart.AddToCart(session.Load<Product>("products/3"), 1);
             }
         }
 
