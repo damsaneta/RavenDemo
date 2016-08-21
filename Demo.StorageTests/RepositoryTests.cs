@@ -23,7 +23,7 @@ namespace Demo.StorageTests
         private UserRepository userRepository;
         private CartRepository cartRepository;
 
-        [OneTimeSetUp]
+        [TestFixtureSetUp]
         public void SetupTests()
         {
             store = new DocumentStore() { Url = "http://localhost/RavenDB/", DefaultDatabase = "RavenTest" };
@@ -32,7 +32,7 @@ namespace Demo.StorageTests
             cartRepository = new CartRepository(store);
         }
 
-        [OneTimeTearDown]
+        [TestFixtureTearDown]
         public void CleanUpTests()
         {
             store.Dispose();

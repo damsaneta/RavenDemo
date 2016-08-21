@@ -12,14 +12,14 @@ namespace Demo.StorageTests
     {
         private DocumentStore store;
 
-        [OneTimeSetUp]
+        [TestFixtureSetUp]
         public void SetupTests()
         {
             store = new DocumentStore() { Url = "http://localhost/RavenDB/", DefaultDatabase = "RavenTest" };
             store.Initialize();
         }
 
-        [OneTimeTearDown]
+        [TestFixtureTearDown]
         public void CleanUpTests()
         {
             store.Dispose();
