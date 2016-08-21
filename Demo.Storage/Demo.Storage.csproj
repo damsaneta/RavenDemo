@@ -48,6 +48,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Infrastructure\DocumentSessionProvider.cs" />
+    <Compile Include="Infrastructure\IDocumentSessionProvider.cs" />
     <Compile Include="Repositories\Impl\CartRepository.cs" />
     <Compile Include="Repositories\ICartRepository.cs" />
     <Compile Include="Repositories\IUserRepository.cs" />

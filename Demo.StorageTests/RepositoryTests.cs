@@ -12,6 +12,7 @@ using Raven.Client.Document;
 using Demo.Domain.Orders;
 using Demo.Domain.Products;
 using Demo.Domain.Shared;
+using Demo.Storage.Infrastructure;
 using Raven.Client;
 
 namespace Demo.StorageTests
@@ -26,10 +27,11 @@ namespace Demo.StorageTests
         [TestFixtureSetUp]
         public void SetupTests()
         {
-            store = new DocumentStore() { Url = "http://localhost/RavenDB/", DefaultDatabase = "RavenTest" };
+            store = new DocumentStore { Url = "http://localhost/RavenDB/", DefaultDatabase = "RavenTest" };
             store.Initialize();
-            userRepository = new UserRepository(store);
-            cartRepository = new CartRepository(store);
+            var sessionProvider = new DocumentSessionProvider(() => store.OpenSession());
+            userRepository = new UserRepository(sessionProvider);
+            cartRepository = new CartRepository(sessionProvider);
         }
 
         [TestFixtureTearDown]

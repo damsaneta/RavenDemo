@@ -1,25 +1,21 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using Demo.Domain.Orders;
 using Demo.Domain.Users;
-using Raven.Client.Document;
+using Demo.Storage.Infrastructure;
 
 namespace Demo.Storage.Repositories.Impl
 {
     public class CartRepository : Repository<Cart>, ICartRepository
     {
-        public CartRepository(DocumentStore documentStore)
-            : base(documentStore)
+        public CartRepository(IDocumentSessionProvider provider)
+            : base(provider)
         {
         }
 
         public Cart GetCartForUser(string userId)
         {
-            using (var session = DocumentStore.OpenSession())
-            {
-                var client = session.Query<Client>().FirstOrDefault(x => x.UserId == userId);
-                return session.Query<Cart>().FirstOrDefault(x => x.ClientId == client.Id);
-            }
+            var client = this.DocumentSession.Query<Client>().FirstOrDefault(x => x.UserId == userId);
+            return this.DocumentSession.Query<Cart>().FirstOrDefault(x => x.ClientId == client.Id);
         }
     }
 }
