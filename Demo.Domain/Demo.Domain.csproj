@@ -39,9 +39,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Carts\Cart.cs" />
-    <Compile Include="Carts\CartItem.cs" />
-    <Compile Include="Clients\Client.cs" />
+    <Compile Include="Orders\Cart.cs" />
+    <Compile Include="Orders\CartItem.cs" />
+    <Compile Include="Orders\Order.cs" />
+    <Compile Include="Orders\OrderItem.cs" />
+    <Compile Include="Orders\OrderStatus.cs" />
+    <Compile Include="Users\Client.cs" />
     <Compile Include="CryptoHelper.cs" />
     <Compile Include="Products\Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

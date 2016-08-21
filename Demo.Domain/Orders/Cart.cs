@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Demo.Domain.Clients;
-using Demo.Domain.Shared;
 using Demo.Domain.Products;
+using Demo.Domain.Shared;
+using Demo.Domain.Users;
 
-namespace Demo.Domain.Carts
+namespace Demo.Domain.Orders
 {
     public class Cart : Entity
     {
@@ -15,15 +15,17 @@ namespace Demo.Domain.Carts
 
         public Cart(Client client)
         {
-            Client = client;
+            this.ClientId = client.Id;
             this.Items = new List<CartItem>();
         }
 
-        public Client Client { get; private set; }
+        public string ClientId { get; private set; }
 
         public List<CartItem> Items { get; private set; }
 
         public decimal Value { get; private set; }
+
+        public bool IsOrdered { get; private set; }
 
         public void AddToCart(Product product, int amount)
         {
@@ -32,14 +34,14 @@ namespace Demo.Domain.Carts
                 throw new InvalidOperationException();
             }
 
-            var item = this.Items.SingleOrDefault(x => x.Product.Id == product.Id);
+            var item = this.Items.SingleOrDefault(x => x.ProductId == product.Id);
             if(item == null)
             {
                 this.Items.Add(new CartItem(product, amount));
             }
             else
             {
-                item.ChangeAmount(amount);
+                item.ChangeAmount(product, amount);
             }
 
             this.Recalculate();
@@ -47,14 +49,30 @@ namespace Demo.Domain.Carts
 
         public void RemoveFromCart(Product product)
         {
-            var item = this.Items.Single(x => x.Product.Id == product.Id);
+            var item = this.Items.Single(x => x.ProductId == product.Id);
             this.Items.Remove(item);
             this.Recalculate();
         }
 
-        public void ChangeAmount(Product product, int amount)
+        public void RemoveFromCart(Product product, int amount)
         {
-            // TODO
+            var item = this.Items.Single(x => x.ProductId == product.Id);
+            if(item.Amount <= amount)
+            {
+                RemoveFromCart(product);
+            }
+            else
+            {
+                item.ChangeAmount(product, -amount);
+                this.Recalculate();
+            }
+        }
+
+        public Order MakeOrder(IList<Product> products, Client client)
+        {
+            var order = new Order(this, client, OrderStatus.Submitted);
+            this.IsOrdered = true;
+            return order;
         }
 
         private void Recalculate()
