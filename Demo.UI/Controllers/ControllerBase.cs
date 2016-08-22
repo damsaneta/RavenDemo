@@ -6,8 +6,5 @@ namespace Demo.UI.Controllers
 {
     public abstract class ControllerBase : Controller
     {
-        public IDocumentSessionProvider DocumentSessionProvider { get; set; }
-
-        public IDocumentSession DocumentSession { get { return this.DocumentSessionProvider.Create(); }}
     }
 }

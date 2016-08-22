@@ -2,15 +2,26 @@
 using Demo.UI.Models;
 using WebMatrix.WebData;
 using System.Web.Security;
+using Demo.ApplicationLogic;
 using Raven.Client;
 using Raven.Client.Document;
 using StructureMap.Attributes;
+using Demo.Storage.Repositories;
 
 namespace Demo.UI.Controllers
 {
     [Authorize]
     public class AccountController : ControllerBase
     {
+        private readonly IUserRepository userRepository;
+        private readonly IUserService userService;
+
+        public AccountController(IUserRepository userRepository, IUserService userService)
+        {
+            this.userRepository = userRepository;
+            this.userService = userService;
+        }
+
         [HttpGet]
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)

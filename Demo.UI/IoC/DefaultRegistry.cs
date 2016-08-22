@@ -1,4 +1,6 @@
+using Demo.ApplicationLogic;
 using Demo.Storage.Infrastructure;
+using Demo.Storage.Repositories;
 using Microsoft.Practices.ServiceLocation;
 using Raven.Client;
 using Raven.Client.Document;
@@ -22,9 +24,12 @@ namespace Demo.UI.IoC
             Scan(
                 scan => {
                     scan.TheCallingAssembly();
+                    scan.AssemblyContainingType<ICartRepository>();
+                    scan.AssemblyContainingType<ICartService>();
 					scan.With(new ControllerConvention());
+                    scan.ConnectImplementationsToTypesClosing(typeof(IRepository<>)).OnAddedPluginTypes(x => x.Singleton());
+                    scan.WithDefaultConventions().OnAddedPluginTypes(x => x.Singleton());
                 });
-            Policies.FillAllPropertiesOfType<IDocumentSessionProvider>();
         }
 
         private static DocumentStore CreateDocumentStore()

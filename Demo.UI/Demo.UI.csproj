@@ -278,6 +278,10 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Demo.ApplicationLogic\Demo.ApplicationLogic.csproj">
+      <Project>{5d5d3013-5b5c-4d0b-88cb-ad4a10b66109}</Project>
+      <Name>Demo.ApplicationLogic</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Demo.Domain\Demo.Domain.csproj">
       <Project>{0B7EA620-001B-45D7-A7CE-78D14C8A6FBC}</Project>
       <Name>Demo.Domain</Name>
