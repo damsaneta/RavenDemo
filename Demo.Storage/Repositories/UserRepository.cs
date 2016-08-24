@@ -2,7 +2,7 @@ using System.Linq;
 using Demo.Domain.Users;
 using Demo.Storage.Infrastructure;
 
-namespace Demo.Storage.Repositories.Impl
+namespace Demo.Storage.Repositories
 {
     public class UserRepository : Repository<User>, IUserRepository
     {

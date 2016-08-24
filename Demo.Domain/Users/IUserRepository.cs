@@ -1,6 +1,6 @@
-﻿using Demo.Domain.Users;
+﻿using Demo.Domain.Shared;
 
-namespace Demo.Storage.Repositories
+namespace Demo.Domain.Users
 {
     public interface IUserRepository : IRepository<User>
     {

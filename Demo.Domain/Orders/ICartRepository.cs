@@ -1,6 +1,6 @@
-﻿using Demo.Domain.Orders;
+﻿using Demo.Domain.Shared;
 
-namespace Demo.Storage.Repositories
+namespace Demo.Domain.Orders
 {
     public interface ICartRepository : IRepository<Cart>
     {

@@ -3,6 +3,7 @@ using Demo.UI.Models;
 using WebMatrix.WebData;
 using System.Web.Security;
 using Demo.ApplicationLogic;
+using Demo.Domain.Users;
 using Raven.Client;
 using Raven.Client.Document;
 using StructureMap.Attributes;

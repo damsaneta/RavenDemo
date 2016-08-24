@@ -1,4 +1,6 @@
 using Demo.ApplicationLogic;
+using Demo.Domain.Orders;
+using Demo.Domain.Shared;
 using Demo.Storage.Infrastructure;
 using Demo.Storage.Repositories;
 using Microsoft.Practices.ServiceLocation;

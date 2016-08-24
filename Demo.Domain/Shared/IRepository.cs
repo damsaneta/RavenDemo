@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using Demo.Domain.Shared;
 
-namespace Demo.Storage.Repositories
+namespace Demo.Domain.Shared
 {
     public interface IRepository<T> where T : Entity
     {

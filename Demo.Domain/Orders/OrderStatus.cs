@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Demo.Domain.Orders
+﻿namespace Demo.Domain.Orders
 {
     public enum OrderStatus
     {
         Unknown = 0,
-        Submitted = 1,
-        Shipped = 2,
-        Received = 3
+        New = 1,
+        Completed = 2,
+        Shipped = 3,
+        Received = 4
     }
 }

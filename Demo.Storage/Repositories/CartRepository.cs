@@ -3,7 +3,7 @@ using Demo.Domain.Orders;
 using Demo.Domain.Users;
 using Demo.Storage.Infrastructure;
 
-namespace Demo.Storage.Repositories.Impl
+namespace Demo.Storage.Repositories
 {
     public class CartRepository : Repository<Cart>, ICartRepository
     {

@@ -4,11 +4,11 @@ namespace Demo.Domain.Orders
 {
     public class OrderItem
     {
-        public OrderItem(CartItem cartItem, Product product)
+        public OrderItem(int amount, decimal value, Product product)
         {
             this.Product = product;
-            this.Amount = cartItem.Amount;
-            this.Value = cartItem.Value;
+            this.Amount = amount;
+            this.Value = value;
         }
 
         public Product Product { get; private set; }

@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Demo.Domain;
 using Demo.Domain.Users;
-using Demo.Storage.Repositories.Impl;
 using FluentAssertions;
 using NUnit.Framework;
 using Raven.Client.Document;
@@ -13,6 +12,7 @@ using Demo.Domain.Orders;
 using Demo.Domain.Products;
 using Demo.Domain.Shared;
 using Demo.Storage.Infrastructure;
+using Demo.Storage.Repositories;
 using Raven.Client;
 
 namespace Demo.StorageTests

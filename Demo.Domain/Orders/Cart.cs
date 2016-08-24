@@ -70,7 +70,9 @@ namespace Demo.Domain.Orders
 
         public Order MakeOrder(IList<Product> products, Client client)
         {
-            var order = new Order(this, client, OrderStatus.Submitted);
+            var orderItems = this.Items.Join(products, x => x.ProductId, x => x.Id, (item, product) => new { item, product})
+                .Select(x => new OrderItem(x.item.Amount, x.item.Value, x.product)).ToList();
+            var order = new Order(this.Id, orderItems, client);
             this.IsOrdered = true;
             return order;
         }

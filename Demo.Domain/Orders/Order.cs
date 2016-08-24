@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Demo.Domain.Shared;
 using Demo.Domain.Users;
 
@@ -10,11 +7,13 @@ namespace Demo.Domain.Orders
 {
     public class Order : Entity
     {
-        public Order(Cart cart, Client client, OrderStatus status)
+        public Order(string cartId, IList<OrderItem> orderItems, Client client)
         {
-            this.CartId = cart.Id;
+            this.CartId = cartId;
+            this.OrderItems = orderItems;
             this.Client = client;
-            this.Status = status;
+            this.Status = OrderStatus.New;
+            this.OrderDate = DateTime.Now;
         }
 
         public string CartId { get; private set; }
@@ -22,6 +21,8 @@ namespace Demo.Domain.Orders
         public Client Client { get; private set; }
 
         public OrderStatus Status { get; private set; }
+
+        public DateTime OrderDate { get; private set; }
 
         public IList<OrderItem> OrderItems { get; private set; }
     }

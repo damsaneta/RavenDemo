@@ -4,7 +4,7 @@ using Demo.Domain.Shared;
 using Demo.Storage.Infrastructure;
 using Raven.Client;
 
-namespace Demo.Storage.Repositories.Impl
+namespace Demo.Storage.Repositories
 {
     public abstract class Repository<T> : IRepository<T> where T : Entity
     {
