@@ -27,6 +27,7 @@ namespace Demo.UI.IoC
                 scan => {
                     scan.TheCallingAssembly();
                     scan.AssemblyContainingType<ICartRepository>();
+                    scan.AssemblyContainingType<CartRepository>();
                     scan.AssemblyContainingType<ICartService>();
 					scan.With(new ControllerConvention());
                     scan.ConnectImplementationsToTypesClosing(typeof(IRepository<>)).OnAddedPluginTypes(x => x.Singleton());

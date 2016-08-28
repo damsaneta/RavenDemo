@@ -8,5 +8,6 @@ namespace Demo.ApplicationLogic
 {
     public interface IUserService
     {
+        bool CanSignIn(string userName, string password);
     }
 }
