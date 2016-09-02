@@ -1,15 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5D5D3013-5B5C-4D0B-88CB-AD4A10B66109}</ProjectGuid>
+    <ProjectGuid>{10A38ABC-82A3-4A11-825B-9F05492F3030}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Demo.ApplicationLogic</RootNamespace>
-    <AssemblyName>Demo.ApplicationLogic</AssemblyName>
-    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <RootNamespace>Demo.Common</RootNamespace>
+    <AssemblyName>Demo.Common</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -39,25 +39,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ICartService.cs" />
-    <Compile Include="Impl\CartService.cs" />
-    <Compile Include="IUserService.cs" />
+    <Compile Include="Dtos\Products\ProductGridItemDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Impl\UserService.cs" />
+    <Compile Include="Utils\CryptoHelper.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Demo.Common\Demo.Common.csproj">
-      <Project>{10a38abc-82a3-4a11-825b-9f05492f3030}</Project>
-      <Name>Demo.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Demo.Domain\Demo.Domain.csproj">
-      <Project>{0b7ea620-001b-45d7-a7ce-78d14c8a6fbc}</Project>
-      <Name>Demo.Domain</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Demo.Storage\Demo.Storage.csproj">
-      <Project>{fc4c2b3b-e421-4352-bc1a-5fceb271d9c2}</Project>
-      <Name>Demo.Storage</Name>
-    </ProjectReference>
+    <Folder Include="Queries\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

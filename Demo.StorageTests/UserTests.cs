@@ -3,6 +3,7 @@ using Demo.Domain.Users;
 using NUnit.Framework;
 using Raven.Client.Document;
 using System.Linq;
+using Demo.Common.Utils;
 using FluentAssertions;
 
 namespace Demo.StorageTests

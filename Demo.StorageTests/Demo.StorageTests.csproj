@@ -81,6 +81,10 @@
     <Compile Include="UserTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Demo.Common\Demo.Common.csproj">
+      <Project>{10a38abc-82a3-4a11-825b-9f05492f3030}</Project>
+      <Name>Demo.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Demo.Domain\Demo.Domain.csproj">
       <Project>{0b7ea620-001b-45d7-a7ce-78d14c8a6fbc}</Project>
       <Name>Demo.Domain</Name>

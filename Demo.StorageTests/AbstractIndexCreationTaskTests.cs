@@ -1,6 +1,7 @@
 ﻿using System.Configuration;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using Demo.Common.Utils;
 using Demo.Domain.Users;
 using NUnit.Framework;
 using Raven.Client.Document;

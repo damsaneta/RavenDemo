@@ -2,10 +2,12 @@
 
 namespace Demo.UI.Controllers
 {
+    [AllowAnonymous]
     public class HomeController : ControllerBase
     {
         public ActionResult Index()
         {
+            return this.RedirectToAction("Index", "Product");
             ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
 
             return View();
