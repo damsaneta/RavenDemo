@@ -46,18 +46,16 @@ namespace Demo.UI.Controllers
                 return this.View(model);
             }
 
-            //var canSignIn = this.usersBusinessLogic.CanSignIn(model.Login, model.Password);
-            //if (!canSignIn)
-            //{
-            //    this.ModelState.AddModelError("", ValidationMessages.IncorrectCredential);
-            //    return this.View(model);
-            //}
+            var canSignIn = this.userService.CanSignIn(model.Login, model.Password);
+            if (!canSignIn)
+            {
+                this.ModelState.AddModelError("", "Nieprawidłowe dane logowania");
+                return this.View(model);
+            }
 
             FormsAuthentication.SetAuthCookie(model.Login, model.RememberMe);
             string url = FormsAuthentication.GetRedirectUrl(model.Login, model.RememberMe);
-
-            return this.Redirect(url);
-            
+            return this.Redirect(url);        
         }
 
         [HttpPost]
