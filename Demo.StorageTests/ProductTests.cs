@@ -30,26 +30,26 @@ namespace Demo.StorageTests
             store.DatabaseCommands.GlobalAdmin.DeleteDatabase("RavenTest", true);
             store.DatabaseCommands.GlobalAdmin.EnsureDatabaseExists("RavenTest");
         }
-        [Test]
-        public void Product_add_test()
-        {
+        //[Test]
+        //public void Product_add_test()
+        //{
             
-            var entity = new Product("product", "opis", 100);
-            using (var session = store.OpenSession())
-            {  
-                session.Store(entity);
-                session.SaveChanges();
-            }
+        //    var entity = new Product("product", "opis", 100);
+        //    using (var session = store.OpenSession())
+        //    {  
+        //        session.Store(entity);
+        //        session.SaveChanges();
+        //    }
 
-            using(var session = store.OpenSession())
-            {
-                var entity1 = session.Load<Product>(entity.Id);
-                entity1.Should().NotBeNull();
-                entity1.Name.Should().Be("product");
+        //    using(var session = store.OpenSession())
+        //    {
+        //        var entity1 = session.Load<Product>(entity.Id);
+        //        entity1.Should().NotBeNull();
+        //        entity1.Name.Should().Be("product");
 
-            }
+        //    }
         
-        }
+        //}
 
         [Test]
         public void Product_delete_test()

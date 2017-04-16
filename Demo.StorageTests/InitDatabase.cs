@@ -45,9 +45,14 @@ namespace Demo.StorageTests
         [Explicit]
         public void Init()
         {
-            this.InitUsers();
-            this.InitProducts();
-            InitClients();
+            //this.InitUsers();
+            //this.InitProducts();
+            //InitClients();
+        }
+
+        private void InitCategories()
+        {
+
         }
 
         private void InitUsers()
@@ -119,18 +124,18 @@ namespace Demo.StorageTests
             }
         }
 
-        private void InitProducts()
-        {
-            using (var session = store.OpenSession())
-            {
-                for (var i = 1; i < 10; i++)
-                {
-                    var entity = new Product("product" + i, "opis", 100 + i);
-                    session.Store(entity);
-                }
-                session.SaveChanges();
-            }
+        //private void InitProducts()
+        //{
+        //    using (var session = store.OpenSession())
+        //    {
+        //        for (var i = 1; i < 10; i++)
+        //        {
+        //            var entity = new Product("product" + i, "opis", 100 + i);
+        //            session.Store(entity);
+        //        }
+        //        session.SaveChanges();
+        //    }
 
-        }
+        //}
     }
 }

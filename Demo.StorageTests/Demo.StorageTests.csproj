@@ -69,29 +69,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CartTest.cs" />
-    <Compile Include="ClientTests.cs" />
-    <Compile Include="IncludeTests.cs" />
-    <Compile Include="AbstractIndexCreationTaskTests.cs" />
-    <Compile Include="PutIndexTest.cs" />
     <Compile Include="InitDatabase.cs" />
-    <Compile Include="ProductTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RepositoryTests.cs" />
-    <Compile Include="UserTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Demo.Common\Demo.Common.csproj">
       <Project>{10a38abc-82a3-4a11-825b-9f05492f3030}</Project>
       <Name>Demo.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Demo.Domain\Demo.Domain.csproj">
-      <Project>{0b7ea620-001b-45d7-a7ce-78d14c8a6fbc}</Project>
-      <Name>Demo.Domain</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Demo.Storage\Demo.Storage.csproj">
-      <Project>{fc4c2b3b-e421-4352-bc1a-5fceb271d9c2}</Project>
-      <Name>Demo.Storage</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
