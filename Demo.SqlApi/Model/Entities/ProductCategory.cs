@@ -1,3 +1,5 @@
+using System;
+
 namespace Demo.SqlApi.Model.Entities
 {
     using System.ComponentModel.DataAnnotations;
@@ -11,5 +13,9 @@ namespace Demo.SqlApi.Model.Entities
         [Required]
         [StringLength(50)]
         public string Name { get; set; }
+
+        public Guid rowguid { get; set; }
+
+        public DateTime ModifiedDate { get; set; }
     }
 }
