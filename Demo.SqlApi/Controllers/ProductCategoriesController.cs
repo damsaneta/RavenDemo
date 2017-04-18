@@ -12,12 +12,12 @@ namespace Demo.SqlApi.Controllers
         private readonly EntitiesDbContext db = new EntitiesDbContext();
 
         [ResponseType(typeof(IList<ProductCategoryDto>))]
-        public IHttpActionResult Get(string name = null)
+        public IHttpActionResult Get(string search = null)
         {
             List<ProductCategoryDto> result;
-            if (!string.IsNullOrEmpty(name))
+            if (!string.IsNullOrEmpty(search))
             {
-                result = db.Database.SqlQuery<ProductCategoryDto>("SELECT ID, Name FROM dbo.ProductCategory WHERE Name like @p0 ORDER BY Name ASC", name + "%").ToList();
+                result = db.Database.SqlQuery<ProductCategoryDto>("SELECT ID, Name FROM dbo.ProductCategory WHERE Name like @p0 ORDER BY Name ASC", search + "%").ToList();
             }
             else
             {
