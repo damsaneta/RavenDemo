@@ -22,7 +22,7 @@ namespace Demo.Tests.Api.ApiTests.ProductCategories {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class ProductCategoriesFiles {
+    public class ProductCategoriesFiles {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace Demo.Tests.Api.ApiTests.ProductCategories {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Demo.Tests.Api.ApiTests.ProductCategories.ProductCategoriesFiles", typeof(ProductCategoriesFiles).Assembly);
@@ -51,7 +51,7 @@ namespace Demo.Tests.Api.ApiTests.ProductCategories {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -64,19 +64,49 @@ namespace Demo.Tests.Api.ApiTests.ProductCategories {
         ///   Looks up a localized string similar to [{&quot;ID&quot;:4,&quot;Name&quot;:&quot;Accessories&quot;},{&quot;ID&quot;:1,&quot;Name&quot;:&quot;Bikes&quot;},{&quot;ID&quot;:3,&quot;Name&quot;:&quot;Clothing&quot;},{&quot;ID&quot;:2,&quot;Name&quot;:&quot;Components&quot;}]
         ///.
         /// </summary>
-        internal static string GetAll_json {
+        public static string GetAll_json {
             get {
                 return ResourceManager.GetString("GetAll_json", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {&quot;ID&quot;:1,&quot;Name&quot;:&quot;Bikes&quot;}
+        ///   Looks up a localized string similar to [{&quot;ID&quot;:1,&quot;Name&quot;:&quot;Bikes&quot;},{&quot;ID&quot;:2,&quot;Name&quot;:&quot;Components&quot;},{&quot;ID&quot;:3,&quot;Name&quot;:&quot;Clothing&quot;},{&quot;ID&quot;:4,&quot;Name&quot;:&quot;Accessories&quot;}]
         ///.
         /// </summary>
-        internal static string GetById_json {
+        public static string GetAllOrderByIdAsc_json {
             get {
-                return ResourceManager.GetString("GetById_json", resourceCulture);
+                return ResourceManager.GetString("GetAllOrderByIdAsc_json", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [{&quot;ID&quot;:4,&quot;Name&quot;:&quot;Accessories&quot;},{&quot;ID&quot;:3,&quot;Name&quot;:&quot;Clothing&quot;},{&quot;ID&quot;:2,&quot;Name&quot;:&quot;Components&quot;},{&quot;ID&quot;:1,&quot;Name&quot;:&quot;Bikes&quot;}]
+        ///.
+        /// </summary>
+        public static string GetAllOrderByIdDesc_json {
+            get {
+                return ResourceManager.GetString("GetAllOrderByIdDesc_json", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [{&quot;ID&quot;:4,&quot;Name&quot;:&quot;Accessories&quot;},{&quot;ID&quot;:1,&quot;Name&quot;:&quot;Bikes&quot;},{&quot;ID&quot;:3,&quot;Name&quot;:&quot;Clothing&quot;},{&quot;ID&quot;:2,&quot;Name&quot;:&quot;Components&quot;}]
+        ///.
+        /// </summary>
+        public static string GetAllOrderByNameAsc_json {
+            get {
+                return ResourceManager.GetString("GetAllOrderByNameAsc_json", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [{&quot;ID&quot;:2,&quot;Name&quot;:&quot;Components&quot;},{&quot;ID&quot;:3,&quot;Name&quot;:&quot;Clothing&quot;},{&quot;ID&quot;:1,&quot;Name&quot;:&quot;Bikes&quot;},{&quot;ID&quot;:4,&quot;Name&quot;:&quot;Accessories&quot;}]
+        ///.
+        /// </summary>
+        public static string GetAllOrderByNameDesc_json {
+            get {
+                return ResourceManager.GetString("GetAllOrderByNameDesc_json", resourceCulture);
             }
         }
         
@@ -84,7 +114,17 @@ namespace Demo.Tests.Api.ApiTests.ProductCategories {
         ///   Looks up a localized string similar to {&quot;ID&quot;:1,&quot;Name&quot;:&quot;Bikes&quot;}
         ///.
         /// </summary>
-        internal static string GetByName_json {
+        public static string GetById_json {
+            get {
+                return ResourceManager.GetString("GetById_json", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [{&quot;ID&quot;:3,&quot;Name&quot;:&quot;Clothing&quot;},{&quot;ID&quot;:2,&quot;Name&quot;:&quot;Components&quot;}]
+        ///.
+        /// </summary>
+        public static string GetByName_json {
             get {
                 return ResourceManager.GetString("GetByName_json", resourceCulture);
             }
