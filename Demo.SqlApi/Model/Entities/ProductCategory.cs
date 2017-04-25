@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace Demo.SqlApi.Model.Entities
 {
@@ -6,8 +7,13 @@ namespace Demo.SqlApi.Model.Entities
     using System.ComponentModel.DataAnnotations.Schema;
 
     [Table("ProductCategory")]
-    public partial class ProductCategory
+    public class ProductCategory
     {
+        //public ProductCategory()
+        //{
+        //    ProductSubcategory = new HashSet<ProductSubcategory>();
+        //}
+
         public int ID { get; set; }
 
         [Required]
@@ -17,5 +23,7 @@ namespace Demo.SqlApi.Model.Entities
         public Guid rowguid { get; set; }
 
         public DateTime ModifiedDate { get; set; }
+
+        //public virtual ICollection<ProductSubcategory> ProductSubcategory { get; set; }
     }
 }
