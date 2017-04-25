@@ -134,6 +134,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\ProductCategoriesController.cs" />
+    <Compile Include="Controllers\ProductSubcategoriesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -142,8 +143,10 @@
     <Compile Include="Model\DataTables\DtRequest.cs" />
     <Compile Include="Model\Dtos\ProductCategoryColumns.cs" />
     <Compile Include="Model\Dtos\ProductCategoryDto.cs" />
+    <Compile Include="Model\Dtos\ProductSubcategoryDto.cs" />
     <Compile Include="Model\Entities\EntitiesDbContext.cs" />
     <Compile Include="Model\Entities\ProductCategory.cs" />
+    <Compile Include="Model\Entities\ProductSubcategory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

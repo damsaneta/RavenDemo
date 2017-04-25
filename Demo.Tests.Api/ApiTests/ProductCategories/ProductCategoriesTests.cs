@@ -10,9 +10,10 @@ namespace Demo.Tests.Api.ApiTests.ProductCategories
     public class ProductCategoriesTests
     {
         [Test]
-        public void Get_all()
+        [TestCase(Consts.SqlApiRootUrl)]
+        public void Get_all(string url)
         {
-            using (var client = new HttpClient {BaseAddress = new Uri(Consts.SqlApiRootUrl)})
+            using (var client = new HttpClient {BaseAddress = new Uri(url) })
             {
                 HttpResponseMessage response = client.GetAsync("ProductCategories").Result;
                 response.Should().NotBeNull();
@@ -141,7 +142,7 @@ namespace Demo.Tests.Api.ApiTests.ProductCategories
 
         private string BuildDtUrl(string search = null, int? orderColumn = null, string orderDirection = null)
         {
-            var url = Consts.SqlApiRootUrl + "ProductCategories?draw=1";
+            var url = "ProductCategories?draw=1";
             url += "&" + WebUtility.UrlEncode("columns[0][name]") + "=Name";
             url += "&" + WebUtility.UrlEncode("columns[1][name]") + "=ID";
             if (orderColumn.HasValue)
@@ -153,6 +154,7 @@ namespace Demo.Tests.Api.ApiTests.ProductCategories
             {
                 url += "&" + WebUtility.UrlEncode("order[0][dir]") + "=" + orderDirection;
             }
+
             if (!string.IsNullOrEmpty(search))
             {
                 url += "&" + WebUtility.UrlEncode("search[value]") + "=" + search;

@@ -12,6 +12,11 @@ namespace Demo.SqlApi.Model.Entities
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<ProductCategory>();
+            modelBuilder.Entity<ProductSubcategory>();
+            //modelBuilder.Entity<ProductCategory>()
+            //    .HasMany(e => e.ProductSubcategory)
+            //    .WithRequired(e => e.ProductCategory)
+            //    .WillCascadeOnDelete(false);
         }
     }
 }

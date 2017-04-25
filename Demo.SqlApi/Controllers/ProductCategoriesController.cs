@@ -27,13 +27,7 @@ namespace Demo.SqlApi.Controllers
         }
 
         [ResponseType(typeof(IList<ProductCategoryDto>))]
-        public IHttpActionResult Get(string name)
-        {
-            return this.Get(new DtRequest {Search = (name ?? "") + "%"});
-        }
-
-        [ResponseType(typeof(IList<ProductCategoryDto>))]
-        public IHttpActionResult Get([FromUri]DtRequest request)
+        public IHttpActionResult Get(DtRequest request)
         {
             var parameters = new List<object>();
             var sql = "SELECT ID, Name FROM dbo.ProductCategory ";

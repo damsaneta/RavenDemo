@@ -59,6 +59,12 @@
       <DependentUpon>ProductCategoriesFiles.resx</DependentUpon>
     </Compile>
     <Compile Include="ApiTests\ProductCategories\ProductCategoriesTests.cs" />
+    <Compile Include="ApiTests\ProductSubcategories\ProductSubcategoriesFiles.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProductSubcategoriesFiles.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ApiTests\ProductSubcategories\ProductSubcategoriesTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -69,6 +75,7 @@
     <Content Include="ApiTests\ProductCategories\GetByName.json.txt" />
     <Content Include="ApiTests\ProductCategories\GetById.json.txt" />
     <Content Include="ApiTests\ProductCategories\GetAll.json.txt" />
+    <Content Include="ApiTests\ProductSubcategories\GetAll.json.txt" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -76,7 +83,12 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ProductCategoriesFiles.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="ApiTests\ProductSubcategories\ProductSubcategoriesFiles.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ProductSubcategoriesFiles.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
