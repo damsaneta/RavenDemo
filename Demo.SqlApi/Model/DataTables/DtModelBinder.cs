@@ -20,7 +20,7 @@ namespace Demo.SqlApi.Model.DataTables
 
         public bool BindModel(HttpActionContext actionContext, ModelBindingContext bindingContext)
         {
-            if (bindingContext.ModelType != typeof(DtRequest))
+            if (!typeof(DtRequest).IsAssignableFrom(bindingContext.ModelType))
             {
                 return false;
             }
@@ -28,7 +28,7 @@ namespace Demo.SqlApi.Model.DataTables
             var compositeValueProvider = (bindingContext.ValueProvider as CompositeValueProvider);
             var valueProvider = compositeValueProvider[0];
 
-            var result = new DtRequest();
+            var result = (DtRequest)Activator.CreateInstance(bindingContext.ModelType);
             result.Draw = GetValue<int>(valueProvider, "draw");
             result.Length = GetValue<int>(valueProvider, "length");
             result.Start = GetValue<int>(valueProvider, "start");
