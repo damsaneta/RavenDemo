@@ -36,6 +36,7 @@ namespace Demo.SqlApi.Model.DataTables
         public ISet<string> Fields { get; set; } 
     }
 
+    [ModelBinder(typeof(DtModelBinder))]
     public class DtRequest<TDto> : DtRequest
         where TDto : class
     {
