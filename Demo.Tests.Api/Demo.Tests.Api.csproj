@@ -76,6 +76,7 @@
     <Content Include="ApiTests\ProductCategories\GetById.json.txt" />
     <Content Include="ApiTests\ProductCategories\GetAll.json.txt" />
     <Content Include="ApiTests\ProductSubcategories\GetAll.json.txt" />
+    <Content Include="ApiTests\ProductSubcategories\GetBySubcategoryId.json.txt" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

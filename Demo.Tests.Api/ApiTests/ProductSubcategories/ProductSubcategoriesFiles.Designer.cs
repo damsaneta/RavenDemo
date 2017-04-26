@@ -61,11 +61,20 @@ namespace Demo.Tests.Api.ApiTests.ProductSubcategories {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {&quot;ID&quot;:1,&quot;Name&quot;:&quot;Mountain Bikes&quot;,&quot;ProductCategoryID&quot;:1,&quot;ProductCatego.
+        ///   Looks up a localized string similar to [{&quot;ID&quot;:26,&quot;Name&quot;:&quot;Bike Racks&quot;,&quot;ProductCategoryID&quot;:4,&quot;ProductCategoryName&quot;:&quot;Accessories&quot;},{&quot;ID&quot;:27,&quot;Name&quot;:&quot;Bike Stands&quot;,&quot;ProductCategoryID&quot;:4,&quot;ProductCategoryName&quot;:&quot;Accessories&quot;},{&quot;ID&quot;:28,&quot;Name&quot;:&quot;Bottles and Cages&quot;,&quot;ProductCategoryID&quot;:4,&quot;ProductCategoryName&quot;:&quot;Accessories&quot;},{&quot;ID&quot;:29,&quot;Name&quot;:&quot;Cleaners&quot;,&quot;ProductCategoryID&quot;:4,&quot;ProductCategoryName&quot;:&quot;Accessories&quot;},{&quot;ID&quot;:30,&quot;Name&quot;:&quot;Fenders&quot;,&quot;ProductCategoryID&quot;:4,&quot;ProductCategoryName&quot;:&quot;Accessories&quot;},{&quot;ID&quot;:31,&quot;Name&quot;:&quot;Helmets&quot;,&quot;ProductCategoryID&quot;:4,&quot;ProductCategoryName [rest of string was truncated]&quot;;.
         /// </summary>
         public static string GetAll_json {
             get {
                 return ResourceManager.GetString("GetAll_json", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {&quot;ID&quot;:1,&quot;Name&quot;:&quot;Mountain Bikes&quot;,&quot;ProductCategoryID&quot;:1,&quot;ProductCategoryName&quot;:&quot;Bikes&quot;}.
+        /// </summary>
+        public static string GetBySubcategoryId_json {
+            get {
+                return ResourceManager.GetString("GetBySubcategoryId_json", resourceCulture);
             }
         }
     }

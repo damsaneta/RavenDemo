@@ -1,0 +1,44 @@
+﻿@using Demo.UI.Models
+@{
+    ViewBag.Title = "Podkategorie produktów";
+}
+<div>
+    <table id="myTable"></table>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('#myTable').dataTable({
+            serverSide: true,
+            processing: false,
+            paging: false,
+            info: false,
+            ajax: {
+                url: '@Consts.SqlApiRootUrl' + "ProductSubcategories",
+                dataSrc: ''
+            },
+            columns: [
+                {
+                    name: 'ProductCategoryName',
+                    data: "ProductCategoryName",
+                    title: "Kategoria",
+                    sortable: true,
+                    searchable: false
+                },
+                {
+                    name: 'Name',
+                    data: "Name",
+                    title: "Podkategoria",
+                    sortable: true,
+                    searchable: false
+                }
+            ]
+        });
+    });
+
+    function renderNameColumnFunc(data, type, full, meta) {
+        // TODO
+        var txt = "<button>Edytuj</button>";
+        return txt;
+    }
+</script>
