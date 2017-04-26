@@ -130,8 +130,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\FilterConfig.cs" />
-    <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\ProductCategoriesController.cs" />
     <Compile Include="Controllers\ProductSubcategoriesController.cs" />
@@ -141,7 +139,6 @@
     <Compile Include="Model\DataTables\DtModelBinder.cs" />
     <Compile Include="Model\DataTables\DtOrderDirection.cs" />
     <Compile Include="Model\DataTables\DtRequest.cs" />
-    <Compile Include="Model\Dtos\ProductCategoryColumns.cs" />
     <Compile Include="Model\Dtos\ProductCategoryDto.cs" />
     <Compile Include="Model\Dtos\ProductSubcategoryDto.cs" />
     <Compile Include="Model\Entities\EntitiesDbContext.cs" />
@@ -167,9 +164,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
