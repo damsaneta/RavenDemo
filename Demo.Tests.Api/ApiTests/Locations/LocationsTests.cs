@@ -1,18 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
-using Demo.Tests.Api.ApiTests.ProductCategories;
 using FluentAssertions;
 using NUnit.Framework;
 
-namespace Demo.Tests.Api.ApiTests.ProductSubcategories
+namespace Demo.Tests.Api.ApiTests.Locations
 {
     [TestFixture]
-    public class ProductSubcategoriesTests
+    public class LocationsTests
     {
         [Test]
         [TestCase(Consts.SqlApiRootUrl)]
@@ -20,56 +15,53 @@ namespace Demo.Tests.Api.ApiTests.ProductSubcategories
         {
             using (var client = new HttpClient { BaseAddress = new Uri(url) })
             {
-                HttpResponseMessage response = client.GetAsync("ProductSubcategories").Result;
+                HttpResponseMessage response = client.GetAsync("Locations").Result;
                 response.Should().NotBeNull();
                 response.IsSuccessStatusCode.Should().BeTrue();
                 response.StatusCode.Should().Be(HttpStatusCode.OK);
                 string content = response.Content.ReadAsStringAsync().Result;
-                content.Should().Be(ProductSubcategoriesFiles.GetAll_json.Trim());
+                content.Should().Be(LocationsFiles.GetAll_json.Trim());
             }
         }
 
         [Test]
-        [TestCase(Consts.SqlApiRootUrl)]
-        public void Get_by_id(string url)
+        public void Get_by_id()
         {
-            using (var client = new HttpClient { BaseAddress = new Uri(url)})
+            using (var client = new HttpClient { BaseAddress = new Uri(Consts.SqlApiRootUrl) })
             {
-                HttpResponseMessage response = client.GetAsync("ProductSubcategories/1").Result;
+                HttpResponseMessage response = client.GetAsync("Locations/1").Result;
                 response.Should().NotBeNull();
                 response.IsSuccessStatusCode.Should().BeTrue();
                 response.StatusCode.Should().Be(HttpStatusCode.OK);
                 string content = response.Content.ReadAsStringAsync().Result;
-                content.Should().Be(ProductSubcategoriesFiles.GetBySubcategoryId_json.Trim());
-
+                content.Should().Be(LocationsFiles.GetById_json.Trim());
             }
         }
 
         [Test]
-        [TestCase(Consts.SqlApiRootUrl)]
-        public void Get_by_id_not_found(string url)
+        public void Get_by_id_not_found()
         {
-            using (var client = new HttpClient { BaseAddress = new Uri(url)})
+            using (var client = new HttpClient { BaseAddress = new Uri(Consts.SqlApiRootUrl) })
             {
-                HttpResponseMessage response = client.GetAsync("ProductSubcategories/0").Result;
+                HttpResponseMessage response = client.GetAsync("Locations/0").Result;
                 response.Should().NotBeNull();
                 response.IsSuccessStatusCode.Should().BeFalse();
                 response.StatusCode.Should().Be(HttpStatusCode.NotFound);
             }
         }
-        
+
         [Test]
-        public void Get_by_subcategoryName_or_categoryName()
+        public void Get_by_name()
         {
             using (var client = new HttpClient { BaseAddress = new Uri(Consts.SqlApiRootUrl) })
             {
-                var url = this.BuildDtUrl("bike");
+                var url = this.BuildDtUrl("f");
                 HttpResponseMessage response = client.GetAsync(url).Result;
                 response.Should().NotBeNull();
                 response.IsSuccessStatusCode.Should().BeTrue();
                 response.StatusCode.Should().Be(HttpStatusCode.OK);
-                var content = response.Content.ReadAsStringAsync().Result;
-                content.Should().Be(ProductSubcategoriesFiles.Get_by_subcategoryName_or_categoryName_json.Trim());
+                string content = response.Content.ReadAsStringAsync().Result;
+               // content.Should().Be(LocationsFiles.GetByName_json.Trim());
             }
         }
 
@@ -78,7 +70,7 @@ namespace Demo.Tests.Api.ApiTests.ProductSubcategories
         {
             using (var client = new HttpClient { BaseAddress = new Uri(Consts.SqlApiRootUrl) })
             {
-                var url = this.BuildDtUrl("z");
+                var url = this.BuildDtUrl("x");
                 HttpResponseMessage response = client.GetAsync(url).Result;
                 response.Should().NotBeNull();
                 response.IsSuccessStatusCode.Should().BeTrue();
@@ -89,56 +81,7 @@ namespace Demo.Tests.Api.ApiTests.ProductSubcategories
         }
 
         [Test]
-        public void Get_all_ordered_by_name_desc()
-        {
-            using (var client = new HttpClient { BaseAddress = new Uri(Consts.SqlApiRootUrl) })
-            {
-                var url = this.BuildDtUrl(orderColumn: 0, orderDirection: "desc");
-                HttpResponseMessage response = client.GetAsync(url).Result;
-                response.Should().NotBeNull();
-                response.IsSuccessStatusCode.Should().BeTrue();
-                response.StatusCode.Should().Be(HttpStatusCode.OK);
-                string content = response.Content.ReadAsStringAsync().Result;
-                content.Should().Be(ProductSubcategoriesFiles.GetAllOrderedByNameDesc_json.Trim());
-            }
-
-        }
-
-        [Test]
-        public void Get_all_ordered_by_name_asc()
-        {
-            using (var client = new HttpClient { BaseAddress = new Uri(Consts.SqlApiRootUrl) })
-            {
-                var url = this.BuildDtUrl(orderColumn: 0);
-                HttpResponseMessage response = client.GetAsync(url).Result;
-                response.Should().NotBeNull();
-                response.IsSuccessStatusCode.Should().BeTrue();
-                response.StatusCode.Should().Be(HttpStatusCode.OK);
-                string content = response.Content.ReadAsStringAsync().Result;
-                content.Should().Be(ProductSubcategoriesFiles.GetAllOrderedByNameAsc_json.Trim());
-
-            }
-
-        }
-
-        [Test]
-        public void Get_all_ordered_by_categoryName_desc()
-        {
-            using (var client = new HttpClient { BaseAddress = new Uri(Consts.SqlApiRootUrl) })
-            {
-                var url = this.BuildDtUrl(orderColumn: 1, orderDirection: "desc");
-                HttpResponseMessage response = client.GetAsync(url).Result;
-                response.Should().NotBeNull();
-                response.IsSuccessStatusCode.Should().BeTrue();
-                response.StatusCode.Should().Be(HttpStatusCode.OK);
-                string content = response.Content.ReadAsStringAsync().Result;
-                content.Should().Be(ProductSubcategoriesFiles.GetAllOrderedByCategoryNameDesc_json.Trim());
-            }
-
-        }
-
-        [Test]
-        public void Get_all_ordered_by_categoryName_asc()
+        public void Get_all_ordered_by_id_ascending()
         {
             using (var client = new HttpClient { BaseAddress = new Uri(Consts.SqlApiRootUrl) })
             {
@@ -148,19 +91,60 @@ namespace Demo.Tests.Api.ApiTests.ProductSubcategories
                 response.IsSuccessStatusCode.Should().BeTrue();
                 response.StatusCode.Should().Be(HttpStatusCode.OK);
                 string content = response.Content.ReadAsStringAsync().Result;
-                content.Should().Be(ProductSubcategoriesFiles.GetAllOrderedByCategoryNameAsc_json.Trim());
-
+                content.Should().Be(LocationsFiles.GetAllOrderByIdAsc_json.Trim());
             }
+        }
 
+        [Test]
+        public void Get_all_ordered_by_id_descending()
+        {
+            using (var client = new HttpClient { BaseAddress = new Uri(Consts.SqlApiRootUrl) })
+            {
+                var url = this.BuildDtUrl(orderColumn: 1, orderDirection: "desc");
+                HttpResponseMessage response = client.GetAsync(url).Result;
+                response.Should().NotBeNull();
+                response.IsSuccessStatusCode.Should().BeTrue();
+                response.StatusCode.Should().Be(HttpStatusCode.OK);
+                string content = response.Content.ReadAsStringAsync().Result;
+               // content.Should().Be(LocationsFiles.GetAllOrderByIdDesc_json.Trim());
+            }
+        }
+
+        [Test]
+        public void Get_all_ordered_by_name_ascending()
+        {
+            using (var client = new HttpClient { BaseAddress = new Uri(Consts.SqlApiRootUrl) })
+            {
+                var url = this.BuildDtUrl(orderColumn: 0);
+                HttpResponseMessage response = client.GetAsync(url).Result;
+                response.Should().NotBeNull();
+                response.IsSuccessStatusCode.Should().BeTrue();
+                response.StatusCode.Should().Be(HttpStatusCode.OK);
+                string content = response.Content.ReadAsStringAsync().Result;
+                content.Should().Be(LocationsFiles.GetAllByNameAsc_json.Trim());
+            }
+        }
+
+        [Test]
+        public void Get_all_ordered_by_name_descending()
+        {
+            using (var client = new HttpClient { BaseAddress = new Uri(Consts.SqlApiRootUrl) })
+            {
+                var url = this.BuildDtUrl(orderColumn: 0, orderDirection: "desc");
+                HttpResponseMessage response = client.GetAsync(url).Result;
+                response.Should().NotBeNull();
+                response.IsSuccessStatusCode.Should().BeTrue();
+                response.StatusCode.Should().Be(HttpStatusCode.OK);
+                string content = response.Content.ReadAsStringAsync().Result;
+                content.Should().Be(LocationsFiles.GetAllByNameDesc_json.Trim());
+            }
         }
 
         private string BuildDtUrl(string search = null, int? orderColumn = null, string orderDirection = null)
         {
-            var url = "ProductSubcategories?draw=1";
+            var url = "Locations?draw=1";
             url += "&" + WebUtility.UrlEncode("columns[0][name]") + "=Name";
-            url += "&" + WebUtility.UrlEncode("columns[1][name]") + "=ProductCategoryName";
-            url += "&" + WebUtility.UrlEncode("columns[2][name]") + "=ID";
-            url += "&" + WebUtility.UrlEncode("columns[3][name]") + "=ProductCategoryID";
+            url += "&" + WebUtility.UrlEncode("columns[1][name]") + "=ID";
             if (orderColumn.HasValue)
             {
                 url += "&" + WebUtility.UrlEncode("order[0][column]") + "=" + orderColumn;

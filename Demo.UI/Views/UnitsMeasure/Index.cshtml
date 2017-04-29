@@ -1,0 +1,50 @@
+﻿@using Demo.UI.Models
+@{
+    ViewBag.Title = "Jednostki miar";
+}
+<div>
+    <table id="myTable"></table>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('#myTable').dataTable({
+            serverSide: true,
+            processing: false,
+            paging: false,
+            info: false,
+            ajax: {
+                url: '@Consts.SqlApiRootUrl' + "UnitsMeasure",
+                dataSrc: ''
+            },
+            columns: [
+                {
+                    name: 'Name',
+                    data: "Name",
+                    title: "Nazwa",
+                    sortable: true,
+                    searchable: false
+                },
+                {
+                    name: 'UnitMeasureCode',
+                    data: "UnitMeasureCode",
+                    title: "Kod jednostki",
+                    sortable: true,
+                    searchable: false
+                },
+                {
+                    render: renderNameColumnFunc,
+                    title: "Akcje",
+                    sortable: false,
+                    searchable: false
+                }
+            ]
+        });
+    });
+
+    function renderNameColumnFunc(data, type, full, meta) {
+        // TODO
+        var txt = "<button>Edytuj</button>";
+        return txt;
+    }
+</script>

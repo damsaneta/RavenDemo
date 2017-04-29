@@ -36,7 +36,7 @@ namespace Demo.SqlApi.Controllers
         }
 
         [ResponseType(typeof(IList<ProductSubcategoryDto>))]
-        public IHttpActionResult Get(DtRequest request)
+        public IHttpActionResult Get(DtRequest<ProductSubcategoryDto> request)
         {
             var parameters = new List<object>();
             var sql = @"SELECT ps.ID

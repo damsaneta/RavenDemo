@@ -118,25 +118,25 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="GetAllOrderedByCategoryNameAsc_json" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>getallorderedbycategorynameasc.json.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  <data name="GetAllByNameAsc_json" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>getallbynameasc.json.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
-  <data name="GetAllOrderedByCategoryNameDesc_json" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>getallorderedbycategorynamedesc.json.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  <data name="GetAllByNameDesc_json" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>getallbynamedesc.json.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
-  <data name="GetAllOrderedByNameAsc_json" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>getallorderedbynameasc.json.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  <data name="GetAllOrderByIdAsc_json" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>getallorderbyidasc.json.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
-  <data name="GetAllOrderedByNameDesc_json" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>getallorderedbynamedesc.json.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  <data name="GetAllOrderedByIdDesc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>getallorderedbyiddesc.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="GetAll_json" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>getall.json.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
-  <data name="GetBySubcategoryId_json" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>getbysubcategoryid.json.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  <data name="GetById_json" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>getbyid.json.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
-  <data name="Get_by_subcategoryName_or_categoryName_json" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>get_by_subcategoryname_or_categoryname.json.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  <data name="GetByName_json" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>getbyname.json.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
 </root>

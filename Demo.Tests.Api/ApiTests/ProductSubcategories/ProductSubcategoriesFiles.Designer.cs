@@ -61,11 +61,56 @@ namespace Demo.Tests.Api.ApiTests.ProductSubcategories {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to [{&quot;ID&quot;:26,&quot;Name&quot;:&quot;Bike Racks&quot;,&quot;ProductCategoryID&quot;:4,&quot;ProductCategoryName&quot;:&quot;Accessories&quot;},{&quot;ID&quot;:27,&quot;Name&quot;:&quot;Bike Stands&quot;,&quot;ProductCategoryID&quot;:4,&quot;ProductCategoryName&quot;:&quot;Accessories&quot;},{&quot;ID&quot;:1,&quot;Name&quot;:&quot;Mountain Bikes&quot;,&quot;ProductCategoryID&quot;:1,&quot;ProductCategoryName&quot;:&quot;Bikes&quot;},{&quot;ID&quot;:2,&quot;Name&quot;:&quot;Road Bikes&quot;,&quot;ProductCategoryID&quot;:1,&quot;ProductCategoryName&quot;:&quot;Bikes&quot;},{&quot;ID&quot;:3,&quot;Name&quot;:&quot;Touring Bikes&quot;,&quot;ProductCategoryID&quot;:1,&quot;ProductCategoryName&quot;:&quot;Bikes&quot;}].
+        /// </summary>
+        public static string Get_by_subcategoryName_or_categoryName_json {
+            get {
+                return ResourceManager.GetString("Get_by_subcategoryName_or_categoryName_json", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to [{&quot;ID&quot;:26,&quot;Name&quot;:&quot;Bike Racks&quot;,&quot;ProductCategoryID&quot;:4,&quot;ProductCategoryName&quot;:&quot;Accessories&quot;},{&quot;ID&quot;:27,&quot;Name&quot;:&quot;Bike Stands&quot;,&quot;ProductCategoryID&quot;:4,&quot;ProductCategoryName&quot;:&quot;Accessories&quot;},{&quot;ID&quot;:28,&quot;Name&quot;:&quot;Bottles and Cages&quot;,&quot;ProductCategoryID&quot;:4,&quot;ProductCategoryName&quot;:&quot;Accessories&quot;},{&quot;ID&quot;:29,&quot;Name&quot;:&quot;Cleaners&quot;,&quot;ProductCategoryID&quot;:4,&quot;ProductCategoryName&quot;:&quot;Accessories&quot;},{&quot;ID&quot;:30,&quot;Name&quot;:&quot;Fenders&quot;,&quot;ProductCategoryID&quot;:4,&quot;ProductCategoryName&quot;:&quot;Accessories&quot;},{&quot;ID&quot;:31,&quot;Name&quot;:&quot;Helmets&quot;,&quot;ProductCategoryID&quot;:4,&quot;ProductCategoryName [rest of string was truncated]&quot;;.
         /// </summary>
         public static string GetAll_json {
             get {
                 return ResourceManager.GetString("GetAll_json", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [{&quot;ID&quot;:26,&quot;Name&quot;:&quot;Bike Racks&quot;,&quot;ProductCategoryID&quot;:4,&quot;ProductCategoryName&quot;:&quot;Accessories&quot;},{&quot;ID&quot;:27,&quot;Name&quot;:&quot;Bike Stands&quot;,&quot;ProductCategoryID&quot;:4,&quot;ProductCategoryName&quot;:&quot;Accessories&quot;},{&quot;ID&quot;:28,&quot;Name&quot;:&quot;Bottles and Cages&quot;,&quot;ProductCategoryID&quot;:4,&quot;ProductCategoryName&quot;:&quot;Accessories&quot;},{&quot;ID&quot;:29,&quot;Name&quot;:&quot;Cleaners&quot;,&quot;ProductCategoryID&quot;:4,&quot;ProductCategoryName&quot;:&quot;Accessories&quot;},{&quot;ID&quot;:30,&quot;Name&quot;:&quot;Fenders&quot;,&quot;ProductCategoryID&quot;:4,&quot;ProductCategoryName&quot;:&quot;Accessories&quot;},{&quot;ID&quot;:31,&quot;Name&quot;:&quot;Helmets&quot;,&quot;ProductCategoryID&quot;:4,&quot;ProductCategoryName [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string GetAllOrderedByCategoryNameAsc_json {
+            get {
+                return ResourceManager.GetString("GetAllOrderedByCategoryNameAsc_json", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [{&quot;ID&quot;:4,&quot;Name&quot;:&quot;Handlebars&quot;,&quot;ProductCategoryID&quot;:2,&quot;ProductCategoryName&quot;:&quot;Components&quot;},{&quot;ID&quot;:5,&quot;Name&quot;:&quot;Bottom Brackets&quot;,&quot;ProductCategoryID&quot;:2,&quot;ProductCategoryName&quot;:&quot;Components&quot;},{&quot;ID&quot;:6,&quot;Name&quot;:&quot;Brakes&quot;,&quot;ProductCategoryID&quot;:2,&quot;ProductCategoryName&quot;:&quot;Components&quot;},{&quot;ID&quot;:7,&quot;Name&quot;:&quot;Chains&quot;,&quot;ProductCategoryID&quot;:2,&quot;ProductCategoryName&quot;:&quot;Components&quot;},{&quot;ID&quot;:8,&quot;Name&quot;:&quot;Cranksets&quot;,&quot;ProductCategoryID&quot;:2,&quot;ProductCategoryName&quot;:&quot;Components&quot;},{&quot;ID&quot;:9,&quot;Name&quot;:&quot;Derailleurs&quot;,&quot;ProductCategoryID&quot;:2,&quot;ProductCategoryName&quot;:&quot;Components&quot; [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string GetAllOrderedByCategoryNameDesc_json {
+            get {
+                return ResourceManager.GetString("GetAllOrderedByCategoryNameDesc_json", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [{&quot;ID&quot;:18,&quot;Name&quot;:&quot;Bib-Shorts&quot;,&quot;ProductCategoryID&quot;:3,&quot;ProductCategoryName&quot;:&quot;Clothing&quot;},{&quot;ID&quot;:26,&quot;Name&quot;:&quot;Bike Racks&quot;,&quot;ProductCategoryID&quot;:4,&quot;ProductCategoryName&quot;:&quot;Accessories&quot;},{&quot;ID&quot;:27,&quot;Name&quot;:&quot;Bike Stands&quot;,&quot;ProductCategoryID&quot;:4,&quot;ProductCategoryName&quot;:&quot;Accessories&quot;},{&quot;ID&quot;:28,&quot;Name&quot;:&quot;Bottles and Cages&quot;,&quot;ProductCategoryID&quot;:4,&quot;ProductCategoryName&quot;:&quot;Accessories&quot;},{&quot;ID&quot;:5,&quot;Name&quot;:&quot;Bottom Brackets&quot;,&quot;ProductCategoryID&quot;:2,&quot;ProductCategoryName&quot;:&quot;Components&quot;},{&quot;ID&quot;:6,&quot;Name&quot;:&quot;Brakes&quot;,&quot;ProductCategoryID&quot;:2,&quot;ProductCategoryN [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string GetAllOrderedByNameAsc_json {
+            get {
+                return ResourceManager.GetString("GetAllOrderedByNameAsc_json", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [{&quot;ID&quot;:17,&quot;Name&quot;:&quot;Wheels&quot;,&quot;ProductCategoryID&quot;:2,&quot;ProductCategoryName&quot;:&quot;Components&quot;},{&quot;ID&quot;:25,&quot;Name&quot;:&quot;Vests&quot;,&quot;ProductCategoryID&quot;:3,&quot;ProductCategoryName&quot;:&quot;Clothing&quot;},{&quot;ID&quot;:16,&quot;Name&quot;:&quot;Touring Frames&quot;,&quot;ProductCategoryID&quot;:2,&quot;ProductCategoryName&quot;:&quot;Components&quot;},{&quot;ID&quot;:3,&quot;Name&quot;:&quot;Touring Bikes&quot;,&quot;ProductCategoryID&quot;:1,&quot;ProductCategoryName&quot;:&quot;Bikes&quot;},{&quot;ID&quot;:37,&quot;Name&quot;:&quot;Tires and Tubes&quot;,&quot;ProductCategoryID&quot;:4,&quot;ProductCategoryName&quot;:&quot;Accessories&quot;},{&quot;ID&quot;:24,&quot;Name&quot;:&quot;Tights&quot;,&quot;ProductCategoryID&quot;:3,&quot;ProductCategoryName&quot;:&quot;Clothing&quot;} [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string GetAllOrderedByNameDesc_json {
+            get {
+                return ResourceManager.GetString("GetAllOrderedByNameDesc_json", resourceCulture);
             }
         }
         

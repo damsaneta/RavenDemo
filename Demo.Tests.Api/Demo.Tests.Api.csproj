@@ -53,6 +53,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApiTests\Consts.cs" />
+    <Compile Include="ApiTests\Locations\LocationsFiles.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LocationsFiles.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ApiTests\Locations\LocationsTests.cs" />
     <Compile Include="ApiTests\ProductCategories\ProductCategoriesFiles.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -68,18 +74,34 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ApiTests\Locations\GetAll.json.txt" />
+    <Content Include="ApiTests\Locations\GetAllByNameAsc.json.txt" />
+    <Content Include="ApiTests\Locations\GetAllByNameDesc.json.txt" />
+    <Content Include="ApiTests\Locations\GetAllOrderByIdAsc.json.txt" />
+    <Content Include="ApiTests\Locations\GetAllOrderedByIdDesc.txt" />
+    <Content Include="ApiTests\Locations\GetById.json.txt" />
+    <Content Include="ApiTests\Locations\GetByName.json.txt" />
     <Content Include="ApiTests\ProductCategories\GetAllOrderByNameAsc.json.txt" />
     <Content Include="ApiTests\ProductCategories\GetAllOrderByNameDesc.json.txt" />
     <Content Include="ApiTests\ProductCategories\GetAllOrderByIdDesc.json.txt" />
     <Content Include="ApiTests\ProductCategories\GetAllOrderByIdAsc.json.txt" />
+    <Content Include="ApiTests\ProductSubcategories\GetAllOrderedByCategoryNameAsc.json.txt" />
     <Content Include="ApiTests\ProductCategories\GetByName.json.txt" />
     <Content Include="ApiTests\ProductCategories\GetById.json.txt" />
     <Content Include="ApiTests\ProductCategories\GetAll.json.txt" />
     <Content Include="ApiTests\ProductSubcategories\GetAll.json.txt" />
+    <Content Include="ApiTests\ProductSubcategories\GetAllOrderedByCategoryNameDesc.json.txt" />
+    <Content Include="ApiTests\ProductSubcategories\GetAllOrderedByNameAsc.json.txt" />
+    <Content Include="ApiTests\ProductSubcategories\GetAllOrderedByNameDesc.json.txt" />
     <Content Include="ApiTests\ProductSubcategories\GetBySubcategoryId.json.txt" />
+    <Content Include="ApiTests\ProductSubcategories\Get_by_subcategoryName_or_categoryName.json.txt" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="ApiTests\Locations\LocationsFiles.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>LocationsFiles.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="ApiTests\ProductCategories\ProductCategoriesFiles.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ProductCategoriesFiles.Designer.cs</LastGenOutput>

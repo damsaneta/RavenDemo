@@ -13,6 +13,8 @@ namespace Demo.SqlApi.Model.Entities
         {
             modelBuilder.Entity<ProductCategory>();
             modelBuilder.Entity<ProductSubcategory>();
+            modelBuilder.Entity<UnitMeasure>();
+            modelBuilder.Entity<Location>();
             //modelBuilder.Entity<ProductCategory>()
             //    .HasMany(e => e.ProductSubcategory)
             //    .WithRequired(e => e.ProductCategory)

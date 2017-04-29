@@ -131,19 +131,25 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\LocationsController.cs" />
     <Compile Include="Controllers\ProductCategoriesController.cs" />
     <Compile Include="Controllers\ProductSubcategoriesController.cs" />
+    <Compile Include="Controllers\UnitsMeasureController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Model\DataTables\DtModelBinder.cs" />
     <Compile Include="Model\DataTables\DtOrderDirection.cs" />
     <Compile Include="Model\DataTables\DtRequest.cs" />
+    <Compile Include="Model\Dtos\LocationDto.cs" />
     <Compile Include="Model\Dtos\ProductCategoryDto.cs" />
     <Compile Include="Model\Dtos\ProductSubcategoryDto.cs" />
+    <Compile Include="Model\Dtos\UnitMeasureDto.cs" />
     <Compile Include="Model\Entities\EntitiesDbContext.cs" />
+    <Compile Include="Model\Entities\Location.cs" />
     <Compile Include="Model\Entities\ProductCategory.cs" />
     <Compile Include="Model\Entities\ProductSubcategory.cs" />
+    <Compile Include="Model\Entities\UnitMeasure.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -165,6 +171,7 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

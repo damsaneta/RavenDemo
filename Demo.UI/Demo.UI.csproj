@@ -114,8 +114,10 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LocationsController.cs" />
     <Compile Include="Controllers\ProductCategoriesController.cs" />
     <Compile Include="Controllers\ProductSubcategoriesController.cs" />
+    <Compile Include="Controllers\UnitsMeasureController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -395,6 +397,8 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\ProductCategories\Index.cshtml" />
     <Content Include="Views\ProductSubcategories\Index.cshtml" />
+    <Content Include="Views\UnitsMeasure\Index.cshtml" />
+    <Content Include="Views\Locations\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

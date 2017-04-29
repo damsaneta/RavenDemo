@@ -1,0 +1,1 @@
+﻿[{"ID":60,"Name":"Final Assembly"},{"ID":7,"Name":"Finished Goods Storage"},{"ID":10,"Name":"Frame Forming"},{"ID":20,"Name":"Frame Welding"}]
