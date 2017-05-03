@@ -55,14 +55,6 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Mvc.JQuery.DataTables, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Mvc.JQuery.DataTables.1.5.21\lib\net451\Mvc.JQuery.DataTables.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Mvc.JQuery.DataTables.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Mvc.JQuery.DataTables.Common.1.5.15\lib\net451\Mvc.JQuery.DataTables.Common.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
@@ -133,6 +125,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\LocationsController.cs" />
     <Compile Include="Controllers\ProductCategoriesController.cs" />
+    <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\ProductSubcategoriesController.cs" />
     <Compile Include="Controllers\UnitsMeasureController.cs" />
     <Compile Include="Global.asax.cs">
@@ -141,15 +134,6 @@
     <Compile Include="Model\DataTables\DtModelBinder.cs" />
     <Compile Include="Model\DataTables\DtOrderDirection.cs" />
     <Compile Include="Model\DataTables\DtRequest.cs" />
-    <Compile Include="Model\Dtos\LocationDto.cs" />
-    <Compile Include="Model\Dtos\ProductCategoryDto.cs" />
-    <Compile Include="Model\Dtos\ProductSubcategoryDto.cs" />
-    <Compile Include="Model\Dtos\UnitMeasureDto.cs" />
-    <Compile Include="Model\Entities\EntitiesDbContext.cs" />
-    <Compile Include="Model\Entities\Location.cs" />
-    <Compile Include="Model\Entities\ProductCategory.cs" />
-    <Compile Include="Model\Entities\ProductSubcategory.cs" />
-    <Compile Include="Model\Entities\UnitMeasure.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -171,7 +155,12 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Demo.Model\Demo.Model.csproj">
+      <Project>{dca69d33-3764-4120-9ed6-b84d28eb02bf}</Project>
+      <Name>Demo.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

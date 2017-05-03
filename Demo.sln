@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.Tests.Api", "Demo.Test
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.UI", "Demo.UI\Demo.UI.csproj", "{A1C7DAA3-C114-4E2F-9D3C-C8786D2A13A0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.Model", "Demo.Model\Demo.Model.csproj", "{DCA69D33-3764-4120-9ED6-B84D28EB02BF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.LinqApi", "Demo.LinqApi\Demo.LinqApi.csproj", "{2F4C47E5-885B-405D-9AA1-FA516DBAD647}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{A1C7DAA3-C114-4E2F-9D3C-C8786D2A13A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A1C7DAA3-C114-4E2F-9D3C-C8786D2A13A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A1C7DAA3-C114-4E2F-9D3C-C8786D2A13A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DCA69D33-3764-4120-9ED6-B84D28EB02BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCA69D33-3764-4120-9ED6-B84D28EB02BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCA69D33-3764-4120-9ED6-B84D28EB02BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCA69D33-3764-4120-9ED6-B84D28EB02BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F4C47E5-885B-405D-9AA1-FA516DBAD647}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F4C47E5-885B-405D-9AA1-FA516DBAD647}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F4C47E5-885B-405D-9AA1-FA516DBAD647}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F4C47E5-885B-405D-9AA1-FA516DBAD647}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

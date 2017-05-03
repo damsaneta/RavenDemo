@@ -11,9 +11,10 @@ namespace Demo.Tests.Api.ApiTests.Locations
     {
         [Test]
         [TestCase(Consts.SqlApiRootUrl)]
-        public void Get_all(string url)
+        [TestCase(Consts.LinqApiRootUrl)]
+        public void Get_all(string root)
         {
-            using (var client = new HttpClient { BaseAddress = new Uri(url) })
+            using (var client = new HttpClient { BaseAddress = new Uri(root) })
             {
                 HttpResponseMessage response = client.GetAsync("Locations").Result;
                 response.Should().NotBeNull();
@@ -25,9 +26,11 @@ namespace Demo.Tests.Api.ApiTests.Locations
         }
 
         [Test]
-        public void Get_by_id()
+        [TestCase(Consts.SqlApiRootUrl)]
+        [TestCase(Consts.LinqApiRootUrl)]
+        public void Get_by_id(string root)
         {
-            using (var client = new HttpClient { BaseAddress = new Uri(Consts.SqlApiRootUrl) })
+            using (var client = new HttpClient { BaseAddress = new Uri(root) })
             {
                 HttpResponseMessage response = client.GetAsync("Locations/1").Result;
                 response.Should().NotBeNull();

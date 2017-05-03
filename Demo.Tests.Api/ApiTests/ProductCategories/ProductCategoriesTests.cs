@@ -11,9 +11,10 @@ namespace Demo.Tests.Api.ApiTests.ProductCategories
     {
         [Test]
         [TestCase(Consts.SqlApiRootUrl)]
-        public void Get_all(string url)
+        [TestCase(Consts.LinqApiRootUrl)]
+        public void Get_all(string root)
         {
-            using (var client = new HttpClient {BaseAddress = new Uri(url) })
+            using (var client = new HttpClient {BaseAddress = new Uri(root) })
             {
                 HttpResponseMessage response = client.GetAsync("ProductCategories").Result;
                 response.Should().NotBeNull();
@@ -25,9 +26,11 @@ namespace Demo.Tests.Api.ApiTests.ProductCategories
         }
 
         [Test]
-        public void Get_by_id()
+        [TestCase(Consts.SqlApiRootUrl)]
+        [TestCase(Consts.LinqApiRootUrl)]
+        public void Get_by_id(string root)
         {
-            using (var client = new HttpClient { BaseAddress = new Uri(Consts.SqlApiRootUrl) })
+            using (var client = new HttpClient { BaseAddress = new Uri(root) })
             {
                 HttpResponseMessage response = client.GetAsync("ProductCategories/1").Result;
                 response.Should().NotBeNull();
@@ -39,9 +42,11 @@ namespace Demo.Tests.Api.ApiTests.ProductCategories
         }
 
         [Test]
-        public void Get_by_id_not_found()
+        [TestCase(Consts.SqlApiRootUrl)]
+        [TestCase(Consts.LinqApiRootUrl)]
+        public void Get_by_id_not_found(string root)
         {
-            using (var client = new HttpClient { BaseAddress = new Uri(Consts.SqlApiRootUrl) })
+            using (var client = new HttpClient { BaseAddress = new Uri(root) })
             {
                 HttpResponseMessage response = client.GetAsync("ProductCategories/0").Result;
                 response.Should().NotBeNull();
@@ -51,9 +56,11 @@ namespace Demo.Tests.Api.ApiTests.ProductCategories
         }
 
         [Test]
-        public void Get_by_name()
+        [TestCase(Consts.SqlApiRootUrl)]
+        [TestCase(Consts.LinqApiRootUrl)]
+        public void Get_by_name(string root)
         {
-            using (var client = new HttpClient { BaseAddress = new Uri(Consts.SqlApiRootUrl) })
+            using (var client = new HttpClient { BaseAddress = new Uri(root) })
             {
                 var url = this.BuildDtUrl("c");
                 HttpResponseMessage response = client.GetAsync(url).Result;
@@ -66,9 +73,11 @@ namespace Demo.Tests.Api.ApiTests.ProductCategories
         }
 
         [Test]
-        public void Get_by_name_empty()
+        [TestCase(Consts.SqlApiRootUrl)]
+        [TestCase(Consts.LinqApiRootUrl)]
+        public void Get_by_name_empty(string root)
         {
-            using (var client = new HttpClient { BaseAddress = new Uri(Consts.SqlApiRootUrl) })
+            using (var client = new HttpClient { BaseAddress = new Uri(root) })
             {
                 var url = this.BuildDtUrl("x");
                 HttpResponseMessage response = client.GetAsync(url).Result;
@@ -81,9 +90,11 @@ namespace Demo.Tests.Api.ApiTests.ProductCategories
         }
 
         [Test]
-        public void Get_all_ordered_by_id_ascending()
+        [TestCase(Consts.SqlApiRootUrl)]
+        [TestCase(Consts.LinqApiRootUrl)]
+        public void Get_all_ordered_by_id_ascending(string root)
         {
-            using (var client = new HttpClient { BaseAddress = new Uri(Consts.SqlApiRootUrl) })
+            using (var client = new HttpClient { BaseAddress = new Uri(root) })
             {
                 var url = this.BuildDtUrl(orderColumn: 1);
                 HttpResponseMessage response = client.GetAsync(url).Result;
@@ -96,9 +107,11 @@ namespace Demo.Tests.Api.ApiTests.ProductCategories
         }
 
         [Test]
-        public void Get_all_ordered_by_id_descending()
+        [TestCase(Consts.SqlApiRootUrl)]
+        [TestCase(Consts.LinqApiRootUrl)]
+        public void Get_all_ordered_by_id_descending(string root)
         {
-            using (var client = new HttpClient { BaseAddress = new Uri(Consts.SqlApiRootUrl) })
+            using (var client = new HttpClient { BaseAddress = new Uri(root) })
             {
                 var url = this.BuildDtUrl(orderColumn: 1, orderDirection: "desc");
                 HttpResponseMessage response = client.GetAsync(url).Result;
@@ -111,9 +124,11 @@ namespace Demo.Tests.Api.ApiTests.ProductCategories
         }
 
         [Test]
-        public void Get_all_ordered_by_name_ascending()
+        [TestCase(Consts.SqlApiRootUrl)]
+        [TestCase(Consts.LinqApiRootUrl)]
+        public void Get_all_ordered_by_name_ascending(string root)
         {
-            using (var client = new HttpClient { BaseAddress = new Uri(Consts.SqlApiRootUrl) })
+            using (var client = new HttpClient { BaseAddress = new Uri(root) })
             {
                 var url = this.BuildDtUrl(orderColumn: 0);
                 HttpResponseMessage response = client.GetAsync(url).Result;
@@ -126,9 +141,11 @@ namespace Demo.Tests.Api.ApiTests.ProductCategories
         }
 
         [Test]
-        public void Get_all_ordered_by_name_descending()
+        [TestCase(Consts.SqlApiRootUrl)]
+        [TestCase(Consts.LinqApiRootUrl)]
+        public void Get_all_ordered_by_name_descending(string root)
         {
-            using (var client = new HttpClient { BaseAddress = new Uri(Consts.SqlApiRootUrl) })
+            using (var client = new HttpClient { BaseAddress = new Uri(root) })
             {
                 var url = this.BuildDtUrl(orderColumn: 0, orderDirection: "desc");
                 HttpResponseMessage response = client.GetAsync(url).Result;

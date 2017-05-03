@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
+using Demo.Model.Dtos;
+using Demo.Model.Entities;
 using Demo.SqlApi.Model.DataTables;
-using Demo.SqlApi.Model.Dtos;
-using Demo.SqlApi.Model.Entities;
 
 namespace Demo.SqlApi.Controllers
 {
@@ -37,7 +34,7 @@ namespace Demo.SqlApi.Controllers
             if (!string.IsNullOrEmpty(request.Search))
             {
                 sql += " WHERE Name LIKE @p0 ";
-                parameters.Add(request.Search);
+                parameters.Add(request.Search + "%");
             }
 
             request.OrderColumn = request.OrderColumn ?? "Name";
