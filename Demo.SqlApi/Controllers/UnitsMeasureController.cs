@@ -33,7 +33,7 @@ namespace Demo.SqlApi.Controllers
             var sql = "SELECT UnitMeasureCode, Name FROM UnitMeasure ";
             if (!string.IsNullOrEmpty(request.Search))
             {
-                sql += " WHERE  UnitMeasureCode LIKE @p0 OR Name LIKE @p0 ";
+                sql += " WHERE Name LIKE @p0 ";
                 parameters.Add(request.Search);
             }
 
