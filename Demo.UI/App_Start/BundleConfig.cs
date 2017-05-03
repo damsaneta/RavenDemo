@@ -23,9 +23,16 @@ namespace Demo.UI
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/dataTablesJs").Include(
+                "~/Scripts/DataTables/jquery.dataTables.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new StyleBundle("~/bundles/dataTables").Include(
+               "~/Content/DataTables/css/jquery.dataTables.css",
+               "~/Content/DataTables/css/dataTables.bootstrap.css"));
         }
     }
 }
