@@ -11,9 +11,10 @@ namespace Demo.Tests.Api.ApiTests.ProductSubcategories
     {
         [Test]
         [TestCase(Consts.SqlApiRootUrl)]
-        public void Get_all(string url)
+        [TestCase(Consts.LinqApiRootUrl)]
+        public void Get_all(string root)
         {
-            using (var client = new HttpClient { BaseAddress = new Uri(url) })
+            using (var client = new HttpClient { BaseAddress = new Uri(root) })
             {
                 HttpResponseMessage response = client.GetAsync("ProductSubcategories").Result;
                 response.Should().NotBeNull();
@@ -26,9 +27,10 @@ namespace Demo.Tests.Api.ApiTests.ProductSubcategories
 
         [Test]
         [TestCase(Consts.SqlApiRootUrl)]
-        public void Get_by_id(string url)
+        [TestCase(Consts.LinqApiRootUrl)]
+        public void Get_by_id(string root)
         {
-            using (var client = new HttpClient { BaseAddress = new Uri(url)})
+            using (var client = new HttpClient { BaseAddress = new Uri(root)})
             {
                 HttpResponseMessage response = client.GetAsync("ProductSubcategories/1").Result;
                 response.Should().NotBeNull();
@@ -42,9 +44,10 @@ namespace Demo.Tests.Api.ApiTests.ProductSubcategories
 
         [Test]
         [TestCase(Consts.SqlApiRootUrl)]
-        public void Get_by_id_not_found(string url)
+        [TestCase(Consts.LinqApiRootUrl)]
+        public void Get_by_id_not_found(string root)
         {
-            using (var client = new HttpClient { BaseAddress = new Uri(url)})
+            using (var client = new HttpClient { BaseAddress = new Uri(root)})
             {
                 HttpResponseMessage response = client.GetAsync("ProductSubcategories/0").Result;
                 response.Should().NotBeNull();
@@ -54,9 +57,11 @@ namespace Demo.Tests.Api.ApiTests.ProductSubcategories
         }
         
         [Test]
-        public void Get_by_subcategoryName_or_categoryName()
+        [TestCase(Consts.SqlApiRootUrl)]
+        [TestCase(Consts.LinqApiRootUrl)]
+        public void Get_by_subcategoryName_or_categoryName(string root)
         {
-            using (var client = new HttpClient { BaseAddress = new Uri(Consts.SqlApiRootUrl) })
+            using (var client = new HttpClient { BaseAddress = new Uri(root) })
             {
                 var url = this.BuildDtUrl("bike");
                 HttpResponseMessage response = client.GetAsync(url).Result;
@@ -69,9 +74,11 @@ namespace Demo.Tests.Api.ApiTests.ProductSubcategories
         }
 
         [Test]
-        public void Get_by_name_empty()
+        [TestCase(Consts.SqlApiRootUrl)]
+        [TestCase(Consts.LinqApiRootUrl)]
+        public void Get_by_name_empty(string root)
         {
-            using (var client = new HttpClient { BaseAddress = new Uri(Consts.SqlApiRootUrl) })
+            using (var client = new HttpClient { BaseAddress = new Uri(root) })
             {
                 var url = this.BuildDtUrl("z");
                 HttpResponseMessage response = client.GetAsync(url).Result;
@@ -84,9 +91,11 @@ namespace Demo.Tests.Api.ApiTests.ProductSubcategories
         }
 
         [Test]
-        public void Get_all_ordered_by_name_desc()
+        [TestCase(Consts.SqlApiRootUrl)]
+        [TestCase(Consts.LinqApiRootUrl)]
+        public void Get_all_ordered_by_name_desc(string root)
         {
-            using (var client = new HttpClient { BaseAddress = new Uri(Consts.SqlApiRootUrl) })
+            using (var client = new HttpClient { BaseAddress = new Uri(root) })
             {
                 var url = this.BuildDtUrl(orderColumn: 0, orderDirection: "desc");
                 HttpResponseMessage response = client.GetAsync(url).Result;
@@ -100,9 +109,11 @@ namespace Demo.Tests.Api.ApiTests.ProductSubcategories
         }
 
         [Test]
-        public void Get_all_ordered_by_name_asc()
+        [TestCase(Consts.SqlApiRootUrl)]
+        [TestCase(Consts.LinqApiRootUrl)]
+        public void Get_all_ordered_by_name_asc(string root)
         {
-            using (var client = new HttpClient { BaseAddress = new Uri(Consts.SqlApiRootUrl) })
+            using (var client = new HttpClient { BaseAddress = new Uri(root) })
             {
                 var url = this.BuildDtUrl(orderColumn: 0);
                 HttpResponseMessage response = client.GetAsync(url).Result;
@@ -117,9 +128,11 @@ namespace Demo.Tests.Api.ApiTests.ProductSubcategories
         }
 
         [Test]
-        public void Get_all_ordered_by_categoryName_desc()
+        [TestCase(Consts.SqlApiRootUrl)]
+        [TestCase(Consts.LinqApiRootUrl)]
+        public void Get_all_ordered_by_categoryName_desc(string root)
         {
-            using (var client = new HttpClient { BaseAddress = new Uri(Consts.SqlApiRootUrl) })
+            using (var client = new HttpClient { BaseAddress = new Uri(root) })
             {
                 var url = this.BuildDtUrl(orderColumn: 1, orderDirection: "desc");
                 HttpResponseMessage response = client.GetAsync(url).Result;
@@ -133,9 +146,11 @@ namespace Demo.Tests.Api.ApiTests.ProductSubcategories
         }
 
         [Test]
-        public void Get_all_ordered_by_categoryName_asc()
+        [TestCase(Consts.SqlApiRootUrl)]
+        [TestCase(Consts.LinqApiRootUrl)]
+        public void Get_all_ordered_by_categoryName_asc(string root)
         {
-            using (var client = new HttpClient { BaseAddress = new Uri(Consts.SqlApiRootUrl) })
+            using (var client = new HttpClient { BaseAddress = new Uri(root) })
             {
                 var url = this.BuildDtUrl(orderColumn: 1);
                 HttpResponseMessage response = client.GetAsync(url).Result;

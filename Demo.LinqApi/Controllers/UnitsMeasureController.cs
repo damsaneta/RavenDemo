@@ -17,9 +17,16 @@ namespace Demo.LinqApi.Controllers
         [ResponseType(typeof(UnitMeasureDto))]
         public IHttpActionResult Get(string id)
         {
-            throw new NotImplementedException();
-            UnitMeasureDto unitMeasure = db.Database.SqlQuery<UnitMeasureDto>(@"SELECT UnitMeasureCode,Name FROM UnitMeasure 
-                WHERE UnitMeasureCode=@p0", id).SingleOrDefault();
+    
+            var unitMeasure = db.Set<UnitMeasure>()
+                .Where(x => x.UnitMeasureCode == id)
+                .Select(x => new UnitMeasureDto
+                {
+                    UnitMeasureCode = x.UnitMeasureCode,
+                    Name = x.Name
+                })
+                .SingleOrDefault();
+
             if(unitMeasure == null)
             {
                 return NotFound();
@@ -31,20 +38,46 @@ namespace Demo.LinqApi.Controllers
         [ResponseType(typeof(IList<UnitMeasureDto>))]
         public IHttpActionResult Get(DtRequest<UnitMeasureDto> request)
         {
-            throw new NotImplementedException();
-            var parameters = new List<object>();
-            var sql = "SELECT UnitMeasureCode, Name FROM UnitMeasure ";
+            //throw new NotImplementedException();
+            IQueryable<UnitMeasure> query = db.Set<UnitMeasure>();
+
             if (!string.IsNullOrEmpty(request.Search))
             {
-                sql += " WHERE Name LIKE @p0 ";
-                parameters.Add(request.Search);
+                query = query.Where(x => x.Name.StartsWith(request.Search));
+            }
+            IQueryable<UnitMeasureDto> queryDto = query.Select(x => new UnitMeasureDto
+            {
+                UnitMeasureCode = x.UnitMeasureCode,
+                Name = x.Name
+            });
+
+            switch (request.OrderColumn)
+            {
+                case "UnitMeasureCode":
+                    queryDto = request.OrderDirection == DtOrderDirection.ASC
+                        ? queryDto.OrderBy(x => x.UnitMeasureCode)
+                        : queryDto.OrderByDescending(x => x.UnitMeasureCode);
+                    break;
+                default:
+                    queryDto = request.OrderDirection == DtOrderDirection.ASC
+                        ? queryDto.OrderBy(x => x.Name)
+                        : queryDto.OrderByDescending(x => x.Name);
+                    break;
             }
 
-            request.OrderColumn = request.OrderColumn ?? "Name";
-            sql += " ORDER BY " + request.OrderColumn + " " + request.OrderDirection;
-            var result = db.Database.SqlQuery<UnitMeasureDto>(sql, parameters.ToArray()).ToList();
+            var result = queryDto.ToList();
 
             return Ok(result);
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+
+            base.Dispose(disposing);
         }
     }
 }

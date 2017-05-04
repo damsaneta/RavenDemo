@@ -84,7 +84,7 @@
     <Content Include="ApiTests\Locations\GetAllByNameAsc.json.txt" />
     <Content Include="ApiTests\Locations\GetAllByNameDesc.json.txt" />
     <Content Include="ApiTests\Locations\GetAllOrderByIdAsc.json.txt" />
-    <Content Include="ApiTests\Locations\GetAllOrderedByIdDesc.txt" />
+    <Content Include="ApiTests\Locations\GetAllOrderedByIdDesc.json.txt" />
     <Content Include="ApiTests\Locations\GetById.json.txt" />
     <Content Include="ApiTests\Locations\GetByName.json.txt" />
     <Content Include="ApiTests\ProductCategories\GetAllOrderByNameAsc.json.txt" />

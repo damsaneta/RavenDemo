@@ -109,9 +109,9 @@ namespace Demo.Tests.Api.ApiTests.Locations {
         ///
         ///.
         /// </summary>
-        internal static string GetAllOrderedByIdDesc {
+        internal static string GetAllOrderedByIdDesc_json {
             get {
-                return ResourceManager.GetString("GetAllOrderedByIdDesc", resourceCulture);
+                return ResourceManager.GetString("GetAllOrderedByIdDesc_json", resourceCulture);
             }
         }
         

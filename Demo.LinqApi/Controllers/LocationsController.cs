@@ -17,34 +17,54 @@ namespace Demo.LinqApi.Controllers
         [ResponseType(typeof(LocationDto))]
         public IHttpActionResult Get(short id)
         {
-            throw new NotImplementedException();
-            //LocationDto location = 
-            //    db.Database.SqlQuery<LocationDto>("SELECT ID, Name FROM Location WHERE ID=@p0",id)
-            //    .SingleOrDefault();
-            //if (location == null)
-            //{
-            //    return NotFound();
-            //}
-            //return Ok(location);
+            var location = db.Set<Location>()
+                .Where(x => x.ID == id)
+                .Select(x => new LocationDto
+                {
+                    ID = x.ID,
+                    Name = x.Name
+                })
+                .SingleOrDefault();
+
+            if (location == null)
+            {
+                return NotFound();
+            }
+            return Ok(location);
         }
 
         [ResponseType(typeof(IList<LocationDto>))]
         public IHttpActionResult Get(DtRequest<LocationDto> request)
         {
-            throw new NotImplementedException();
-            //var parameters = new List<object>();
-            //var sql = "SELECT ID, Name FROM Location ";
-            //if (!string.IsNullOrEmpty(request.Search))
-            //{
-            //    sql += " WHERE Name LIKE @p0 ";
-            //    parameters.Add(request.Search);
-            //}
+            IQueryable<Location> query = db.Set<Location>();
+            if (!string.IsNullOrEmpty(request.Search))
+            {
+                query = query.Where(x => x.Name.StartsWith(request.Search));
+            }
 
-            //request.OrderColumn = request.OrderColumn ?? "Name";
-            //sql += " ORDER BY " + request.OrderColumn + " " + request.OrderDirection;
-            //var result = db.Database.SqlQuery<LocationDto>(sql, parameters.ToArray()).ToList(); 
+            IQueryable<LocationDto> queryDto = query.Select(x => new LocationDto
+            {
+                ID = x.ID,
+                Name = x.Name
+            });
 
-            //return Ok(result);
+            switch (request.OrderColumn)
+            {
+                case "ID":
+                    queryDto = request.OrderDirection == DtOrderDirection.ASC
+                        ? queryDto.OrderBy(x => x.ID)
+                        : queryDto.OrderByDescending(x => x.ID); 
+                    break;
+                default:
+                    queryDto = request.OrderDirection == DtOrderDirection.ASC
+                        ? queryDto.OrderBy(x => x.Name)
+                        : queryDto.OrderByDescending(x => x.Name);
+                    break;
+            }
+
+            var result = queryDto.ToList();
+
+            return Ok(result);
         }
 
         protected override void Dispose(bool disposing)

@@ -42,9 +42,11 @@ namespace Demo.Tests.Api.ApiTests.Locations
         }
 
         [Test]
-        public void Get_by_id_not_found()
+        [TestCase(Consts.SqlApiRootUrl)]
+        [TestCase(Consts.LinqApiRootUrl)]
+        public void Get_by_id_not_found(string root)
         {
-            using (var client = new HttpClient { BaseAddress = new Uri(Consts.SqlApiRootUrl) })
+            using (var client = new HttpClient { BaseAddress = new Uri(root) })
             {
                 HttpResponseMessage response = client.GetAsync("Locations/0").Result;
                 response.Should().NotBeNull();
@@ -54,9 +56,11 @@ namespace Demo.Tests.Api.ApiTests.Locations
         }
 
         [Test]
-        public void Get_by_name()
+        [TestCase(Consts.SqlApiRootUrl)]
+        [TestCase(Consts.LinqApiRootUrl)]
+        public void Get_by_name(string root)
         {
-            using (var client = new HttpClient { BaseAddress = new Uri(Consts.SqlApiRootUrl) })
+            using (var client = new HttpClient { BaseAddress = new Uri(root) })
             {
                 var url = this.BuildDtUrl("f");
                 HttpResponseMessage response = client.GetAsync(url).Result;
@@ -69,9 +73,11 @@ namespace Demo.Tests.Api.ApiTests.Locations
         }
 
         [Test]
-        public void Get_by_name_empty()
+        [TestCase(Consts.SqlApiRootUrl)]
+        [TestCase(Consts.LinqApiRootUrl)]
+        public void Get_by_name_empty(string root)
         {
-            using (var client = new HttpClient { BaseAddress = new Uri(Consts.SqlApiRootUrl) })
+            using (var client = new HttpClient { BaseAddress = new Uri(root) })
             {
                 var url = this.BuildDtUrl("x");
                 HttpResponseMessage response = client.GetAsync(url).Result;
@@ -84,9 +90,11 @@ namespace Demo.Tests.Api.ApiTests.Locations
         }
 
         [Test]
-        public void Get_all_ordered_by_id_ascending()
+        [TestCase(Consts.SqlApiRootUrl)]
+        [TestCase(Consts.LinqApiRootUrl)]
+        public void Get_all_ordered_by_id_ascending(string root)
         {
-            using (var client = new HttpClient { BaseAddress = new Uri(Consts.SqlApiRootUrl) })
+            using (var client = new HttpClient { BaseAddress = new Uri(root) })
             {
                 var url = this.BuildDtUrl(orderColumn: 1);
                 HttpResponseMessage response = client.GetAsync(url).Result;
@@ -99,9 +107,11 @@ namespace Demo.Tests.Api.ApiTests.Locations
         }
 
         [Test]
-        public void Get_all_ordered_by_id_descending()
+        [TestCase(Consts.SqlApiRootUrl)]
+        [TestCase(Consts.LinqApiRootUrl)]
+        public void Get_all_ordered_by_id_descending(string root)
         {
-            using (var client = new HttpClient { BaseAddress = new Uri(Consts.SqlApiRootUrl) })
+            using (var client = new HttpClient { BaseAddress = new Uri(root) })
             {
                 var url = this.BuildDtUrl(orderColumn: 1, orderDirection: "desc");
                 HttpResponseMessage response = client.GetAsync(url).Result;
@@ -109,14 +119,16 @@ namespace Demo.Tests.Api.ApiTests.Locations
                 response.IsSuccessStatusCode.Should().BeTrue();
                 response.StatusCode.Should().Be(HttpStatusCode.OK);
                 string content = response.Content.ReadAsStringAsync().Result;
-               // content.Should().Be(LocationsFiles.GetAllOrderByIdDesc_json.Trim());
+                content.Should().Be(LocationsFiles.GetAllOrderedByIdDesc_json.Trim());
             }
         }
 
         [Test]
-        public void Get_all_ordered_by_name_ascending()
+        [TestCase(Consts.SqlApiRootUrl)]
+        [TestCase(Consts.LinqApiRootUrl)]
+        public void Get_all_ordered_by_name_ascending(string root)
         {
-            using (var client = new HttpClient { BaseAddress = new Uri(Consts.SqlApiRootUrl) })
+            using (var client = new HttpClient { BaseAddress = new Uri(root) })
             {
                 var url = this.BuildDtUrl(orderColumn: 0);
                 HttpResponseMessage response = client.GetAsync(url).Result;
@@ -129,9 +141,11 @@ namespace Demo.Tests.Api.ApiTests.Locations
         }
 
         [Test]
-        public void Get_all_ordered_by_name_descending()
+        [TestCase(Consts.SqlApiRootUrl)]
+        [TestCase(Consts.LinqApiRootUrl)]
+        public void Get_all_ordered_by_name_descending(string root)
         {
-            using (var client = new HttpClient { BaseAddress = new Uri(Consts.SqlApiRootUrl) })
+            using (var client = new HttpClient { BaseAddress = new Uri(root) })
             {
                 var url = this.BuildDtUrl(orderColumn: 0, orderDirection: "desc");
                 HttpResponseMessage response = client.GetAsync(url).Result;
