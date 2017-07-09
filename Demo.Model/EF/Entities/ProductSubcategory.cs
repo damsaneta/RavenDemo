@@ -7,6 +7,10 @@ namespace Demo.Model.Entities
     [Table("ProductSubcategory")]
     public class ProductSubcategory
     {
+        //public ProductSubcategory()
+        //{
+        //    Product = new HashSet<Product>();
+        //}
         public int ID { get; set; }
 
         public int ProductCategoryID { get; set; }
@@ -20,5 +24,7 @@ namespace Demo.Model.Entities
         public DateTime ModifiedDate { get; set; }
 
         public virtual ProductCategory ProductCategory { get; set; }
+
+       // public virtual ICollection<Product> Product { get; set; }
     }
 }

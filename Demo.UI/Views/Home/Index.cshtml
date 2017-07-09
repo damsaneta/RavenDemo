@@ -8,6 +8,9 @@
     <div class="col-md-4">
         <h2>Administracja</h2>
         <p>
+            @Html.ActionLink("Pordukty", "Index", "Products")
+        </p>
+        <p>
             @Html.ActionLink("Kategorie", "Index", "ProductCategories")
             @*<a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a>*@
         </p>
@@ -26,7 +29,10 @@
        
     </div>
     <div class="col-md-4">
-        <h2>API</h2>
+        <h2>API</h2
+        <p>
+            <a href="@(Consts.SqlApiRootUrl + "products")">api/Products/Get</a>
+        </p>
         <p>
             <a href="@(Consts.SqlApiRootUrl + "productcategories")">api/ProductCategories/Get</a>
         </p>

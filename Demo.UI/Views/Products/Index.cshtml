@@ -1,6 +1,6 @@
 ﻿@using Demo.UI.Models
 @{
-    ViewBag.Title = "Podkategorie produktów";
+    ViewBag.Title = "Produkty";
 }
 <div>
     <table id="myTable"></table>
@@ -14,21 +14,21 @@
             paging: false,
             info: false,
             ajax: {
-                url: '@Consts.SqlApiRootUrl' + "ProductSubcategories",
+                url: '@Consts.SqlApiRootUrl' + "Products",
                 dataSrc: ''
             },
             columns: [
                 {
                     name: 'Name',
                     data: "Name",
-                    title: "Podkategoria",
+                    title: "Nazwa",
                     sortable: true,
                     searchable: false
                 },
                 {
-                    name: 'ProductCategoryName',
-                    data: "ProductCategoryName",
-                    title: "Kategoria",
+                    name: 'ProductSubcategoryName',
+                    data: "ProductSubcategoryName",
+                    title: "Podkategoria",
                     sortable: true,
                     searchable: false
                 }

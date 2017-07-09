@@ -41,6 +41,8 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Web.Http.WebHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq" />
@@ -53,10 +55,12 @@
   <ItemGroup>
     <Compile Include="EF\Dtos\LocationDto.cs" />
     <Compile Include="EF\Dtos\ProductCategoryDto.cs" />
+    <Compile Include="EF\Dtos\ProductDto.cs" />
     <Compile Include="EF\Dtos\ProductSubcategoryDto.cs" />
     <Compile Include="EF\Dtos\UnitMeasureDto.cs" />
     <Compile Include="EF\Entities\EntitiesDbContext.cs" />
     <Compile Include="EF\Entities\Location.cs" />
+    <Compile Include="EF\Entities\Product.cs" />
     <Compile Include="EF\Entities\ProductCategory.cs" />
     <Compile Include="EF\Entities\ProductSubcategory.cs" />
     <Compile Include="EF\Entities\UnitMeasure.cs" />
