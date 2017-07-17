@@ -134,6 +134,7 @@
     <Compile Include="Model\DataTables\DtModelBinder.cs" />
     <Compile Include="Model\DataTables\DtOrderDirection.cs" />
     <Compile Include="Model\DataTables\DtRequest.cs" />
+    <Compile Include="Model\EntitiesDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,17 +1,23 @@
 ﻿
-using Demo.Model.Entities;
+using System;
+using System.Collections.Generic;
+using System.Net;
+using System.Net.Http;
 using Demo.Model.Raven;
 using System.Web.Mvc;
+using Demo.Model.EF.Dtos;
+using Demo.UI.Models;
+using Newtonsoft.Json;
 
 namespace Demo.UI.Controllers
 {
     public class SynchronizationController : Controller
     {
-        private readonly EntitiesDbContext db = new EntitiesDbContext();
 
         [HttpGet]
         public ActionResult Index()
         {
+            SynchronizeProductCategories();
             return View();
         }
 
@@ -21,6 +27,48 @@ namespace Demo.UI.Controllers
         {
            
             return RedirectToAction("Index");
+        }
+
+        private void SynchronizeProductCategories()
+        {
+            List<ProductCategoryDto> result;
+            using (var client = new HttpClient { BaseAddress = new Uri(Consts.SqlApiRootUrl) })
+            {
+                HttpResponseMessage response = client.GetAsync("ProductCategories").Result;
+                string content = response.Content.ReadAsStringAsync().Result;
+                result = JsonConvert.DeserializeObject<List<Demo.Model.EF.Dtos.ProductCategoryDto>>(content);
+            }
+
+            using (var client = new HttpClient {BaseAddress = new Uri(Consts.RavenApiRootUrl)})
+            {
+                foreach (var sqlEntity in result)
+                {
+                    HttpResponseMessage response = client.GetAsync("ProductCategories/" + sqlEntity.ID).Result;
+                    if (response.IsSuccessStatusCode)
+                    {
+                        // update (put)
+                        string content = response.Content.ReadAsStringAsync().Result;
+                        var ravenEntity = JsonConvert.DeserializeObject<Demo.Model.Raven.Entities.ProductCategory>(content);
+                        if (sqlEntity.Name == ravenEntity.Name)
+                        {
+                            ravenEntity.Name = sqlEntity.Name;
+                            response = client.PutAsJsonAsync("ProductCategories", ravenEntity).Result;
+                            response.EnsureSuccessStatusCode();
+                        }
+                    }
+                    else
+                    {
+                        // insert (post)
+                        var ravenEntity = new Demo.Model.Raven.Entities.ProductCategory
+                        {
+                            Name = sqlEntity.Name,
+                            Id = sqlEntity.ID.ToString()
+                        };
+                        response = client.PostAsJsonAsync("ProductCategories", ravenEntity).Result;
+                        response.EnsureSuccessStatusCode();
+                    }
+                }
+            }
         }
     }
 }

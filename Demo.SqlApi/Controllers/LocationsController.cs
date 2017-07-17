@@ -2,8 +2,8 @@
 using System.Linq;
 using System.Web.Http;
 using System.Web.Http.Description;
-using Demo.Model.Dtos;
-using Demo.Model.Entities;
+using Demo.Model.EF.Dtos;
+using Demo.SqlApi.Model;
 using Demo.SqlApi.Model.DataTables;
 
 namespace Demo.SqlApi.Controllers

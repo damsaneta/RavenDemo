@@ -11,9 +11,9 @@ namespace Demo.SqlApi.Model.DataTables
         private string orderColumn;
         public int Draw { get; set; }
 
-        public int Length { get; set; }
+        public int? Length { get; set; }
 
-        public int Start { get; set; }
+        public int? Start { get; set; }
 
         public string Search { get; set; }
 

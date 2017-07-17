@@ -1,4 +1,4 @@
-﻿namespace Demo.Model.Dtos
+﻿namespace Demo.Model.EF.Dtos
 {
     public class UnitMeasureDto
     {

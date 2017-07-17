@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.Model", "Demo.Model\De
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.LinqApi", "Demo.LinqApi\Demo.LinqApi.csproj", "{2F4C47E5-885B-405D-9AA1-FA516DBAD647}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.RavenApi", "Demo.RavenApi\Demo.RavenApi.csproj", "{280CE887-DBA4-4CAD-A40A-920CD5B6E3F1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{2F4C47E5-885B-405D-9AA1-FA516DBAD647}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2F4C47E5-885B-405D-9AA1-FA516DBAD647}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2F4C47E5-885B-405D-9AA1-FA516DBAD647}.Release|Any CPU.Build.0 = Release|Any CPU
+		{280CE887-DBA4-4CAD-A40A-920CD5B6E3F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{280CE887-DBA4-4CAD-A40A-920CD5B6E3F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{280CE887-DBA4-4CAD-A40A-920CD5B6E3F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{280CE887-DBA4-4CAD-A40A-920CD5B6E3F1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

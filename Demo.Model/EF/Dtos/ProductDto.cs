@@ -5,7 +5,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Demo.Model.Entities;
 
 namespace Demo.Model.EF.Dtos
 {

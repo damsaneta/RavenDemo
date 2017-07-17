@@ -2,7 +2,7 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Demo.Model.Entities
+namespace Demo.Model.EF.Entities
 {
     [Table("ProductCategory")]
     public class ProductCategory

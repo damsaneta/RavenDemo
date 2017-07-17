@@ -1,0 +1,9 @@
+namespace Demo.Model.Raven.Entities
+{
+    public class ProductCategory
+    {
+        public string Id { get; set; }
+
+        public string Name { get; set; }
+    }
+}

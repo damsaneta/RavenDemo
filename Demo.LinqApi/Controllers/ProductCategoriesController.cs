@@ -2,9 +2,10 @@
 using System.Linq;
 using System.Web.Http;
 using System.Web.Http.Description;
+using Demo.LinqApi.Model;
 using Demo.LinqApi.Model.DataTables;
-using Demo.Model.Dtos;
-using Demo.Model.Entities;
+using Demo.Model.EF.Dtos;
+using Demo.Model.EF.Entities;
 
 namespace Demo.LinqApi.Controllers
 {

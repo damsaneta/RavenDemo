@@ -6,7 +6,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Demo.Model.EF.Dtos;
-using Demo.Model.Entities;
+using Demo.SqlApi.Model;
 using Demo.SqlApi.Model.DataTables;
 
 namespace Demo.SqlApi.Controllers
