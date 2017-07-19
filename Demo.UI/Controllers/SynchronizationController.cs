@@ -48,7 +48,7 @@ namespace Demo.UI.Controllers
                         // update (put)
                         string content = response.Content.ReadAsStringAsync().Result;
                         var ravenEntity = JsonConvert.DeserializeObject<Demo.Model.Raven.Entities.ProductCategory>(content);
-                        if (sqlEntity.Name == ravenEntity.Name)
+                        if (sqlEntity.Name != ravenEntity.Name)
                         {
                             ravenEntity.Name = sqlEntity.Name;
                             response = client.PutAsJsonAsync("ProductCategories", ravenEntity).Result;
@@ -61,7 +61,7 @@ namespace Demo.UI.Controllers
                         var ravenEntity = new Demo.Model.Raven.Entities.ProductCategory
                         {
                             Name = sqlEntity.Name,
-                            Id = "productCategories/" + sqlEntity.ID.ToString()
+                            Id = sqlEntity.ID.ToString()
                         };
                         response = client.PostAsJsonAsync("ProductCategories", ravenEntity).Result;
                         response.EnsureSuccessStatusCode();
@@ -109,5 +109,7 @@ namespace Demo.UI.Controllers
                 }
             }
         }
+
+
     }
 }
