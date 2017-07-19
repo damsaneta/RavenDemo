@@ -19,7 +19,7 @@ namespace Demo.RavenApi.Controllers
 
         public IHttpActionResult Get(string id)
         {
-            var result = this.session.Load<ProductCategory>(id);
+            var result = this.session.Load<ProductCategory>("productCategories/"+id);
             if (result == null)
             {
                 return this.NotFound();
