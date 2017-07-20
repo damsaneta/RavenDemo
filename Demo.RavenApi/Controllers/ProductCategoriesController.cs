@@ -20,7 +20,7 @@ namespace Demo.RavenApi.Controllers
         [ResponseType(typeof(ProductCategoryDto))]
         public IHttpActionResult Get(string id)
         {
-            var result = this.session.Load<ProductCategory>("productCategories/" + id);
+            var result = this.session.Load<ProductCategory>("ProductCategories/" + id);
             if (result == null)
             {
                 return this.NotFound();

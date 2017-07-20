@@ -9,35 +9,35 @@ using System.Web.Http.Description;
 
 namespace Demo.RavenApi.Controllers
 {
-    public class LocationsController : ApiController
+    public class UnitsMeasureController : ApiController
     {
         private readonly IDocumentSession session = RavenDocumentStore.Store.OpenSession();
 
-        [ResponseType(typeof(LocationDto))]
+        [ResponseType(typeof(UnitMeasureDto))]
         public IHttpActionResult Get(string id)
         {
-            var result = session.Load<Location>("Locations/"+id);
+            var result = session.Load<UnitMeasure>("UnitsMeasure/" + id);
             if (result == null)
             {
                 return NotFound();
             }
 
-            return Ok(new LocationDto(result));
+            return Ok(new UnitMeasureDto(result));
         }
 
-        [ResponseType(typeof(IList<LocationDto>))]
-        public IHttpActionResult Get(DtRequest<LocationDto> request)
+        [ResponseType(typeof(IList<UnitMeasureDto>))]
+        public IHttpActionResult Get(DtRequest<UnitMeasureDto> request)
         {
-            IQueryable<Location> query = this.session.Query<Location>();
+            IQueryable<UnitMeasure> query = this.session.Query<UnitMeasure>();
 
             if (!string.IsNullOrEmpty(request.Search))
             {
                 query = query.Where(x => x.Name.StartsWith(request.Search));
             }
 
-            var queryDto = query.Select(x => new LocationDto
+            var queryDto = query.Select(x => new UnitMeasureDto
             {
-                Id = x.Id,
+                UnitMeasureCode = x.UnitMeasureCode,
                 Name = x.Name
             });
 
@@ -45,8 +45,8 @@ namespace Demo.RavenApi.Controllers
             {
                 case "ID":
                     queryDto = request.OrderDirection == DtOrderDirection.ASC
-                        ? queryDto.OrderBy(x => x.Id)
-                        : queryDto.OrderByDescending(x => x.Id);
+                        ? queryDto.OrderBy(x => x.UnitMeasureCode)
+                        : queryDto.OrderByDescending(x => x.UnitMeasureCode);
                     break;
                 default:
                     queryDto = request.OrderDirection == DtOrderDirection.ASC
@@ -58,24 +58,24 @@ namespace Demo.RavenApi.Controllers
             return Ok(result);
         }
 
-        public IHttpActionResult Post([FromBody]LocationDto locationDto)
+        public IHttpActionResult Post([FromBody]UnitMeasureDto unitMeasureDto)
         {
-            var entity = new Location(locationDto);
+            var entity = new UnitMeasure(unitMeasureDto);
             this.session.Store(entity);
             this.session.SaveChanges();
 
-            return Ok(entity.Id);
+            return Ok(entity.UnitMeasureCode);
         }
 
-        public IHttpActionResult Put([FromBody]LocationDto locationDto)
+        public IHttpActionResult Put([FromBody]UnitMeasureDto unitMeasureDto)
         {
-            Location entity = session.Load<Location>(locationDto.Id);
+            UnitMeasure entity = session.Load<UnitMeasure>(unitMeasureDto.UnitMeasureCode);
             if (entity == null)
             {
                 return NotFound();
             }
 
-            entity.Name = locationDto.Name;
+            entity.Name = unitMeasureDto.Name;
             session.SaveChanges();
             return Ok(entity);
         }

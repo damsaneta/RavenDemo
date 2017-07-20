@@ -18,6 +18,7 @@ namespace Demo.UI.Controllers
         {
             SynchronizeProductCategories();
             SynchronizeLocations();
+            SynchronizeUnitsMeasure();
             return View();
         }
 
@@ -77,7 +78,7 @@ namespace Demo.UI.Controllers
             {
                 HttpResponseMessage response = client.GetAsync("Locations").Result;
                 string content = response.Content.ReadAsStringAsync().Result;
-                result = JsonConvert.DeserializeObject<List<LocationDto>>(content);
+                result = JsonConvert.DeserializeObject<List<Demo.Model.EF.Dtos.LocationDto>>(content);
             }
 
             using (var client = new HttpClient { BaseAddress = new Uri(Consts.RavenApiRootUrl) })
@@ -87,9 +88,10 @@ namespace Demo.UI.Controllers
                     HttpResponseMessage response = client.GetAsync("Locations/" + sqlEntity.ID).Result;
                     if (response.IsSuccessStatusCode)
                     {
+                        // update (put)
                         string content = response.Content.ReadAsStringAsync().Result;
-                        var ravenEntity = JsonConvert.DeserializeObject<Model.Raven.Entities.Location>(content);
-                        if (sqlEntity.Name == ravenEntity.Name)
+                        var ravenEntity = JsonConvert.DeserializeObject<Demo.Model.Raven.Entities.Location>(content);
+                        if (sqlEntity.Name != ravenEntity.Name)
                         {
                             ravenEntity.Name = sqlEntity.Name;
                             response = client.PutAsJsonAsync("Locations", ravenEntity).Result;
@@ -98,10 +100,11 @@ namespace Demo.UI.Controllers
                     }
                     else
                     {
-                        var ravenEntity = new Model.Raven.Entities.Location
+                        // insert (post)
+                        var ravenEntity = new Demo.Model.Raven.Entities.ProductCategory
                         {
                             Name = sqlEntity.Name,
-                            Id = "locations/" + sqlEntity.ID.ToString()
+                            Id = sqlEntity.ID.ToString()
                         };
                         response = client.PostAsJsonAsync("Locations", ravenEntity).Result;
                         response.EnsureSuccessStatusCode();
@@ -110,6 +113,46 @@ namespace Demo.UI.Controllers
             }
         }
 
+        private void SynchronizeUnitsMeasure()
+        {
+            List<UnitMeasureDto> result;
+            using (var client = new HttpClient { BaseAddress = new Uri(Consts.SqlApiRootUrl) })
+            {
+                HttpResponseMessage response = client.GetAsync("UnitsMeasure").Result;
+                string content = response.Content.ReadAsStringAsync().Result;
+                result = JsonConvert.DeserializeObject<List<Demo.Model.EF.Dtos.UnitMeasureDto>>(content);
+            }
 
+            using (var client = new HttpClient { BaseAddress = new Uri(Consts.RavenApiRootUrl) })
+            {
+                foreach (var sqlEntity in result)
+                {
+                    HttpResponseMessage response = client.GetAsync("UnitsMeasure/" + sqlEntity.UnitMeasureCode).Result;
+                    if (response.IsSuccessStatusCode)
+                    {
+                        // update (put)
+                        string content = response.Content.ReadAsStringAsync().Result;
+                        var ravenEntity = JsonConvert.DeserializeObject<Demo.Model.Raven.Entities.UnitMeasure>(content);
+                        if (sqlEntity.Name != ravenEntity.Name)
+                        {
+                            ravenEntity.Name = sqlEntity.Name;
+                            response = client.PutAsJsonAsync("UnitsMeasure", ravenEntity).Result;
+                            response.EnsureSuccessStatusCode();
+                        }
+                    }
+                    else
+                    {
+                        // insert (post)
+                        var ravenEntity = new Demo.Model.Raven.Entities.UnitMeasure
+                        {
+                            Name = sqlEntity.Name,
+                            UnitMeasureCode = sqlEntity.UnitMeasureCode.ToString()
+                        };
+                        response = client.PostAsJsonAsync("UnitsMeasure", ravenEntity).Result;
+                        response.EnsureSuccessStatusCode();
+                    }
+                }
+            }
+        }
     }
 }

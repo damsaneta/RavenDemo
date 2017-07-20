@@ -57,9 +57,12 @@
     <Compile Include="EF\Entities\ProductSubcategory.cs" />
     <Compile Include="EF\Entities\UnitMeasure.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Raven\Dtos\LocationDto.cs" />
     <Compile Include="Raven\Dtos\ProductCategoryDto.cs" />
+    <Compile Include="Raven\Dtos\UnitMeasureDto.cs" />
     <Compile Include="Raven\Entities\Location.cs" />
     <Compile Include="Raven\Entities\ProductCategory.cs" />
+    <Compile Include="Raven\Entities\UnitMeasure.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,15 +1,15 @@
 ﻿namespace Demo.Model.Raven.Entities
 {
-    public class Location
+    public class LocationDto
     {
-        public Location()
+        public LocationDto()
         {
         }
 
-        public Location(LocationDto dto)
+        public LocationDto(Location entity)
         {
-            this.Id = "Locations/" + dto.Id;
-            this.Name = dto.Name;
+            this.Id = entity.Id;
+            this.Name = entity.Name;
         }
 
         public string Id { get; set; }
