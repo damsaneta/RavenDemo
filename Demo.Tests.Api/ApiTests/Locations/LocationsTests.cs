@@ -12,6 +12,7 @@ namespace Demo.Tests.Api.ApiTests.Locations
         [Test]
         [TestCase(Consts.SqlApiRootUrl)]
         [TestCase(Consts.LinqApiRootUrl)]
+        [TestCase(Consts.RavenApiRootUrl)]
         public void Get_all(string root)
         {
             using (var client = new HttpClient { BaseAddress = new Uri(root) })
@@ -21,13 +22,16 @@ namespace Demo.Tests.Api.ApiTests.Locations
                 response.IsSuccessStatusCode.Should().BeTrue();
                 response.StatusCode.Should().Be(HttpStatusCode.OK);
                 string content = response.Content.ReadAsStringAsync().Result;
-                content.Should().Be(LocationsFiles.GetAll_json.Trim());
+                content.Replace("Locations/", "").Replace("\"", "").Replace("Id", "ID").Trim()
+                   .Should().Be(LocationsFiles.GetAll_json.Replace("\"", "").Trim());
+               // content.Should().Be(LocationsFiles.GetAll_json.Trim());
             }
         }
 
         [Test]
         [TestCase(Consts.SqlApiRootUrl)]
         [TestCase(Consts.LinqApiRootUrl)]
+        [TestCase(Consts.RavenApiRootUrl)]
         public void Get_by_id(string root)
         {
             using (var client = new HttpClient { BaseAddress = new Uri(root) })
@@ -37,13 +41,16 @@ namespace Demo.Tests.Api.ApiTests.Locations
                 response.IsSuccessStatusCode.Should().BeTrue();
                 response.StatusCode.Should().Be(HttpStatusCode.OK);
                 string content = response.Content.ReadAsStringAsync().Result;
-                content.Should().Be(LocationsFiles.GetById_json.Trim());
+                content.Replace("Locations/", "").Replace("\"", "").Replace("Id", "ID").Trim()
+                .Should().Be(LocationsFiles.GetById_json.Replace("\"", "").Trim());
+               // content.Should().Be(LocationsFiles.GetById_json.Trim());
             }
         }
 
         [Test]
         [TestCase(Consts.SqlApiRootUrl)]
         [TestCase(Consts.LinqApiRootUrl)]
+        [TestCase(Consts.RavenApiRootUrl)]
         public void Get_by_id_not_found(string root)
         {
             using (var client = new HttpClient { BaseAddress = new Uri(root) })
@@ -58,6 +65,7 @@ namespace Demo.Tests.Api.ApiTests.Locations
         [Test]
         [TestCase(Consts.SqlApiRootUrl)]
         [TestCase(Consts.LinqApiRootUrl)]
+        [TestCase(Consts.RavenApiRootUrl)]
         public void Get_by_name(string root)
         {
             using (var client = new HttpClient { BaseAddress = new Uri(root) })
@@ -68,13 +76,16 @@ namespace Demo.Tests.Api.ApiTests.Locations
                 response.IsSuccessStatusCode.Should().BeTrue();
                 response.StatusCode.Should().Be(HttpStatusCode.OK);
                 string content = response.Content.ReadAsStringAsync().Result;
-               // content.Should().Be(LocationsFiles.GetByName_json.Trim());
+                content.Replace("Locations/", "").Replace("\"", "").Replace("Id", "ID").Trim()
+                .Should().Be(LocationsFiles.GetByName_json.Replace("\"", "").Trim());
+                //content.Should().Be(LocationsFiles.GetByName_json.Trim());
             }
         }
 
         [Test]
         [TestCase(Consts.SqlApiRootUrl)]
         [TestCase(Consts.LinqApiRootUrl)]
+        [TestCase(Consts.RavenApiRootUrl)]
         public void Get_by_name_empty(string root)
         {
             using (var client = new HttpClient { BaseAddress = new Uri(root) })
@@ -92,6 +103,7 @@ namespace Demo.Tests.Api.ApiTests.Locations
         [Test]
         [TestCase(Consts.SqlApiRootUrl)]
         [TestCase(Consts.LinqApiRootUrl)]
+        [TestCase(Consts.RavenApiRootUrl)]
         public void Get_all_ordered_by_id_ascending(string root)
         {
             using (var client = new HttpClient { BaseAddress = new Uri(root) })
@@ -102,13 +114,16 @@ namespace Demo.Tests.Api.ApiTests.Locations
                 response.IsSuccessStatusCode.Should().BeTrue();
                 response.StatusCode.Should().Be(HttpStatusCode.OK);
                 string content = response.Content.ReadAsStringAsync().Result;
-                content.Should().Be(LocationsFiles.GetAllOrderByIdAsc_json.Trim());
+                content.Replace("Locations/", "").Replace("\"", "").Replace("Id", "ID").Trim()
+                .Should().Be(LocationsFiles.GetAllOrderByIdAsc_json.Replace("\"", "").Trim());
+               // content.Should().Be(LocationsFiles.GetAllOrderByIdAsc_json.Trim());
             }
         }
 
         [Test]
         [TestCase(Consts.SqlApiRootUrl)]
         [TestCase(Consts.LinqApiRootUrl)]
+        [TestCase(Consts.RavenApiRootUrl)]
         public void Get_all_ordered_by_id_descending(string root)
         {
             using (var client = new HttpClient { BaseAddress = new Uri(root) })
@@ -119,13 +134,16 @@ namespace Demo.Tests.Api.ApiTests.Locations
                 response.IsSuccessStatusCode.Should().BeTrue();
                 response.StatusCode.Should().Be(HttpStatusCode.OK);
                 string content = response.Content.ReadAsStringAsync().Result;
-                content.Should().Be(LocationsFiles.GetAllOrderedByIdDesc_json.Trim());
+                content.Replace("Locations/", "").Replace("\"", "").Replace("Id", "ID").Trim()
+                .Should().Be(LocationsFiles.GetAllOrderedByIdDesc_json.Replace("\"", "").Trim());
+                //content.Should().Be(LocationsFiles.GetAllOrderedByIdDesc_json.Trim());
             }
         }
 
         [Test]
         [TestCase(Consts.SqlApiRootUrl)]
         [TestCase(Consts.LinqApiRootUrl)]
+        [TestCase(Consts.RavenApiRootUrl)]
         public void Get_all_ordered_by_name_ascending(string root)
         {
             using (var client = new HttpClient { BaseAddress = new Uri(root) })
@@ -136,13 +154,16 @@ namespace Demo.Tests.Api.ApiTests.Locations
                 response.IsSuccessStatusCode.Should().BeTrue();
                 response.StatusCode.Should().Be(HttpStatusCode.OK);
                 string content = response.Content.ReadAsStringAsync().Result;
-                content.Should().Be(LocationsFiles.GetAllByNameAsc_json.Trim());
+                content.Replace("Locations/", "").Replace("\"", "").Replace("Id", "ID").Trim()
+                .Should().Be(LocationsFiles.GetAllByNameAsc_json.Replace("\"", "").Trim());
+                //content.Should().Be(LocationsFiles.GetAllByNameAsc_json.Trim());
             }
         }
 
         [Test]
         [TestCase(Consts.SqlApiRootUrl)]
         [TestCase(Consts.LinqApiRootUrl)]
+        [TestCase(Consts.RavenApiRootUrl)]
         public void Get_all_ordered_by_name_descending(string root)
         {
             using (var client = new HttpClient { BaseAddress = new Uri(root) })
@@ -153,7 +174,9 @@ namespace Demo.Tests.Api.ApiTests.Locations
                 response.IsSuccessStatusCode.Should().BeTrue();
                 response.StatusCode.Should().Be(HttpStatusCode.OK);
                 string content = response.Content.ReadAsStringAsync().Result;
-                content.Should().Be(LocationsFiles.GetAllByNameDesc_json.Trim());
+                content.Replace("Locations/", "").Replace("\"", "").Replace("Id", "ID").Trim()
+               .Should().Be(LocationsFiles.GetAllByNameDesc_json.Replace("\"", "").Trim());
+                //content.Should().Be(LocationsFiles.GetAllByNameDesc_json.Trim());
             }
         }
 

@@ -43,7 +43,7 @@ namespace Demo.RavenApi.Controllers
 
             switch (request.OrderColumn)
             {
-                case "ID":
+                case "UnitMeasureCode":
                     queryDto = request.OrderDirection == DtOrderDirection.ASC
                         ? queryDto.OrderBy(x => x.UnitMeasureCode)
                         : queryDto.OrderByDescending(x => x.UnitMeasureCode);

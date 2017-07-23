@@ -16,9 +16,10 @@ namespace Demo.UI.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            SynchronizeProductCategories();
-            SynchronizeLocations();
-            SynchronizeUnitsMeasure();
+            //SynchronizeProductCategories();
+            //SynchronizeLocations();
+           // SynchronizeUnitsMeasure();
+            this.SynchronizeProductSubcategories();
             return View();
         }
 
@@ -149,6 +150,49 @@ namespace Demo.UI.Controllers
                             UnitMeasureCode = sqlEntity.UnitMeasureCode.ToString()
                         };
                         response = client.PostAsJsonAsync("UnitsMeasure", ravenEntity).Result;
+                        response.EnsureSuccessStatusCode();
+                    }
+                }
+            }
+        }
+
+        private void SynchronizeProductSubcategories()
+        {
+            List<ProductSubcategoryDto> result;
+            using (var client = new HttpClient { BaseAddress = new Uri(Consts.SqlApiRootUrl) })
+            {
+                HttpResponseMessage response = client.GetAsync("ProductSubcategories").Result;
+                string content = response.Content.ReadAsStringAsync().Result;
+                result = JsonConvert.DeserializeObject<List<Demo.Model.EF.Dtos.ProductSubcategoryDto>>(content);
+            }
+
+            using (var client = new HttpClient { BaseAddress = new Uri(Consts.RavenApiRootUrl) })
+            {
+                foreach (var sqlEntity in result)
+                {
+                    HttpResponseMessage response = client.GetAsync("ProductSubcategories/" + sqlEntity.ID).Result;
+                    if (response.IsSuccessStatusCode)
+                    {
+                        // update (put)
+                        //string content = response.Content.ReadAsStringAsync().Result;
+                        //var ravenEntity = JsonConvert.DeserializeObject<Demo.Model.Raven.Entities.UnitMeasure>(content);
+                        //if (sqlEntity.Name != ravenEntity.Name)
+                        //{
+                        //    ravenEntity.Name = sqlEntity.Name;
+                        //    response = client.PutAsJsonAsync("UnitsMeasure", ravenEntity).Result;
+                        //    response.EnsureSuccessStatusCode();
+                        //}
+                    }
+                    else
+                    {
+                        // insert (post)
+                        var ravenEntity = new Demo.Model.Raven.Entities.ProductSubcategory()
+                        {
+                            Name = sqlEntity.Name,
+                            Id = sqlEntity.ID.ToString(),
+                            ProductCategoryId = sqlEntity.ProductCategoryID.ToString()
+                        };
+                        response = client.PostAsJsonAsync("ProductSubcategories", ravenEntity).Result;
                         response.EnsureSuccessStatusCode();
                     }
                 }

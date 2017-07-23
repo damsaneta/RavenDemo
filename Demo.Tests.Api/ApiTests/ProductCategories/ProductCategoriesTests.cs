@@ -12,7 +12,7 @@ namespace Demo.Tests.Api.ApiTests.ProductCategories
         [Test]
         [TestCase(Consts.SqlApiRootUrl)]
         [TestCase(Consts.LinqApiRootUrl)]
-       // [TestCase(Consts.RavenApiRootUrl)]
+        [TestCase(Consts.RavenApiRootUrl)]
         public void Get_all(string root)
         {
             using (var client = new HttpClient {BaseAddress = new Uri(root) })
@@ -22,13 +22,15 @@ namespace Demo.Tests.Api.ApiTests.ProductCategories
                 response.IsSuccessStatusCode.Should().BeTrue();
                 response.StatusCode.Should().Be(HttpStatusCode.OK);
                 string content = response.Content.ReadAsStringAsync().Result;
-                content.Should().Be(ProductCategoriesFiles.GetAll_json.Trim());
+                content.Replace("ProductCategories/", "").Replace("\"", "").Replace("Id", "ID").Trim()
+                    .Should().Be(ProductCategoriesFiles.GetAll_json.Replace("\"", "").Trim());
             }
         }
 
         [Test]
         [TestCase(Consts.SqlApiRootUrl)]
         [TestCase(Consts.LinqApiRootUrl)]
+        [TestCase(Consts.RavenApiRootUrl)]
         public void Get_by_id(string root)
         {
             using (var client = new HttpClient { BaseAddress = new Uri(root) })
@@ -38,13 +40,15 @@ namespace Demo.Tests.Api.ApiTests.ProductCategories
                 response.IsSuccessStatusCode.Should().BeTrue();
                 response.StatusCode.Should().Be(HttpStatusCode.OK);
                 string content = response.Content.ReadAsStringAsync().Result;
-                content.Should().Be(ProductCategoriesFiles.GetById_json.Trim());
+                content.Replace("ProductCategories/", "").Replace("\"", "").Replace("Id", "ID").Trim()
+                    .Should().Be(ProductCategoriesFiles.GetById_json.Replace("\"", "").Trim());
             }
         }
 
         [Test]
         [TestCase(Consts.SqlApiRootUrl)]
         [TestCase(Consts.LinqApiRootUrl)]
+        [TestCase(Consts.RavenApiRootUrl)]
         public void Get_by_id_not_found(string root)
         {
             using (var client = new HttpClient { BaseAddress = new Uri(root) })
@@ -59,6 +63,7 @@ namespace Demo.Tests.Api.ApiTests.ProductCategories
         [Test]
         [TestCase(Consts.SqlApiRootUrl)]
         [TestCase(Consts.LinqApiRootUrl)]
+        [TestCase(Consts.RavenApiRootUrl)]
         public void Get_by_name(string root)
         {
             using (var client = new HttpClient { BaseAddress = new Uri(root) })
@@ -69,13 +74,16 @@ namespace Demo.Tests.Api.ApiTests.ProductCategories
                 response.IsSuccessStatusCode.Should().BeTrue();
                 response.StatusCode.Should().Be(HttpStatusCode.OK);
                 string content = response.Content.ReadAsStringAsync().Result;
-                content.Should().Be(ProductCategoriesFiles.GetByName_json.Trim());
+                content.Replace("ProductCategories/", "").Replace("\"", "").Replace("Id", "ID").Trim()
+                    .Should().Be(ProductCategoriesFiles.GetByName_json.Replace("\"", "").Trim());
+                //content.Should().Be(ProductCategoriesFiles.GetByName_json.Trim());
             }
         }
 
         [Test]
         [TestCase(Consts.SqlApiRootUrl)]
         [TestCase(Consts.LinqApiRootUrl)]
+        [TestCase(Consts.RavenApiRootUrl)]
         public void Get_by_name_empty(string root)
         {
             using (var client = new HttpClient { BaseAddress = new Uri(root) })
@@ -93,6 +101,7 @@ namespace Demo.Tests.Api.ApiTests.ProductCategories
         [Test]
         [TestCase(Consts.SqlApiRootUrl)]
         [TestCase(Consts.LinqApiRootUrl)]
+        [TestCase(Consts.RavenApiRootUrl)]
         public void Get_all_ordered_by_id_ascending(string root)
         {
             using (var client = new HttpClient { BaseAddress = new Uri(root) })
@@ -103,13 +112,16 @@ namespace Demo.Tests.Api.ApiTests.ProductCategories
                 response.IsSuccessStatusCode.Should().BeTrue();
                 response.StatusCode.Should().Be(HttpStatusCode.OK);
                 string content = response.Content.ReadAsStringAsync().Result;
-                content.Should().Be(ProductCategoriesFiles.GetAllOrderByIdAsc_json.Trim());
+                content.Replace("ProductCategories/", "").Replace("\"", "").Replace("Id", "ID").Trim()
+                    .Should().Be(ProductCategoriesFiles.GetAllOrderByIdAsc_json.Replace("\"", "").Trim());
+                //content.Should().Be(ProductCategoriesFiles.GetAllOrderByIdAsc_json.Trim());
             }
         }
 
         [Test]
         [TestCase(Consts.SqlApiRootUrl)]
         [TestCase(Consts.LinqApiRootUrl)]
+        [TestCase(Consts.RavenApiRootUrl)]
         public void Get_all_ordered_by_id_descending(string root)
         {
             using (var client = new HttpClient { BaseAddress = new Uri(root) })
@@ -120,13 +132,16 @@ namespace Demo.Tests.Api.ApiTests.ProductCategories
                 response.IsSuccessStatusCode.Should().BeTrue();
                 response.StatusCode.Should().Be(HttpStatusCode.OK);
                 string content = response.Content.ReadAsStringAsync().Result;
-                content.Should().Be(ProductCategoriesFiles.GetAllOrderByIdDesc_json.Trim());
+                content.Replace("ProductCategories/", "").Replace("\"", "").Replace("Id", "ID").Trim()
+                    .Should().Be(ProductCategoriesFiles.GetAllOrderByIdDesc_json.Replace("\"", "").Trim());
+                //content.Should().Be(ProductCategoriesFiles.GetAllOrderByIdDesc_json.Trim());
             }
         }
 
         [Test]
         [TestCase(Consts.SqlApiRootUrl)]
         [TestCase(Consts.LinqApiRootUrl)]
+        [TestCase(Consts.RavenApiRootUrl)]
         public void Get_all_ordered_by_name_ascending(string root)
         {
             using (var client = new HttpClient { BaseAddress = new Uri(root) })
@@ -137,13 +152,16 @@ namespace Demo.Tests.Api.ApiTests.ProductCategories
                 response.IsSuccessStatusCode.Should().BeTrue();
                 response.StatusCode.Should().Be(HttpStatusCode.OK);
                 string content = response.Content.ReadAsStringAsync().Result;
-                content.Should().Be(ProductCategoriesFiles.GetAllOrderByNameAsc_json.Trim());
+                content.Replace("ProductCategories/", "").Replace("\"", "").Replace("Id", "ID").Trim()
+                    .Should().Be(ProductCategoriesFiles.GetAllOrderByNameAsc_json.Replace("\"", "").Trim());
+                //content.Should().Be(ProductCategoriesFiles.GetAllOrderByNameAsc_json.Trim());
             }
         }
 
         [Test]
         [TestCase(Consts.SqlApiRootUrl)]
         [TestCase(Consts.LinqApiRootUrl)]
+        [TestCase(Consts.RavenApiRootUrl)]
         public void Get_all_ordered_by_name_descending(string root)
         {
             using (var client = new HttpClient { BaseAddress = new Uri(root) })
@@ -154,7 +172,9 @@ namespace Demo.Tests.Api.ApiTests.ProductCategories
                 response.IsSuccessStatusCode.Should().BeTrue();
                 response.StatusCode.Should().Be(HttpStatusCode.OK);
                 string content = response.Content.ReadAsStringAsync().Result;
-                content.Should().Be(ProductCategoriesFiles.GetAllOrderByNameDesc_json.Trim());
+                content.Replace("ProductCategories/", "").Replace("\"", "").Replace("Id", "ID").Trim()
+                    .Should().Be(ProductCategoriesFiles.GetAllOrderByNameDesc_json.Replace("\"", "").Trim());
+                //content.Should().Be(ProductCategoriesFiles.GetAllOrderByNameDesc_json.Trim());
             }
         }
 
