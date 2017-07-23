@@ -8,7 +8,7 @@
 
         public Location(LocationDto dto)
         {
-            this.Id = "Locations/" + dto.Id;
+            this.Id = dto.Id;
             this.Name = dto.Name;
         }
 

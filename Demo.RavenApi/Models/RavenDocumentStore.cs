@@ -1,4 +1,5 @@
 ﻿using System;
+using Demo.Model.Raven.Entities;
 using Raven.Client;
 using Raven.Client.Document;
 
@@ -13,7 +14,7 @@ namespace Demo.RavenApi.Models
             {
                 ConnectionStringName = "Server"
             };
-
+            store.Conventions.RegisterIdConvention<UnitMeasure>(((database, commands, entity) => entity.UnitMeasureCode));
             return store.Initialize();
         });
 

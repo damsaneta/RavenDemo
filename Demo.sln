@@ -1,13 +1,18 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.SqlApi", "Demo.SqlApi\Demo.SqlApi.csproj", "{6B19D4A7-3A5F-4F49-AF2A-339F5B5C55C7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.Tests.Api", "Demo.Tests.Api\Demo.Tests.Api.csproj", "{33EC35B6-2199-4B39-876D-A01F891ADE1F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.UI", "Demo.UI\Demo.UI.csproj", "{A1C7DAA3-C114-4E2F-9D3C-C8786D2A13A0}"
+	ProjectSection(ProjectDependencies) = postProject
+		{280CE887-DBA4-4CAD-A40A-920CD5B6E3F1} = {280CE887-DBA4-4CAD-A40A-920CD5B6E3F1}
+		{6B19D4A7-3A5F-4F49-AF2A-339F5B5C55C7} = {6B19D4A7-3A5F-4F49-AF2A-339F5B5C55C7}
+		{2F4C47E5-885B-405D-9AA1-FA516DBAD647} = {2F4C47E5-885B-405D-9AA1-FA516DBAD647}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.Model", "Demo.Model\Demo.Model.csproj", "{DCA69D33-3764-4120-9ED6-B84D28EB02BF}"
 EndProject

@@ -16,7 +16,7 @@ namespace Demo.RavenApi.Controllers
         [ResponseType(typeof(UnitMeasureDto))]
         public IHttpActionResult Get(string id)
         {
-            var result = session.Load<UnitMeasure>("UnitsMeasure/" + id);
+            var result = session.Load<UnitMeasure>(id);
             if (result == null)
             {
                 return NotFound();

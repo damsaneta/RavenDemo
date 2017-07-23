@@ -16,7 +16,7 @@ namespace Demo.RavenApi.Controllers
         [ResponseType(typeof(LocationDto))]
         public IHttpActionResult Get(string id)
         {
-            var result = session.Load<Location>("Locations/"+id);
+            var result = session.Load<Location>(id);
             if (result == null)
             {
                 return NotFound();

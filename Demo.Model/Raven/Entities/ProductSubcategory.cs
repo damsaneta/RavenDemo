@@ -10,8 +10,8 @@ namespace Demo.Model.Raven.Entities
 
         public ProductSubcategory(ProductSubcategoryDto dto)
         {
-            this.Id = "ProductSubcategories/" + dto.Id;
-            this.ProductCategoryId = "ProductCategories/" + dto.ProductCategoryId;
+            this.Id = dto.Id;
+            this.ProductCategoryId = dto.ProductCategoryId;
             this.Name = dto.Name;
         }
 
