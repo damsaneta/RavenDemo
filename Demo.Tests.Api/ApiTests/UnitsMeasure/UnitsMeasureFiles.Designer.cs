@@ -47,7 +47,7 @@ namespace Demo.Tests.Api.ApiTests.UnitsMeasure {
         }
         
         /// <summary>
-        ///   Overrides the current thread's CurrentUICulture property for all
+        ///   OverrIdes the current thread's CurrentUICulture property for all
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -79,7 +79,7 @@ namespace Demo.Tests.Api.ApiTests.UnitsMeasure {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to [{&quot;UnitMeasureCode&quot;:&quot;PT &quot;,&quot;Name&quot;:&quot;Pint, US liquid&quot;},{&quot;UnitMeasureCode&quot;:&quot;PCT&quot;,&quot;Name&quot;:&quot;Percentage&quot;},{&quot;UnitMeasureCode&quot;:&quot;PC &quot;,&quot;Name&quot;:&quot;Piece&quot;},{&quot;UnitMeasureCode&quot;:&quot;PAL&quot;,&quot;Name&quot;:&quot;Pallet&quot;},{&quot;UnitMeasureCode&quot;:&quot;PAK&quot;,&quot;Name&quot;:&quot;Pack&quot;},{&quot;UnitMeasureCode&quot;:&quot;OZ &quot;,&quot;Name&quot;:&quot;Ounces&quot;},{&quot;UnitMeasureCode&quot;:&quot;MM &quot;,&quot;Name&quot;:&quot;Millimeter&quot;},{&quot;UnitMeasureCode&quot;:&quot;ML &quot;,&quot;Name&quot;:&quot;Milliliter&quot;},{&quot;UnitMeasureCode&quot;:&quot;MG &quot;,&quot;Name&quot;:&quot;Milligram&quot;},{&quot;UnitMeasureCode&quot;:&quot;M3 &quot;,&quot;Name&quot;:&quot;Cubic meter&quot;},{&quot;UnitMeasureCode&quot;:&quot;M2 &quot;,&quot;Name&quot;:&quot;Square meter&quot;},{&quot;UnitMeasureCode [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to [{&quot;UnitMeasureCode&quot;:&quot;PT &quot;,&quot;Name&quot;:&quot;Pint, US liquId&quot;},{&quot;UnitMeasureCode&quot;:&quot;PCT&quot;,&quot;Name&quot;:&quot;Percentage&quot;},{&quot;UnitMeasureCode&quot;:&quot;PC &quot;,&quot;Name&quot;:&quot;Piece&quot;},{&quot;UnitMeasureCode&quot;:&quot;PAL&quot;,&quot;Name&quot;:&quot;Pallet&quot;},{&quot;UnitMeasureCode&quot;:&quot;PAK&quot;,&quot;Name&quot;:&quot;Pack&quot;},{&quot;UnitMeasureCode&quot;:&quot;OZ &quot;,&quot;Name&quot;:&quot;Ounces&quot;},{&quot;UnitMeasureCode&quot;:&quot;MM &quot;,&quot;Name&quot;:&quot;Millimeter&quot;},{&quot;UnitMeasureCode&quot;:&quot;ML &quot;,&quot;Name&quot;:&quot;Milliliter&quot;},{&quot;UnitMeasureCode&quot;:&quot;MG &quot;,&quot;Name&quot;:&quot;Milligram&quot;},{&quot;UnitMeasureCode&quot;:&quot;M3 &quot;,&quot;Name&quot;:&quot;Cubic meter&quot;},{&quot;UnitMeasureCode&quot;:&quot;M2 &quot;,&quot;Name&quot;:&quot;Square meter&quot;},{&quot;UnitMeasureCode [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string GetAllOrderByIdDesc_json {
             get {
@@ -97,7 +97,7 @@ namespace Demo.Tests.Api.ApiTests.UnitsMeasure {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to [{&quot;UnitMeasureCode&quot;:&quot;LB &quot;,&quot;Name&quot;:&quot;US pound&quot;},{&quot;UnitMeasureCode&quot;:&quot;M2 &quot;,&quot;Name&quot;:&quot;Square meter&quot;},{&quot;UnitMeasureCode&quot;:&quot;CM2&quot;,&quot;Name&quot;:&quot;Square centimeter&quot;},{&quot;UnitMeasureCode&quot;:&quot;PT &quot;,&quot;Name&quot;:&quot;Pint, US liquid&quot;},{&quot;UnitMeasureCode&quot;:&quot;PC &quot;,&quot;Name&quot;:&quot;Piece&quot;},{&quot;UnitMeasureCode&quot;:&quot;PCT&quot;,&quot;Name&quot;:&quot;Percentage&quot;},{&quot;UnitMeasureCode&quot;:&quot;PAL&quot;,&quot;Name&quot;:&quot;Pallet&quot;},{&quot;UnitMeasureCode&quot;:&quot;PAK&quot;,&quot;Name&quot;:&quot;Pack&quot;},{&quot;UnitMeasureCode&quot;:&quot;OZ &quot;,&quot;Name&quot;:&quot;Ounces&quot;},{&quot;UnitMeasureCode&quot;:&quot;MM &quot;,&quot;Name&quot;:&quot;Millimeter&quot;},{&quot;UnitMeasureCode&quot;:&quot;ML &quot;,&quot;Name&quot;:&quot;Milliliter&quot;},{&quot;UnitMeasur [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to [{&quot;UnitMeasureCode&quot;:&quot;LB &quot;,&quot;Name&quot;:&quot;US pound&quot;},{&quot;UnitMeasureCode&quot;:&quot;M2 &quot;,&quot;Name&quot;:&quot;Square meter&quot;},{&quot;UnitMeasureCode&quot;:&quot;CM2&quot;,&quot;Name&quot;:&quot;Square centimeter&quot;},{&quot;UnitMeasureCode&quot;:&quot;PT &quot;,&quot;Name&quot;:&quot;Pint, US liquId&quot;},{&quot;UnitMeasureCode&quot;:&quot;PC &quot;,&quot;Name&quot;:&quot;Piece&quot;},{&quot;UnitMeasureCode&quot;:&quot;PCT&quot;,&quot;Name&quot;:&quot;Percentage&quot;},{&quot;UnitMeasureCode&quot;:&quot;PAL&quot;,&quot;Name&quot;:&quot;Pallet&quot;},{&quot;UnitMeasureCode&quot;:&quot;PAK&quot;,&quot;Name&quot;:&quot;Pack&quot;},{&quot;UnitMeasureCode&quot;:&quot;OZ &quot;,&quot;Name&quot;:&quot;Ounces&quot;},{&quot;UnitMeasureCode&quot;:&quot;MM &quot;,&quot;Name&quot;:&quot;Millimeter&quot;},{&quot;UnitMeasureCode&quot;:&quot;ML &quot;,&quot;Name&quot;:&quot;Milliliter&quot;},{&quot;UnitMeasur [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string GetAllOrderByNameDesc_json {
             get {

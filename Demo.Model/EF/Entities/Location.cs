@@ -7,7 +7,8 @@ namespace Demo.Model.EF.Entities
     [Table("Location")]
     public class Location
     {
-        public short ID { get; set; }
+        [Column("ID")]
+        public short Id { get; set; }
 
         [Required]
         [StringLength(50)]

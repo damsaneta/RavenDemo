@@ -47,7 +47,7 @@ namespace Demo.Tests.Api.ApiTests.ProductSubcategories {
         }
         
         /// <summary>
-        ///   Overrides the current thread's CurrentUICulture property for all
+        ///   OverrIdes the current thread's CurrentUICulture property for all
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -61,7 +61,7 @@ namespace Demo.Tests.Api.ApiTests.ProductSubcategories {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to [{&quot;ID&quot;:26,&quot;Name&quot;:&quot;Bike Racks&quot;,&quot;ProductCategoryID&quot;:4,&quot;ProductCategoryName&quot;:&quot;Accessories&quot;},{&quot;ID&quot;:27,&quot;Name&quot;:&quot;Bike Stands&quot;,&quot;ProductCategoryID&quot;:4,&quot;ProductCategoryName&quot;:&quot;Accessories&quot;},{&quot;ID&quot;:1,&quot;Name&quot;:&quot;Mountain Bikes&quot;,&quot;ProductCategoryID&quot;:1,&quot;ProductCategoryName&quot;:&quot;Bikes&quot;},{&quot;ID&quot;:2,&quot;Name&quot;:&quot;Road Bikes&quot;,&quot;ProductCategoryID&quot;:1,&quot;ProductCategoryName&quot;:&quot;Bikes&quot;},{&quot;ID&quot;:3,&quot;Name&quot;:&quot;Touring Bikes&quot;,&quot;ProductCategoryID&quot;:1,&quot;ProductCategoryName&quot;:&quot;Bikes&quot;}].
+        ///   Looks up a localized string similar to [{&quot;Id&quot;:26,&quot;Name&quot;:&quot;Bike Racks&quot;,&quot;ProductCategoryId&quot;:4,&quot;ProductCategoryName&quot;:&quot;Accessories&quot;},{&quot;Id&quot;:27,&quot;Name&quot;:&quot;Bike Stands&quot;,&quot;ProductCategoryId&quot;:4,&quot;ProductCategoryName&quot;:&quot;Accessories&quot;},{&quot;Id&quot;:1,&quot;Name&quot;:&quot;Mountain Bikes&quot;,&quot;ProductCategoryId&quot;:1,&quot;ProductCategoryName&quot;:&quot;Bikes&quot;},{&quot;Id&quot;:2,&quot;Name&quot;:&quot;Road Bikes&quot;,&quot;ProductCategoryId&quot;:1,&quot;ProductCategoryName&quot;:&quot;Bikes&quot;},{&quot;Id&quot;:3,&quot;Name&quot;:&quot;Touring Bikes&quot;,&quot;ProductCategoryId&quot;:1,&quot;ProductCategoryName&quot;:&quot;Bikes&quot;}].
         /// </summary>
         public static string Get_by_subcategoryName_or_categoryName_json {
             get {
@@ -70,7 +70,7 @@ namespace Demo.Tests.Api.ApiTests.ProductSubcategories {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to [{&quot;ID&quot;:26,&quot;Name&quot;:&quot;Bike Racks&quot;,&quot;ProductCategoryID&quot;:4,&quot;ProductCategoryName&quot;:&quot;Accessories&quot;},{&quot;ID&quot;:27,&quot;Name&quot;:&quot;Bike Stands&quot;,&quot;ProductCategoryID&quot;:4,&quot;ProductCategoryName&quot;:&quot;Accessories&quot;},{&quot;ID&quot;:28,&quot;Name&quot;:&quot;Bottles and Cages&quot;,&quot;ProductCategoryID&quot;:4,&quot;ProductCategoryName&quot;:&quot;Accessories&quot;},{&quot;ID&quot;:29,&quot;Name&quot;:&quot;Cleaners&quot;,&quot;ProductCategoryID&quot;:4,&quot;ProductCategoryName&quot;:&quot;Accessories&quot;},{&quot;ID&quot;:30,&quot;Name&quot;:&quot;Fenders&quot;,&quot;ProductCategoryID&quot;:4,&quot;ProductCategoryName&quot;:&quot;Accessories&quot;},{&quot;ID&quot;:31,&quot;Name&quot;:&quot;Helmets&quot;,&quot;ProductCategoryID&quot;:4,&quot;ProductCategoryName [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to [{&quot;Id&quot;:26,&quot;Name&quot;:&quot;Bike Racks&quot;,&quot;ProductCategoryId&quot;:4,&quot;ProductCategoryName&quot;:&quot;Accessories&quot;},{&quot;Id&quot;:27,&quot;Name&quot;:&quot;Bike Stands&quot;,&quot;ProductCategoryId&quot;:4,&quot;ProductCategoryName&quot;:&quot;Accessories&quot;},{&quot;Id&quot;:28,&quot;Name&quot;:&quot;Bottles and Cages&quot;,&quot;ProductCategoryId&quot;:4,&quot;ProductCategoryName&quot;:&quot;Accessories&quot;},{&quot;Id&quot;:29,&quot;Name&quot;:&quot;Cleaners&quot;,&quot;ProductCategoryId&quot;:4,&quot;ProductCategoryName&quot;:&quot;Accessories&quot;},{&quot;Id&quot;:30,&quot;Name&quot;:&quot;Fenders&quot;,&quot;ProductCategoryId&quot;:4,&quot;ProductCategoryName&quot;:&quot;Accessories&quot;},{&quot;Id&quot;:31,&quot;Name&quot;:&quot;Helmets&quot;,&quot;ProductCategoryId&quot;:4,&quot;ProductCategoryName [rest of string was truncated]&quot;;.
         /// </summary>
         public static string GetAll_json {
             get {
@@ -79,7 +79,7 @@ namespace Demo.Tests.Api.ApiTests.ProductSubcategories {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to [{&quot;ID&quot;:26,&quot;Name&quot;:&quot;Bike Racks&quot;,&quot;ProductCategoryID&quot;:4,&quot;ProductCategoryName&quot;:&quot;Accessories&quot;},{&quot;ID&quot;:27,&quot;Name&quot;:&quot;Bike Stands&quot;,&quot;ProductCategoryID&quot;:4,&quot;ProductCategoryName&quot;:&quot;Accessories&quot;},{&quot;ID&quot;:28,&quot;Name&quot;:&quot;Bottles and Cages&quot;,&quot;ProductCategoryID&quot;:4,&quot;ProductCategoryName&quot;:&quot;Accessories&quot;},{&quot;ID&quot;:29,&quot;Name&quot;:&quot;Cleaners&quot;,&quot;ProductCategoryID&quot;:4,&quot;ProductCategoryName&quot;:&quot;Accessories&quot;},{&quot;ID&quot;:30,&quot;Name&quot;:&quot;Fenders&quot;,&quot;ProductCategoryID&quot;:4,&quot;ProductCategoryName&quot;:&quot;Accessories&quot;},{&quot;ID&quot;:31,&quot;Name&quot;:&quot;Helmets&quot;,&quot;ProductCategoryID&quot;:4,&quot;ProductCategoryName [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to [{&quot;Id&quot;:26,&quot;Name&quot;:&quot;Bike Racks&quot;,&quot;ProductCategoryId&quot;:4,&quot;ProductCategoryName&quot;:&quot;Accessories&quot;},{&quot;Id&quot;:27,&quot;Name&quot;:&quot;Bike Stands&quot;,&quot;ProductCategoryId&quot;:4,&quot;ProductCategoryName&quot;:&quot;Accessories&quot;},{&quot;Id&quot;:28,&quot;Name&quot;:&quot;Bottles and Cages&quot;,&quot;ProductCategoryId&quot;:4,&quot;ProductCategoryName&quot;:&quot;Accessories&quot;},{&quot;Id&quot;:29,&quot;Name&quot;:&quot;Cleaners&quot;,&quot;ProductCategoryId&quot;:4,&quot;ProductCategoryName&quot;:&quot;Accessories&quot;},{&quot;Id&quot;:30,&quot;Name&quot;:&quot;Fenders&quot;,&quot;ProductCategoryId&quot;:4,&quot;ProductCategoryName&quot;:&quot;Accessories&quot;},{&quot;Id&quot;:31,&quot;Name&quot;:&quot;Helmets&quot;,&quot;ProductCategoryId&quot;:4,&quot;ProductCategoryName [rest of string was truncated]&quot;;.
         /// </summary>
         public static string GetAllOrderedByCategoryNameAsc_json {
             get {
@@ -88,7 +88,7 @@ namespace Demo.Tests.Api.ApiTests.ProductSubcategories {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to [{&quot;ID&quot;:4,&quot;Name&quot;:&quot;Handlebars&quot;,&quot;ProductCategoryID&quot;:2,&quot;ProductCategoryName&quot;:&quot;Components&quot;},{&quot;ID&quot;:5,&quot;Name&quot;:&quot;Bottom Brackets&quot;,&quot;ProductCategoryID&quot;:2,&quot;ProductCategoryName&quot;:&quot;Components&quot;},{&quot;ID&quot;:6,&quot;Name&quot;:&quot;Brakes&quot;,&quot;ProductCategoryID&quot;:2,&quot;ProductCategoryName&quot;:&quot;Components&quot;},{&quot;ID&quot;:7,&quot;Name&quot;:&quot;Chains&quot;,&quot;ProductCategoryID&quot;:2,&quot;ProductCategoryName&quot;:&quot;Components&quot;},{&quot;ID&quot;:8,&quot;Name&quot;:&quot;Cranksets&quot;,&quot;ProductCategoryID&quot;:2,&quot;ProductCategoryName&quot;:&quot;Components&quot;},{&quot;ID&quot;:9,&quot;Name&quot;:&quot;Derailleurs&quot;,&quot;ProductCategoryID&quot;:2,&quot;ProductCategoryName&quot;:&quot;Components&quot; [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to [{&quot;Id&quot;:4,&quot;Name&quot;:&quot;Handlebars&quot;,&quot;ProductCategoryId&quot;:2,&quot;ProductCategoryName&quot;:&quot;Components&quot;},{&quot;Id&quot;:5,&quot;Name&quot;:&quot;Bottom Brackets&quot;,&quot;ProductCategoryId&quot;:2,&quot;ProductCategoryName&quot;:&quot;Components&quot;},{&quot;Id&quot;:6,&quot;Name&quot;:&quot;Brakes&quot;,&quot;ProductCategoryId&quot;:2,&quot;ProductCategoryName&quot;:&quot;Components&quot;},{&quot;Id&quot;:7,&quot;Name&quot;:&quot;Chains&quot;,&quot;ProductCategoryId&quot;:2,&quot;ProductCategoryName&quot;:&quot;Components&quot;},{&quot;Id&quot;:8,&quot;Name&quot;:&quot;Cranksets&quot;,&quot;ProductCategoryId&quot;:2,&quot;ProductCategoryName&quot;:&quot;Components&quot;},{&quot;Id&quot;:9,&quot;Name&quot;:&quot;Derailleurs&quot;,&quot;ProductCategoryId&quot;:2,&quot;ProductCategoryName&quot;:&quot;Components&quot; [rest of string was truncated]&quot;;.
         /// </summary>
         public static string GetAllOrderedByCategoryNameDesc_json {
             get {
@@ -97,7 +97,7 @@ namespace Demo.Tests.Api.ApiTests.ProductSubcategories {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to [{&quot;ID&quot;:18,&quot;Name&quot;:&quot;Bib-Shorts&quot;,&quot;ProductCategoryID&quot;:3,&quot;ProductCategoryName&quot;:&quot;Clothing&quot;},{&quot;ID&quot;:26,&quot;Name&quot;:&quot;Bike Racks&quot;,&quot;ProductCategoryID&quot;:4,&quot;ProductCategoryName&quot;:&quot;Accessories&quot;},{&quot;ID&quot;:27,&quot;Name&quot;:&quot;Bike Stands&quot;,&quot;ProductCategoryID&quot;:4,&quot;ProductCategoryName&quot;:&quot;Accessories&quot;},{&quot;ID&quot;:28,&quot;Name&quot;:&quot;Bottles and Cages&quot;,&quot;ProductCategoryID&quot;:4,&quot;ProductCategoryName&quot;:&quot;Accessories&quot;},{&quot;ID&quot;:5,&quot;Name&quot;:&quot;Bottom Brackets&quot;,&quot;ProductCategoryID&quot;:2,&quot;ProductCategoryName&quot;:&quot;Components&quot;},{&quot;ID&quot;:6,&quot;Name&quot;:&quot;Brakes&quot;,&quot;ProductCategoryID&quot;:2,&quot;ProductCategoryN [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to [{&quot;Id&quot;:18,&quot;Name&quot;:&quot;Bib-Shorts&quot;,&quot;ProductCategoryId&quot;:3,&quot;ProductCategoryName&quot;:&quot;Clothing&quot;},{&quot;Id&quot;:26,&quot;Name&quot;:&quot;Bike Racks&quot;,&quot;ProductCategoryId&quot;:4,&quot;ProductCategoryName&quot;:&quot;Accessories&quot;},{&quot;Id&quot;:27,&quot;Name&quot;:&quot;Bike Stands&quot;,&quot;ProductCategoryId&quot;:4,&quot;ProductCategoryName&quot;:&quot;Accessories&quot;},{&quot;Id&quot;:28,&quot;Name&quot;:&quot;Bottles and Cages&quot;,&quot;ProductCategoryId&quot;:4,&quot;ProductCategoryName&quot;:&quot;Accessories&quot;},{&quot;Id&quot;:5,&quot;Name&quot;:&quot;Bottom Brackets&quot;,&quot;ProductCategoryId&quot;:2,&quot;ProductCategoryName&quot;:&quot;Components&quot;},{&quot;Id&quot;:6,&quot;Name&quot;:&quot;Brakes&quot;,&quot;ProductCategoryId&quot;:2,&quot;ProductCategoryN [rest of string was truncated]&quot;;.
         /// </summary>
         public static string GetAllOrderedByNameAsc_json {
             get {
@@ -106,7 +106,7 @@ namespace Demo.Tests.Api.ApiTests.ProductSubcategories {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to [{&quot;ID&quot;:17,&quot;Name&quot;:&quot;Wheels&quot;,&quot;ProductCategoryID&quot;:2,&quot;ProductCategoryName&quot;:&quot;Components&quot;},{&quot;ID&quot;:25,&quot;Name&quot;:&quot;Vests&quot;,&quot;ProductCategoryID&quot;:3,&quot;ProductCategoryName&quot;:&quot;Clothing&quot;},{&quot;ID&quot;:16,&quot;Name&quot;:&quot;Touring Frames&quot;,&quot;ProductCategoryID&quot;:2,&quot;ProductCategoryName&quot;:&quot;Components&quot;},{&quot;ID&quot;:3,&quot;Name&quot;:&quot;Touring Bikes&quot;,&quot;ProductCategoryID&quot;:1,&quot;ProductCategoryName&quot;:&quot;Bikes&quot;},{&quot;ID&quot;:37,&quot;Name&quot;:&quot;Tires and Tubes&quot;,&quot;ProductCategoryID&quot;:4,&quot;ProductCategoryName&quot;:&quot;Accessories&quot;},{&quot;ID&quot;:24,&quot;Name&quot;:&quot;Tights&quot;,&quot;ProductCategoryID&quot;:3,&quot;ProductCategoryName&quot;:&quot;Clothing&quot;} [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to [{&quot;Id&quot;:17,&quot;Name&quot;:&quot;Wheels&quot;,&quot;ProductCategoryId&quot;:2,&quot;ProductCategoryName&quot;:&quot;Components&quot;},{&quot;Id&quot;:25,&quot;Name&quot;:&quot;Vests&quot;,&quot;ProductCategoryId&quot;:3,&quot;ProductCategoryName&quot;:&quot;Clothing&quot;},{&quot;Id&quot;:16,&quot;Name&quot;:&quot;Touring Frames&quot;,&quot;ProductCategoryId&quot;:2,&quot;ProductCategoryName&quot;:&quot;Components&quot;},{&quot;Id&quot;:3,&quot;Name&quot;:&quot;Touring Bikes&quot;,&quot;ProductCategoryId&quot;:1,&quot;ProductCategoryName&quot;:&quot;Bikes&quot;},{&quot;Id&quot;:37,&quot;Name&quot;:&quot;Tires and Tubes&quot;,&quot;ProductCategoryId&quot;:4,&quot;ProductCategoryName&quot;:&quot;Accessories&quot;},{&quot;Id&quot;:24,&quot;Name&quot;:&quot;Tights&quot;,&quot;ProductCategoryId&quot;:3,&quot;ProductCategoryName&quot;:&quot;Clothing&quot;} [rest of string was truncated]&quot;;.
         /// </summary>
         public static string GetAllOrderedByNameDesc_json {
             get {
@@ -115,7 +115,7 @@ namespace Demo.Tests.Api.ApiTests.ProductSubcategories {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {&quot;ID&quot;:1,&quot;Name&quot;:&quot;Mountain Bikes&quot;,&quot;ProductCategoryID&quot;:1,&quot;ProductCategoryName&quot;:&quot;Bikes&quot;}.
+        ///   Looks up a localized string similar to {&quot;Id&quot;:1,&quot;Name&quot;:&quot;Mountain Bikes&quot;,&quot;ProductCategoryId&quot;:1,&quot;ProductCategoryName&quot;:&quot;Bikes&quot;}.
         /// </summary>
         public static string GetBySubcategoryId_json {
             get {

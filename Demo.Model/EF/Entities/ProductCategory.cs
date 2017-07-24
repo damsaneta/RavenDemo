@@ -7,12 +7,8 @@ namespace Demo.Model.EF.Entities
     [Table("ProductCategory")]
     public class ProductCategory
     {
-        //public ProductCategory()
-        //{
-        //    ProductSubcategory = new HashSet<ProductSubcategory>();
-        //}
-
-        public int ID { get; set; }
+        [Column("ID")]
+        public int Id { get; set; }
 
         [Required]
         [StringLength(50)]
@@ -21,7 +17,5 @@ namespace Demo.Model.EF.Entities
         public Guid rowguid { get; set; }
 
         public DateTime ModifiedDate { get; set; }
-
-        //public virtual ICollection<ProductSubcategory> ProductSubcategory { get; set; }
     }
 }

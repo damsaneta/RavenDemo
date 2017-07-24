@@ -2,7 +2,7 @@
 {
     public class LocationDto
     {
-        public short ID { get; set; }
+        public short Id { get; set; }
 
         public string Name { get; set; }
     }

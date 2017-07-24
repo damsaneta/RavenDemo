@@ -48,7 +48,7 @@ namespace Demo.Tests.Api.ApiTests.UnitsMeasure
         [TestCase(Consts.SqlApiRootUrl)]
         [TestCase(Consts.LinqApiRootUrl)]
         [TestCase(Consts.RavenApiRootUrl)]
-        public void Get_by_id_not_found(string root)
+        public void Get_by_Id_not_found(string root)
         {
             using (var client = new HttpClient {BaseAddress = new Uri(root)})
             {
@@ -100,7 +100,7 @@ namespace Demo.Tests.Api.ApiTests.UnitsMeasure
         [TestCase(Consts.SqlApiRootUrl)]
         [TestCase(Consts.LinqApiRootUrl)]
         [TestCase(Consts.RavenApiRootUrl)]
-        public void Get_all_ordered_by_id_ascending(string root)
+        public void Get_all_ordered_by_Id_ascending(string root)
         {
             using (var client = new HttpClient { BaseAddress = new Uri(root) })
             {
@@ -118,7 +118,7 @@ namespace Demo.Tests.Api.ApiTests.UnitsMeasure
         [TestCase(Consts.SqlApiRootUrl)]
         [TestCase(Consts.LinqApiRootUrl)]
         [TestCase(Consts.RavenApiRootUrl)]
-        public void Get_all_ordered_by_id_descending(string root)
+        public void Get_all_ordered_by_Id_descending(string root)
         {
             using (var client = new HttpClient { BaseAddress = new Uri(root) })
             {

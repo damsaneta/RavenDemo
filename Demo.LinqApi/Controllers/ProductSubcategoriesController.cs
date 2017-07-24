@@ -18,15 +18,15 @@ namespace Demo.LinqApi.Controllers
         public IHttpActionResult Get(int id)
         {
             var productCat = db.Set<ProductCategory>().ToList();
-            var prodSubCat = db.Set<ProductSubcategory>().Where(x => x.ID == id).ToList();
+            var prodSubCat = db.Set<ProductSubcategory>().Where(x => x.Id == id).ToList();
             var productSubcategory = productCat.Join(prodSubCat,
-                    category => category.ID,
-                    subcategory => subcategory.ProductCategoryID,
+                    category => category.Id,
+                    subcategory => subcategory.ProductCategoryId,
                     (category, subcategory) => new ProductSubcategoryDto
                     {
-                        ID = subcategory.ID,
+                        Id = subcategory.Id,
                         Name = subcategory.Name,
-                        ProductCategoryID = category.ID,
+                        ProductCategoryId = category.Id,
                         ProductCategoryName = category.Name
 
                     }
@@ -49,13 +49,13 @@ namespace Demo.LinqApi.Controllers
             IQueryable<ProductSubcategory> prodSubCat = db.Set<ProductSubcategory>();
          
             IQueryable<ProductSubcategoryDto> queryDto = productCat.Join(prodSubCat,
-                category => category.ID,
-                subcategory => subcategory.ProductCategoryID,
+                category => category.Id,
+                subcategory => subcategory.ProductCategoryId,
                 (category, subcategory) => new ProductSubcategoryDto
                 {
-                    ID = subcategory.ID,
+                    Id = subcategory.Id,
                     Name = subcategory.Name,
-                    ProductCategoryID = category.ID,
+                    ProductCategoryId = category.Id,
                     ProductCategoryName = category.Name
 
                 }
@@ -70,13 +70,13 @@ namespace Demo.LinqApi.Controllers
             {
                 case "ID":
                     queryDto = request.OrderDirection == DtOrderDirection.ASC
-                        ? queryDto.OrderBy(x => x.ID)
-                        : queryDto.OrderByDescending(x => x.ID);
+                        ? queryDto.OrderBy(x => x.Id)
+                        : queryDto.OrderByDescending(x => x.Id);
                     break;
                 case "ProductCategoryID":
                     queryDto = request.OrderDirection == DtOrderDirection.ASC
-                        ? queryDto.OrderBy(x => x.ID)
-                        : queryDto.OrderByDescending(x => x.ProductCategoryID);
+                        ? queryDto.OrderBy(x => x.Id)
+                        : queryDto.OrderByDescending(x => x.ProductCategoryId);
                     break;
                 case "Name":
                     queryDto = request.OrderDirection == DtOrderDirection.ASC

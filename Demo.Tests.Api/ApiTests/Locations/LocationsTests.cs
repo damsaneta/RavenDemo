@@ -22,7 +22,7 @@ namespace Demo.Tests.Api.ApiTests.Locations
                 response.IsSuccessStatusCode.Should().BeTrue();
                 response.StatusCode.Should().Be(HttpStatusCode.OK);
                 string content = response.Content.ReadAsStringAsync().Result;
-                content.Replace("Locations/", "").Replace("\"", "").Replace("Id", "ID").Trim()
+                content.Replace("Locations/", "").Replace("\"", "").Trim()
                    .Should().Be(LocationsFiles.GetAll_json.Replace("\"", "").Trim());
                // content.Should().Be(LocationsFiles.GetAll_json.Trim());
             }
@@ -31,8 +31,7 @@ namespace Demo.Tests.Api.ApiTests.Locations
         [Test]
         [TestCase(Consts.SqlApiRootUrl)]
         [TestCase(Consts.LinqApiRootUrl)]
-        [TestCase(Consts.RavenApiRootUrl)]
-        public void Get_by_id(string root)
+        public void Get_by_Id(string root)
         {
             using (var client = new HttpClient { BaseAddress = new Uri(root) })
             {
@@ -41,9 +40,25 @@ namespace Demo.Tests.Api.ApiTests.Locations
                 response.IsSuccessStatusCode.Should().BeTrue();
                 response.StatusCode.Should().Be(HttpStatusCode.OK);
                 string content = response.Content.ReadAsStringAsync().Result;
-                content.Replace("Locations/", "").Replace("\"", "").Replace("Id", "ID").Trim()
+                content.Replace("Locations/", "").Replace("\"", "").Trim()
                 .Should().Be(LocationsFiles.GetById_json.Replace("\"", "").Trim());
                // content.Should().Be(LocationsFiles.GetById_json.Trim());
+            }
+        }
+
+        [Test]
+        public void Get_by_Id()
+        {
+            using (var client = new HttpClient { BaseAddress = new Uri(Consts.RavenApiRootUrl) })
+            {
+                HttpResponseMessage response = client.GetAsync("Locations/Locations/1").Result;
+                response.Should().NotBeNull();
+                response.IsSuccessStatusCode.Should().BeTrue();
+                response.StatusCode.Should().Be(HttpStatusCode.OK);
+                string content = response.Content.ReadAsStringAsync().Result;
+                content.Replace("Locations/", "").Replace("\"", "").Trim()
+                .Should().Be(LocationsFiles.GetById_json.Replace("\"", "").Trim());
+                // content.Should().Be(LocationsFiles.GetById_json.Trim());
             }
         }
 
@@ -51,7 +66,7 @@ namespace Demo.Tests.Api.ApiTests.Locations
         [TestCase(Consts.SqlApiRootUrl)]
         [TestCase(Consts.LinqApiRootUrl)]
         [TestCase(Consts.RavenApiRootUrl)]
-        public void Get_by_id_not_found(string root)
+        public void Get_by_Id_not_found(string root)
         {
             using (var client = new HttpClient { BaseAddress = new Uri(root) })
             {
@@ -76,7 +91,7 @@ namespace Demo.Tests.Api.ApiTests.Locations
                 response.IsSuccessStatusCode.Should().BeTrue();
                 response.StatusCode.Should().Be(HttpStatusCode.OK);
                 string content = response.Content.ReadAsStringAsync().Result;
-                content.Replace("Locations/", "").Replace("\"", "").Replace("Id", "ID").Trim()
+                content.Replace("Locations/", "").Replace("\"", "").Trim()
                 .Should().Be(LocationsFiles.GetByName_json.Replace("\"", "").Trim());
                 //content.Should().Be(LocationsFiles.GetByName_json.Trim());
             }
@@ -99,47 +114,7 @@ namespace Demo.Tests.Api.ApiTests.Locations
                 content.Should().Be("[]");
             }
         }
-
-        [Test]
-        [TestCase(Consts.SqlApiRootUrl)]
-        [TestCase(Consts.LinqApiRootUrl)]
-        [TestCase(Consts.RavenApiRootUrl)]
-        public void Get_all_ordered_by_id_ascending(string root)
-        {
-            using (var client = new HttpClient { BaseAddress = new Uri(root) })
-            {
-                var url = this.BuildDtUrl(orderColumn: 1);
-                HttpResponseMessage response = client.GetAsync(url).Result;
-                response.Should().NotBeNull();
-                response.IsSuccessStatusCode.Should().BeTrue();
-                response.StatusCode.Should().Be(HttpStatusCode.OK);
-                string content = response.Content.ReadAsStringAsync().Result;
-                content.Replace("Locations/", "").Replace("\"", "").Replace("Id", "ID").Trim()
-                .Should().Be(LocationsFiles.GetAllOrderByIdAsc_json.Replace("\"", "").Trim());
-               // content.Should().Be(LocationsFiles.GetAllOrderByIdAsc_json.Trim());
-            }
-        }
-
-        [Test]
-        [TestCase(Consts.SqlApiRootUrl)]
-        [TestCase(Consts.LinqApiRootUrl)]
-        [TestCase(Consts.RavenApiRootUrl)]
-        public void Get_all_ordered_by_id_descending(string root)
-        {
-            using (var client = new HttpClient { BaseAddress = new Uri(root) })
-            {
-                var url = this.BuildDtUrl(orderColumn: 1, orderDirection: "desc");
-                HttpResponseMessage response = client.GetAsync(url).Result;
-                response.Should().NotBeNull();
-                response.IsSuccessStatusCode.Should().BeTrue();
-                response.StatusCode.Should().Be(HttpStatusCode.OK);
-                string content = response.Content.ReadAsStringAsync().Result;
-                content.Replace("Locations/", "").Replace("\"", "").Replace("Id", "ID").Trim()
-                .Should().Be(LocationsFiles.GetAllOrderedByIdDesc_json.Replace("\"", "").Trim());
-                //content.Should().Be(LocationsFiles.GetAllOrderedByIdDesc_json.Trim());
-            }
-        }
-
+        
         [Test]
         [TestCase(Consts.SqlApiRootUrl)]
         [TestCase(Consts.LinqApiRootUrl)]
@@ -154,7 +129,7 @@ namespace Demo.Tests.Api.ApiTests.Locations
                 response.IsSuccessStatusCode.Should().BeTrue();
                 response.StatusCode.Should().Be(HttpStatusCode.OK);
                 string content = response.Content.ReadAsStringAsync().Result;
-                content.Replace("Locations/", "").Replace("\"", "").Replace("Id", "ID").Trim()
+                content.Replace("Locations/", "").Replace("\"", "").Trim()
                 .Should().Be(LocationsFiles.GetAllByNameAsc_json.Replace("\"", "").Trim());
                 //content.Should().Be(LocationsFiles.GetAllByNameAsc_json.Trim());
             }
@@ -174,7 +149,7 @@ namespace Demo.Tests.Api.ApiTests.Locations
                 response.IsSuccessStatusCode.Should().BeTrue();
                 response.StatusCode.Should().Be(HttpStatusCode.OK);
                 string content = response.Content.ReadAsStringAsync().Result;
-                content.Replace("Locations/", "").Replace("\"", "").Replace("Id", "ID").Trim()
+                content.Replace("Locations/", "").Replace("\"", "").Trim()
                .Should().Be(LocationsFiles.GetAllByNameDesc_json.Replace("\"", "").Trim());
                 //content.Should().Be(LocationsFiles.GetAllByNameDesc_json.Trim());
             }
@@ -184,7 +159,7 @@ namespace Demo.Tests.Api.ApiTests.Locations
         {
             var url = "Locations?draw=1";
             url += "&" + WebUtility.UrlEncode("columns[0][name]") + "=Name";
-            url += "&" + WebUtility.UrlEncode("columns[1][name]") + "=ID";
+            url += "&" + WebUtility.UrlEncode("columns[1][name]") + "=Id";
             if (orderColumn.HasValue)
             {
                 url += "&" + WebUtility.UrlEncode("order[0][column]") + "=" + orderColumn;

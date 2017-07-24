@@ -42,7 +42,7 @@ namespace Demo.RavenApi.Controllers
             });
             switch (request.OrderColumn)
             {
-                case "ID":
+                case "Id":
                     queryDto = request.OrderDirection == DtOrderDirection.ASC
                         ? queryDto.OrderBy(x => x.Id)
                         : queryDto.OrderByDescending(x => x.Id);

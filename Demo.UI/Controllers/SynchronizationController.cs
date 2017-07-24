@@ -44,7 +44,7 @@ namespace Demo.UI.Controllers
             {
                 foreach (var sqlEntity in result)
                 {
-                    HttpResponseMessage response = client.GetAsync("ProductCategories/ProductCategories/" + sqlEntity.ID).Result;
+                    HttpResponseMessage response = client.GetAsync("ProductCategories/ProductCategories/" + sqlEntity.Id).Result;
                     if (response.IsSuccessStatusCode)
                     {
                         // update (put)
@@ -63,7 +63,7 @@ namespace Demo.UI.Controllers
                         var ravenEntity = new Demo.Model.Raven.Entities.ProductCategory
                         {
                             Name = sqlEntity.Name,
-                            Id = "ProductCategories/" + sqlEntity.ID
+                            Id = "ProductCategories/" + sqlEntity.Id
                         };
                         response = client.PostAsJsonAsync("ProductCategories", ravenEntity).Result;
                         response.EnsureSuccessStatusCode();
@@ -86,7 +86,7 @@ namespace Demo.UI.Controllers
             {
                 foreach (var sqlEntity in result)
                 {
-                    HttpResponseMessage response = client.GetAsync("Locations/Locations/" + sqlEntity.ID).Result;
+                    HttpResponseMessage response = client.GetAsync("Locations/Locations/" + sqlEntity.Id).Result;
                     if (response.IsSuccessStatusCode)
                     {
                         // update (put)
@@ -105,7 +105,7 @@ namespace Demo.UI.Controllers
                         var ravenEntity = new Demo.Model.Raven.Entities.ProductCategory
                         {
                             Name = sqlEntity.Name,
-                            Id = "Locations/" + sqlEntity.ID
+                            Id = "Locations/" + sqlEntity.Id
                         };
                         response = client.PostAsJsonAsync("Locations", ravenEntity).Result;
                         response.EnsureSuccessStatusCode();
@@ -170,16 +170,16 @@ namespace Demo.UI.Controllers
             {
                 foreach (var sqlEntity in result)
                 {
-                    HttpResponseMessage response = client.GetAsync("ProductSubcategories/ProductSubcategories/" + sqlEntity.ID).Result;
+                    HttpResponseMessage response = client.GetAsync("ProductSubcategories/ProductSubcategories/" + sqlEntity.Id).Result;
                     if (response.IsSuccessStatusCode)
                     {
                         //(put)
                         string content = response.Content.ReadAsStringAsync().Result;
                         var ravenEntity = JsonConvert.DeserializeObject<Demo.Model.Raven.Entities.ProductSubcategory>(content);
-                        if (sqlEntity.Name != ravenEntity.Name || ("ProductCategories/" + sqlEntity.ProductCategoryID) != ravenEntity.ProductCategoryId)
+                        if (sqlEntity.Name != ravenEntity.Name || ("ProductCategories/" + sqlEntity.ProductCategoryId) != ravenEntity.ProductCategoryId)
                         {
                             ravenEntity.Name = sqlEntity.Name;
-                            ravenEntity.ProductCategoryId = "ProductCategories/" + sqlEntity.ProductCategoryID;
+                            ravenEntity.ProductCategoryId = "ProductCategories/" + sqlEntity.ProductCategoryId;
                             response = client.PutAsJsonAsync("ProductSubcategories", ravenEntity).Result;
                             response.EnsureSuccessStatusCode();
                         }
@@ -190,8 +190,8 @@ namespace Demo.UI.Controllers
                         var ravenEntity = new Demo.Model.Raven.Entities.ProductSubcategory()
                         {
                             Name = sqlEntity.Name,
-                            Id = "ProductSubcategories" + sqlEntity.ID,
-                            ProductCategoryId = "ProductCategories/" + sqlEntity.ProductCategoryID
+                            Id = "ProductSubcategories" + sqlEntity.Id,
+                            ProductCategoryId = "ProductCategories/" + sqlEntity.ProductCategoryId
                         };
                         response = client.PostAsJsonAsync("ProductSubcategories", ravenEntity).Result;
                         response.EnsureSuccessStatusCode();

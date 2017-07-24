@@ -10,7 +10,7 @@ namespace Demo.Model.EF.Dtos
 {
     public class ProductDto
     {
-        public int ID { get; set; }
+        public int Id { get; set; }
 
         public string Name { get; set; }
 
@@ -34,7 +34,7 @@ namespace Demo.Model.EF.Dtos
 
         public string Style { get; set; }
 
-        public int? ProductSubcategoryID { get; set; }
+        public int? ProductSubcategoryId { get; set; }
 
         public string ProductSubcategoryName { get; set; }
 

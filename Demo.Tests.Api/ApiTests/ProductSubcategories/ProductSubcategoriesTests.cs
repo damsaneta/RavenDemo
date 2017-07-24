@@ -28,7 +28,7 @@ namespace Demo.Tests.Api.ApiTests.ProductSubcategories
         [Test]
         [TestCase(Consts.SqlApiRootUrl)]
         [TestCase(Consts.LinqApiRootUrl)]
-        public void Get_by_id(string root)
+        public void Get_by_Id(string root)
         {
             using (var client = new HttpClient { BaseAddress = new Uri(root)})
             {
@@ -45,7 +45,7 @@ namespace Demo.Tests.Api.ApiTests.ProductSubcategories
         [Test]
         [TestCase(Consts.SqlApiRootUrl)]
         [TestCase(Consts.LinqApiRootUrl)]
-        public void Get_by_id_not_found(string root)
+        public void Get_by_Id_not_found(string root)
         {
             using (var client = new HttpClient { BaseAddress = new Uri(root)})
             {
@@ -169,8 +169,8 @@ namespace Demo.Tests.Api.ApiTests.ProductSubcategories
             var url = "ProductSubcategories?draw=1";
             url += "&" + WebUtility.UrlEncode("columns[0][name]") + "=Name";
             url += "&" + WebUtility.UrlEncode("columns[1][name]") + "=ProductCategoryName";
-            url += "&" + WebUtility.UrlEncode("columns[2][name]") + "=ID";
-            url += "&" + WebUtility.UrlEncode("columns[3][name]") + "=ProductCategoryID";
+            url += "&" + WebUtility.UrlEncode("columns[2][name]") + "=Id";
+            url += "&" + WebUtility.UrlEncode("columns[3][name]") + "=ProductCategoryId";
             if (orderColumn.HasValue)
             {
                 url += "&" + WebUtility.UrlEncode("order[0][column]") + "=" + orderColumn;

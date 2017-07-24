@@ -19,10 +19,10 @@ namespace Demo.LinqApi.Controllers
         public IHttpActionResult Get(short id)
         {
             var location = db.Set<Location>()
-                .Where(x => x.ID == id)
+                .Where(x => x.Id == id)
                 .Select(x => new LocationDto
                 {
-                    ID = x.ID,
+                    Id = x.Id,
                     Name = x.Name
                 })
                 .SingleOrDefault();
@@ -45,16 +45,16 @@ namespace Demo.LinqApi.Controllers
 
             IQueryable<LocationDto> queryDto = query.Select(x => new LocationDto
             {
-                ID = x.ID,
+                Id = x.Id,
                 Name = x.Name
             });
 
             switch (request.OrderColumn)
             {
-                case "ID":
+                case "Id":
                     queryDto = request.OrderDirection == DtOrderDirection.ASC
-                        ? queryDto.OrderBy(x => x.ID)
-                        : queryDto.OrderByDescending(x => x.ID); 
+                        ? queryDto.OrderBy(x => x.Id)
+                        : queryDto.OrderByDescending(x => x.Id); 
                     break;
                 default:
                     queryDto = request.OrderDirection == DtOrderDirection.ASC

@@ -11,7 +11,8 @@ namespace Demo.Model.EF.Entities
     [Table("Product")]
     public class Product
     {
-        public int ID { get; set; }
+        [Column("ID")]
+        public int Id { get; set; }
 
         [Required]
         [StringLength(50)]
@@ -56,7 +57,8 @@ namespace Demo.Model.EF.Entities
         [StringLength(2)]
         public string Style { get; set; }
 
-        public int? ProductSubcategoryID { get; set; }
+        [Column("ProductSubcategoryID")]
+        public int? ProductSubcategoryId { get; set; }
 
         public DateTime SellStartDate { get; set; }
 

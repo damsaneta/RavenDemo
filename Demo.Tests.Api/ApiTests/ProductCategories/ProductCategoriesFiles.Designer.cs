@@ -47,7 +47,7 @@ namespace Demo.Tests.Api.ApiTests.ProductCategories {
         }
         
         /// <summary>
-        ///   Overrides the current thread's CurrentUICulture property for all
+        ///   OverrIdes the current thread's CurrentUICulture property for all
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -61,7 +61,7 @@ namespace Demo.Tests.Api.ApiTests.ProductCategories {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to [{&quot;ID&quot;:4,&quot;Name&quot;:&quot;Accessories&quot;},{&quot;ID&quot;:1,&quot;Name&quot;:&quot;Bikes&quot;},{&quot;ID&quot;:3,&quot;Name&quot;:&quot;Clothing&quot;},{&quot;ID&quot;:2,&quot;Name&quot;:&quot;Components&quot;}]
+        ///   Looks up a localized string similar to [{&quot;Id&quot;:4,&quot;Name&quot;:&quot;Accessories&quot;},{&quot;Id&quot;:1,&quot;Name&quot;:&quot;Bikes&quot;},{&quot;Id&quot;:3,&quot;Name&quot;:&quot;Clothing&quot;},{&quot;Id&quot;:2,&quot;Name&quot;:&quot;Components&quot;}]
         ///.
         /// </summary>
         public static string GetAll_json {
@@ -71,7 +71,7 @@ namespace Demo.Tests.Api.ApiTests.ProductCategories {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to [{&quot;ID&quot;:1,&quot;Name&quot;:&quot;Bikes&quot;},{&quot;ID&quot;:2,&quot;Name&quot;:&quot;Components&quot;},{&quot;ID&quot;:3,&quot;Name&quot;:&quot;Clothing&quot;},{&quot;ID&quot;:4,&quot;Name&quot;:&quot;Accessories&quot;}]
+        ///   Looks up a localized string similar to [{&quot;Id&quot;:1,&quot;Name&quot;:&quot;Bikes&quot;},{&quot;Id&quot;:2,&quot;Name&quot;:&quot;Components&quot;},{&quot;Id&quot;:3,&quot;Name&quot;:&quot;Clothing&quot;},{&quot;Id&quot;:4,&quot;Name&quot;:&quot;Accessories&quot;}]
         ///.
         /// </summary>
         public static string GetAllOrderByIdAsc_json {
@@ -81,7 +81,7 @@ namespace Demo.Tests.Api.ApiTests.ProductCategories {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to [{&quot;ID&quot;:4,&quot;Name&quot;:&quot;Accessories&quot;},{&quot;ID&quot;:3,&quot;Name&quot;:&quot;Clothing&quot;},{&quot;ID&quot;:2,&quot;Name&quot;:&quot;Components&quot;},{&quot;ID&quot;:1,&quot;Name&quot;:&quot;Bikes&quot;}]
+        ///   Looks up a localized string similar to [{&quot;Id&quot;:4,&quot;Name&quot;:&quot;Accessories&quot;},{&quot;Id&quot;:3,&quot;Name&quot;:&quot;Clothing&quot;},{&quot;Id&quot;:2,&quot;Name&quot;:&quot;Components&quot;},{&quot;Id&quot;:1,&quot;Name&quot;:&quot;Bikes&quot;}]
         ///.
         /// </summary>
         public static string GetAllOrderByIdDesc_json {
@@ -91,7 +91,7 @@ namespace Demo.Tests.Api.ApiTests.ProductCategories {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to [{&quot;ID&quot;:4,&quot;Name&quot;:&quot;Accessories&quot;},{&quot;ID&quot;:1,&quot;Name&quot;:&quot;Bikes&quot;},{&quot;ID&quot;:3,&quot;Name&quot;:&quot;Clothing&quot;},{&quot;ID&quot;:2,&quot;Name&quot;:&quot;Components&quot;}]
+        ///   Looks up a localized string similar to [{&quot;Id&quot;:4,&quot;Name&quot;:&quot;Accessories&quot;},{&quot;Id&quot;:1,&quot;Name&quot;:&quot;Bikes&quot;},{&quot;Id&quot;:3,&quot;Name&quot;:&quot;Clothing&quot;},{&quot;Id&quot;:2,&quot;Name&quot;:&quot;Components&quot;}]
         ///.
         /// </summary>
         public static string GetAllOrderByNameAsc_json {
@@ -101,7 +101,7 @@ namespace Demo.Tests.Api.ApiTests.ProductCategories {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to [{&quot;ID&quot;:2,&quot;Name&quot;:&quot;Components&quot;},{&quot;ID&quot;:3,&quot;Name&quot;:&quot;Clothing&quot;},{&quot;ID&quot;:1,&quot;Name&quot;:&quot;Bikes&quot;},{&quot;ID&quot;:4,&quot;Name&quot;:&quot;Accessories&quot;}]
+        ///   Looks up a localized string similar to [{&quot;Id&quot;:2,&quot;Name&quot;:&quot;Components&quot;},{&quot;Id&quot;:3,&quot;Name&quot;:&quot;Clothing&quot;},{&quot;Id&quot;:1,&quot;Name&quot;:&quot;Bikes&quot;},{&quot;Id&quot;:4,&quot;Name&quot;:&quot;Accessories&quot;}]
         ///.
         /// </summary>
         public static string GetAllOrderByNameDesc_json {
@@ -111,7 +111,7 @@ namespace Demo.Tests.Api.ApiTests.ProductCategories {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {&quot;ID&quot;:1,&quot;Name&quot;:&quot;Bikes&quot;}
+        ///   Looks up a localized string similar to {&quot;Id&quot;:1,&quot;Name&quot;:&quot;Bikes&quot;}
         ///.
         /// </summary>
         public static string GetById_json {
@@ -121,7 +121,7 @@ namespace Demo.Tests.Api.ApiTests.ProductCategories {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to [{&quot;ID&quot;:3,&quot;Name&quot;:&quot;Clothing&quot;},{&quot;ID&quot;:2,&quot;Name&quot;:&quot;Components&quot;}]
+        ///   Looks up a localized string similar to [{&quot;Id&quot;:3,&quot;Name&quot;:&quot;Clothing&quot;},{&quot;Id&quot;:2,&quot;Name&quot;:&quot;Components&quot;}]
         ///.
         /// </summary>
         public static string GetByName_json {

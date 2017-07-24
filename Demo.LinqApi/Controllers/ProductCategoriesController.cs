@@ -17,10 +17,10 @@ namespace Demo.LinqApi.Controllers
         public IHttpActionResult Get(int id)
         {
             var productCategory = db.Set<ProductCategory>()
-                .Where(x => x.ID == id)
+                .Where(x => x.Id == id)
                 .Select(x => new ProductCategoryDto
                 {
-                    ID = x.ID,
+                    Id = x.Id,
                     Name = x.Name
                 }).SingleOrDefault();
             if (productCategory == null)
@@ -42,15 +42,15 @@ namespace Demo.LinqApi.Controllers
 
             IQueryable<ProductCategoryDto> queryDto = query.Select(x => new ProductCategoryDto
             {
-                ID = x.ID,
+                Id = x.Id,
                 Name = x.Name
             });
             switch (request.OrderColumn)
             {
-                case "ID":
+                case "Id":
                     queryDto = request.OrderDirection == DtOrderDirection.ASC
-                        ? queryDto.OrderBy(x => x.ID)
-                        : queryDto.OrderByDescending(x => x.ID);
+                        ? queryDto.OrderBy(x => x.Id)
+                        : queryDto.OrderByDescending(x => x.Id);
                     break;
                 default:
                     queryDto = request.OrderDirection == DtOrderDirection.ASC
