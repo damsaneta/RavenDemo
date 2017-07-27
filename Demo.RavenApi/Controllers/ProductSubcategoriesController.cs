@@ -27,10 +27,59 @@ namespace Demo.RavenApi.Controllers
             return this.Ok(new ProductSubcategoryDto(result));
         }
 
-        [ResponseType(typeof(IList<ProductCategoryDto>))]
-        public IHttpActionResult Get(DtRequest<ProductCategoryDto> request)
+        [ResponseType(typeof (IList<ProductSubcategoryDto>))]
+        public IHttpActionResult Get(DtRequest<ProductSubcategoryDto> request)
         {
-            throw new NotImplementedException();
+            IQueryable<ProductCategory> productCat = this.session.Query<ProductCategory>();
+            IQueryable<ProductSubcategory> prodSubCat = this.session.Query<ProductSubcategory>();
+
+            IQueryable<ProductSubcategoryDto> queryDto = productCat.Join(prodSubCat,
+                category => category.Id,
+                subcategory => subcategory.ProductCategoryId,
+                (category, subcategory) => new ProductSubcategoryDto
+                {
+                    Id = subcategory.Id,
+                    Name = subcategory.Name,
+                    ProductCategoryId = category.Id,
+                    ProductCategoryName = category.Name
+
+                }
+            );
+
+            if (!string.IsNullOrEmpty(request.Search))
+            {
+                queryDto =
+                    queryDto.Where(
+                        x => x.Name.StartsWith(request.Search) || x.ProductCategoryName.StartsWith(request.Search));
+            }
+
+            switch (request.OrderColumn)
+            {
+                case "Id":
+                    queryDto = request.OrderDirection == DtOrderDirection.ASC
+                        ? queryDto.OrderBy(x => x.Id)
+                        : queryDto.OrderByDescending(x => x.Id);
+                    break;
+                case "ProductCategoryId":
+                    queryDto = request.OrderDirection == DtOrderDirection.ASC
+                        ? queryDto.OrderBy(x => x.Id)
+                        : queryDto.OrderByDescending(x => x.ProductCategoryId);
+                    break;
+                case "Name":
+                    queryDto = request.OrderDirection == DtOrderDirection.ASC
+                        ? queryDto.OrderBy(x => x.Name)
+                        : queryDto.OrderByDescending(x => x.Name);
+                    break;
+                default:
+                    queryDto = request.OrderDirection == DtOrderDirection.ASC
+                        ? queryDto.OrderBy(x => x.ProductCategoryName)
+                        : queryDto.OrderByDescending(x => x.ProductCategoryName);
+                    break;
+            }
+
+            var result = queryDto.ToList();
+
+            return this.Ok(result);
         }
 
         public IHttpActionResult Post([FromBody]ProductSubcategoryDto productSubcategoryDto)
@@ -41,15 +90,17 @@ namespace Demo.RavenApi.Controllers
             return this.Ok(entity.Id);
         }
 
-        public IHttpActionResult Put([FromBody]ProductCategoryDto productCategoryDto)
+        public IHttpActionResult Put([FromBody]ProductSubcategoryDto productSubcategoryDto)
         {
-            ProductCategory entity = this.session.Load<ProductCategory>(productCategoryDto.Id);
+            ProductSubcategory entity = this.session.Load<ProductSubcategory>(productSubcategoryDto.Id);
             if (entity == null)
             {
                 return this.NotFound();
             }
 
-            entity.Name = productCategoryDto.Name;
+            entity.Name = productSubcategoryDto.Name;
+            entity.ProductCategoryName = productSubcategoryDto.ProductCategoryName;
+            entity.ProductCategoryId = productSubcategoryDto.ProductCategoryId;
             this.session.SaveChanges();
             return this.Ok();
         }

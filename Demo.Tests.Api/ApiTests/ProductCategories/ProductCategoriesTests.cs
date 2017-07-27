@@ -49,7 +49,7 @@ namespace Demo.Tests.Api.ApiTests.ProductCategories
         {
             using (var client = new HttpClient { BaseAddress = new Uri(Consts.RavenApiRootUrl) })
             {
-                HttpResponseMessage response = client.GetAsync("ProductCategories/ProductCategories/1").Result;
+                HttpResponseMessage response = client.GetAsync("ProductCategories?id=ProductCategories/1").Result;
                 response.Should().NotBeNull();
                 response.IsSuccessStatusCode.Should().BeTrue();
                 response.StatusCode.Should().Be(HttpStatusCode.OK);
@@ -62,12 +62,23 @@ namespace Demo.Tests.Api.ApiTests.ProductCategories
         [Test]
         [TestCase(Consts.SqlApiRootUrl)]
         [TestCase(Consts.LinqApiRootUrl)]
-        [TestCase(Consts.RavenApiRootUrl)]
         public void Get_by_Id_not_found(string root)
         {
             using (var client = new HttpClient { BaseAddress = new Uri(root) })
             {
                 HttpResponseMessage response = client.GetAsync("ProductCategories/0").Result;
+                response.Should().NotBeNull();
+                response.IsSuccessStatusCode.Should().BeFalse();
+                response.StatusCode.Should().Be(HttpStatusCode.NotFound);
+            }
+        }
+
+        [Test]
+        public void Get_by_Id_not_found()
+        {
+            using (var client = new HttpClient { BaseAddress = new Uri(Consts.RavenApiRootUrl) })
+            {
+                HttpResponseMessage response = client.GetAsync("ProductCategories?id=ProductCategories/0").Result;
                 response.Should().NotBeNull();
                 response.IsSuccessStatusCode.Should().BeFalse();
                 response.StatusCode.Should().Be(HttpStatusCode.NotFound);
@@ -90,7 +101,6 @@ namespace Demo.Tests.Api.ApiTests.ProductCategories
                 string content = response.Content.ReadAsStringAsync().Result;
                 content.Replace("ProductCategories/", "").Replace("\"", "").Trim()
                     .Should().Be(ProductCategoriesFiles.GetByName_json.Replace("\"", "").Trim());
-                //content.Should().Be(ProductCategoriesFiles.GetByName_json.Trim());
             }
         }
 
@@ -128,7 +138,6 @@ namespace Demo.Tests.Api.ApiTests.ProductCategories
                 string content = response.Content.ReadAsStringAsync().Result;
                 content.Replace("ProductCategories/", "").Replace("\"", "").Trim()
                     .Should().Be(ProductCategoriesFiles.GetAllOrderByNameAsc_json.Replace("\"", "").Trim());
-                //content.Should().Be(ProductCategoriesFiles.GetAllOrderByNameAsc_json.Trim());
             }
         }
 
@@ -148,7 +157,6 @@ namespace Demo.Tests.Api.ApiTests.ProductCategories
                 string content = response.Content.ReadAsStringAsync().Result;
                 content.Replace("ProductCategories/", "").Replace("\"", "").Trim()
                     .Should().Be(ProductCategoriesFiles.GetAllOrderByNameDesc_json.Replace("\"", "").Trim());
-                //content.Should().Be(ProductCategoriesFiles.GetAllOrderByNameDesc_json.Trim());
             }
         }
 

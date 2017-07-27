@@ -25,13 +25,6 @@ namespace Demo.SqlApi.Controllers
                 , p.[ProductNumber]
                 , p.[Color]
                 , p.[ListPrice]
-                , p.[Size]
-                , p.[SizeUnitMeasureCode]
-                , p.[WeightUnitMeasureCode]
-                , p.[Weight]
-                , p.[ProductLine]
-                , p.[Class]
-                , p.[Style]
                 , p.[ProductSubcategoryID]
                 , ps.ID as ProductSubcategoryID
                 , ps.Name as ProductSubcategoryName
@@ -54,13 +47,6 @@ namespace Demo.SqlApi.Controllers
                 , p.[ProductNumber]
                 , p.[Color]
                 , p.[ListPrice]
-                , p.[Size]
-                , p.[SizeUnitMeasureCode]
-                , p.[WeightUnitMeasureCode]
-                , p.[Weight]
-                , p.[ProductLine]
-                , p.[Class]
-                , p.[Style]
                 , p.[ProductSubcategoryID]
                 , ps.ID as ProductSubcategoryID
                 , ps.Name as ProductSubcategoryName
@@ -69,7 +55,7 @@ namespace Demo.SqlApi.Controllers
 
             if (!string.IsNullOrEmpty(request.Search))
             {
-                sql += " WHERE p.Name LIKE @p0 OR ps.Name LIKE @p0 ";
+                sql += " WHERE p.Name LIKE @p0 OR ps.Name LIKE @p0 OR p.Color LIKE @p0 OR p.ProductNumber LIKE @p0 ";
                 parameters.Add(request.Search + "%");
             }
 
@@ -87,21 +73,6 @@ namespace Demo.SqlApi.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
-        }
-
-        //SELECT p.[ID]
-        //    , p.[Name]
-        //    , p.[ProductNumber]
-        //    , p.[Color]
-        //    , p.[ListPrice]
-        //    , p.[Size]
-        //    , p.[SizeUnitMeasureCode]
-        //    , p.[WeightUnitMeasureCode]
-        //    , p.[Weight]
-        //    , p.[ProductLine]
-        //    , p.[Class]
-        //    , p.[Style]
-        //    , p.[ProductSubcategoryID]
-        //FROM [dbo].[Product] p
+        } 
     }
 }

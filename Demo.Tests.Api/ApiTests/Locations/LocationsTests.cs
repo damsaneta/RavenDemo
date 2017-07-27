@@ -24,7 +24,6 @@ namespace Demo.Tests.Api.ApiTests.Locations
                 string content = response.Content.ReadAsStringAsync().Result;
                 content.Replace("Locations/", "").Replace("\"", "").Trim()
                    .Should().Be(LocationsFiles.GetAll_json.Replace("\"", "").Trim());
-               // content.Should().Be(LocationsFiles.GetAll_json.Trim());
             }
         }
 
@@ -40,9 +39,7 @@ namespace Demo.Tests.Api.ApiTests.Locations
                 response.IsSuccessStatusCode.Should().BeTrue();
                 response.StatusCode.Should().Be(HttpStatusCode.OK);
                 string content = response.Content.ReadAsStringAsync().Result;
-                content.Replace("Locations/", "").Replace("\"", "").Trim()
-                .Should().Be(LocationsFiles.GetById_json.Replace("\"", "").Trim());
-               // content.Should().Be(LocationsFiles.GetById_json.Trim());
+                content.Should().Be(LocationsFiles.GetById_json.Trim());
             }
         }
 
@@ -51,26 +48,36 @@ namespace Demo.Tests.Api.ApiTests.Locations
         {
             using (var client = new HttpClient { BaseAddress = new Uri(Consts.RavenApiRootUrl) })
             {
-                HttpResponseMessage response = client.GetAsync("Locations/Locations/1").Result;
+                HttpResponseMessage response = client.GetAsync("Locations?id=Locations/1").Result;
                 response.Should().NotBeNull();
                 response.IsSuccessStatusCode.Should().BeTrue();
                 response.StatusCode.Should().Be(HttpStatusCode.OK);
                 string content = response.Content.ReadAsStringAsync().Result;
                 content.Replace("Locations/", "").Replace("\"", "").Trim()
                 .Should().Be(LocationsFiles.GetById_json.Replace("\"", "").Trim());
-                // content.Should().Be(LocationsFiles.GetById_json.Trim());
             }
         }
 
         [Test]
         [TestCase(Consts.SqlApiRootUrl)]
         [TestCase(Consts.LinqApiRootUrl)]
-        [TestCase(Consts.RavenApiRootUrl)]
         public void Get_by_Id_not_found(string root)
         {
             using (var client = new HttpClient { BaseAddress = new Uri(root) })
             {
                 HttpResponseMessage response = client.GetAsync("Locations/0").Result;
+                response.Should().NotBeNull();
+                response.IsSuccessStatusCode.Should().BeFalse();
+                response.StatusCode.Should().Be(HttpStatusCode.NotFound);
+            }
+        }
+
+        [Test]
+        public void Get_by_Id_not_found()
+        {
+            using (var client = new HttpClient { BaseAddress = new Uri(Consts.RavenApiRootUrl) })
+            {
+                HttpResponseMessage response = client.GetAsync("Locations?id=Locations/0").Result;
                 response.Should().NotBeNull();
                 response.IsSuccessStatusCode.Should().BeFalse();
                 response.StatusCode.Should().Be(HttpStatusCode.NotFound);
@@ -93,7 +100,6 @@ namespace Demo.Tests.Api.ApiTests.Locations
                 string content = response.Content.ReadAsStringAsync().Result;
                 content.Replace("Locations/", "").Replace("\"", "").Trim()
                 .Should().Be(LocationsFiles.GetByName_json.Replace("\"", "").Trim());
-                //content.Should().Be(LocationsFiles.GetByName_json.Trim());
             }
         }
 
@@ -131,7 +137,6 @@ namespace Demo.Tests.Api.ApiTests.Locations
                 string content = response.Content.ReadAsStringAsync().Result;
                 content.Replace("Locations/", "").Replace("\"", "").Trim()
                 .Should().Be(LocationsFiles.GetAllByNameAsc_json.Replace("\"", "").Trim());
-                //content.Should().Be(LocationsFiles.GetAllByNameAsc_json.Trim());
             }
         }
 
@@ -151,7 +156,6 @@ namespace Demo.Tests.Api.ApiTests.Locations
                 string content = response.Content.ReadAsStringAsync().Result;
                 content.Replace("Locations/", "").Replace("\"", "").Trim()
                .Should().Be(LocationsFiles.GetAllByNameDesc_json.Replace("\"", "").Trim());
-                //content.Should().Be(LocationsFiles.GetAllByNameDesc_json.Trim());
             }
         }
 

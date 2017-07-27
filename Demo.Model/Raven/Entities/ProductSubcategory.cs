@@ -13,6 +13,7 @@ namespace Demo.Model.Raven.Entities
             this.Id = dto.Id;
             this.ProductCategoryId = dto.ProductCategoryId;
             this.Name = dto.Name;
+            this.ProductCategoryName = dto.ProductCategoryName;
         }
 
         public string Id { get; set; }
@@ -20,5 +21,7 @@ namespace Demo.Model.Raven.Entities
         public string ProductCategoryId { get; set; }
 
         public string Name { get; set; }
+
+        public string ProductCategoryName { get; set; }
     }
 }

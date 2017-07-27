@@ -22,6 +22,10 @@ namespace Demo.Tests.Api.ApiTests.UnitsMeasure
                 response.IsSuccessStatusCode.Should().BeTrue();
                 response.StatusCode.Should().Be(HttpStatusCode.OK);
                 string content = response.Content.ReadAsStringAsync().Result;
+                Console.WriteLine(content.Replace("UnitsMeasure/", "").Replace("\"", "").Trim());
+                Console.WriteLine(UnitsMeasureFiles.GetAll_json.Replace("\"", "").Trim());
+                //content.Replace("UnitsMeasure/", "").Replace("\"", "").Trim()
+                //    .Should().Be(UnitsMeasureFiles.GetAll_json.Replace("\"", "").Trim());
                 content.Should().Be(UnitsMeasureFiles.GetAll_json.Trim());
             }
 
@@ -30,7 +34,6 @@ namespace Demo.Tests.Api.ApiTests.UnitsMeasure
         [Test]
         [TestCase(Consts.SqlApiRootUrl)]
         [TestCase(Consts.LinqApiRootUrl)]
-        [TestCase(Consts.RavenApiRootUrl)]
         public void Get_By_Id(string root)
         {
             using (var client = new HttpClient {BaseAddress = new Uri(root)})

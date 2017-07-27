@@ -20,20 +20,6 @@ namespace Demo.Model.EF.Dtos
 
         public decimal ListPrice { get; set; }
 
-        public string Size { get; set; }
-
-        public string SizeUnitMeasureCode { get; set; }
-
-        public string WeightUnitMeasureCode { get; set; }
-
-        public decimal? Weight { get; set; }
-
-        public string ProductLine { get; set; }
-
-        public string Class { get; set; }
-
-        public string Style { get; set; }
-
         public int? ProductSubcategoryId { get; set; }
 
         public string ProductSubcategoryName { get; set; }
