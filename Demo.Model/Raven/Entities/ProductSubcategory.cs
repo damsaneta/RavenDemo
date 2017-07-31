@@ -18,9 +18,9 @@ namespace Demo.Model.Raven.Entities
 
         public string Id { get; set; }
 
-        public string ProductCategoryId { get; set; }
-
         public string Name { get; set; }
+
+        public string ProductCategoryId { get; set; }
 
         public string ProductCategoryName { get; set; }
     }

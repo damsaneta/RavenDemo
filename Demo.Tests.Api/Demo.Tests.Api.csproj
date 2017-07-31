@@ -71,6 +71,12 @@
       <DependentUpon>ProductSubcategoriesFiles.resx</DependentUpon>
     </Compile>
     <Compile Include="ApiTests\ProductSubcategories\ProductSubcategoriesTests.cs" />
+    <Compile Include="ApiTests\Products\ProductsFiles.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProductsFiles.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ApiTests\Products\ProductsTests.cs" />
     <Compile Include="ApiTests\UnitsMeasure\UnitsMeasureFiles.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -101,6 +107,7 @@
     <Content Include="ApiTests\ProductSubcategories\GetAllOrderedByNameDesc.json.txt" />
     <Content Include="ApiTests\ProductSubcategories\GetBySubcategoryId.json.txt" />
     <Content Include="ApiTests\ProductSubcategories\Get_by_subcategoryName_or_categoryName.json.txt" />
+    <Content Include="ApiTests\Products\GetAll.json.txt" />
     <Content Include="ApiTests\UnitsMeasure\GetAll.json.txt" />
     <Content Include="ApiTests\UnitsMeasure\GetAllOrderByIdAsc.json.txt" />
     <Content Include="ApiTests\UnitsMeasure\GetAllOrderByIdDesc.json.txt" />
@@ -122,6 +129,10 @@
     <EmbeddedResource Include="ApiTests\ProductSubcategories\ProductSubcategoriesFiles.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ProductSubcategoriesFiles.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ApiTests\Products\ProductsFiles.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ProductsFiles.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="ApiTests\UnitsMeasure\UnitsMeasureFiles.resx">
       <Generator>ResXFileCodeGenerator</Generator>

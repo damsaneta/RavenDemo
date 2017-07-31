@@ -32,6 +32,6 @@ namespace Demo.Model.Raven.Entities
 
         public string ProductSubcategoryId { get; set; }
 
-        public string  ProductSubcategoryName { get; set; }
+        public string ProductSubcategoryName { get; set; }
     }
 }

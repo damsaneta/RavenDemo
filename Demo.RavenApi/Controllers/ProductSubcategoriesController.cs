@@ -31,7 +31,19 @@ namespace Demo.RavenApi.Controllers
         public IHttpActionResult Get(DtRequest<ProductSubcategoryDto> request)
         {
             IQueryable<ProductCategory> productCat = this.session.Query<ProductCategory>();
-            IQueryable<ProductSubcategory> prodSubCat = this.session.Query<ProductSubcategory>();
+
+            IQueryable<ProductSubcategory> prodSubCat = this.session.Query<ProductSubcategory>()
+                .Include(x => x.ProductCategoryId);
+
+            var s = prodSubCat.Select(subcategory => new ProductSubcategoryDto
+            {
+                Id = subcategory.Id,
+                Name = subcategory.Name,
+                ProductCategoryId = subcategory.Id,
+                ProductCategoryName = subcategory.Name
+            }).ToList();
+
+
 
             IQueryable<ProductSubcategoryDto> queryDto = productCat.Join(prodSubCat,
                 category => category.Id,

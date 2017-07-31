@@ -48,13 +48,27 @@ namespace Demo.LinqApi.Controllers
         [ResponseType(typeof(IList<ProductDto>))]
         public IHttpActionResult Get(DtRequest<ProductDto> request)
         {
+
             IQueryable<Product> products = db.Set<Product>();
             IQueryable<ProductSubcategory> prodSubCat = db.Set<ProductSubcategory>();
 
-            IQueryable<ProductDto> queryDto = prodSubCat.Join(products,
-                subcategory => subcategory.Id,
+            var s = products.Select(product => new ProductDto
+            {
+                Id = product.Id,
+                Name = product.Name,
+                ProductNumber = product.ProductNumber,
+                Color = product.Color,
+                ListPrice = product.ListPrice,
+                ProductSubcategoryId = product.ProductSubcategoryId,
+                ProductSubcategoryName = product.ProductSubcategory.Name
+            }).ToList();
+
+
+            IQueryable<ProductDto> queryDto = products.Join(prodSubCat,
                 product => product.ProductSubcategoryId,
-                (subcategory, product) => new ProductDto
+                subcategory => subcategory.Id,
+                
+                (product, subcategory) => new ProductDto
                 {
                     Id = product.Id,
                     Name = product.Name,
