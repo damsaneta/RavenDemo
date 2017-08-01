@@ -24,7 +24,6 @@ namespace Demo.Tests.Api.ApiTests.ProductSubcategories
                 string content = response.Content.ReadAsStringAsync().Result;
                 content.Replace("ProductSubcategories/", "").Replace("ProductCategories/", "").Replace("\"", "").Trim()
                 .Should().Be(ProductSubcategoriesFiles.GetAll_json.Replace("\"", "").Trim());
-               // content.Should().Be(ProductSubcategoriesFiles.GetAll_json.Trim());
             }
         }
 
@@ -62,7 +61,6 @@ namespace Demo.Tests.Api.ApiTests.ProductSubcategories
                         .Trim();
                 content.Replace("ProductSubcategories/", "").Replace("ProductCategories/", "").Replace("\"", "").Trim()
                .Should().Be(ProductSubcategoriesFiles.GetBySubcategoryId_json.Replace("\"", "").Trim());
-                //content.Should().Be(ProductSubcategoriesFiles.GetBySubcategoryId_json.Trim());
 
             }
         }
@@ -109,7 +107,6 @@ namespace Demo.Tests.Api.ApiTests.ProductSubcategories
                 var content = response.Content.ReadAsStringAsync().Result;
                 content.Replace("ProductSubcategories/", "").Replace("ProductCategories/", "").Replace("\"", "").Trim()
                 .Should().Be(ProductSubcategoriesFiles.Get_by_subcategoryName_or_categoryName_json.Replace("\"", "").Trim());
-                //content.Should().Be(ProductSubcategoriesFiles.Get_by_subcategoryName_or_categoryName_json.Trim());
             }
         }
 
@@ -147,7 +144,6 @@ namespace Demo.Tests.Api.ApiTests.ProductSubcategories
                 string content = response.Content.ReadAsStringAsync().Result;
                 content.Replace("ProductSubcategories/", "").Replace("ProductCategories/", "").Replace("\"", "").Trim()
                 .Should().Be(ProductSubcategoriesFiles.GetAllOrderedByNameDesc_json.Replace("\"", "").Trim());
-                //content.Should().Be(ProductSubcategoriesFiles.GetAllOrderedByNameDesc_json.Trim());
             }
 
         }
@@ -168,7 +164,6 @@ namespace Demo.Tests.Api.ApiTests.ProductSubcategories
                 string content = response.Content.ReadAsStringAsync().Result;
                 content.Replace("ProductSubcategories/", "").Replace("ProductCategories/", "").Replace("\"", "").Trim()
                 .Should().Be(ProductSubcategoriesFiles.GetAllOrderedByNameAsc_json.Replace("\"", "").Trim());
-                //content.Should().Be(ProductSubcategoriesFiles.GetAllOrderedByNameAsc_json.Trim());
 
             }
 
@@ -190,7 +185,6 @@ namespace Demo.Tests.Api.ApiTests.ProductSubcategories
                 string content = response.Content.ReadAsStringAsync().Result;
                 content.Replace("ProductSubcategories/", "").Replace("ProductCategories/", "").Replace("\"", "").Trim()
                 .Should().Be(ProductSubcategoriesFiles.GetAllOrderedByCategoryNameDesc_json.Replace("\"", "").Trim());
-                //content.Should().Be(ProductSubcategoriesFiles.GetAllOrderedByCategoryNameDesc_json.Trim());
             }
 
         }
@@ -211,10 +205,8 @@ namespace Demo.Tests.Api.ApiTests.ProductSubcategories
                 string content = response.Content.ReadAsStringAsync().Result;
                 content.Replace("ProductSubcategories/", "").Replace("ProductCategories/", "").Replace("\"", "").Trim()
                 .Should().Be(ProductSubcategoriesFiles.GetAllOrderedByCategoryNameAsc_json.Replace("\"", "").Trim());
-                // content.Should().Be(ProductSubcategoriesFiles.GetAllOrderedByCategoryNameAsc_json.Trim());
 
             }
-
         }
 
         private string BuildDtUrl(string search = null, int? orderColumn = null, string orderDirection = null)

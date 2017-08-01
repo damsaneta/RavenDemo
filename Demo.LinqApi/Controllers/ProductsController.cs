@@ -19,23 +19,35 @@ namespace Demo.LinqApi.Controllers
         [ResponseType(typeof(ProductDto))]
         public IHttpActionResult Get(int id)
         {
-            var products = db.Set<Product>().Where(x => x.Id == id).ToList();
-            var prodSubCat = db.Set<ProductSubcategory>().ToList();
-            var result = prodSubCat.Join(products,
-                     subcategory => subcategory.Id,
-                     product => product.ProductSubcategoryId,
-                    (subcategory, product) => new ProductDto
-                    {
-                        Id = product.Id,
-                        Name = product.Name,
-                        ProductNumber = product.ProductNumber,
-                        Color = product.Color,
-                        ListPrice = product.ListPrice,
-                        ProductSubcategoryId = subcategory.Id,
-                        ProductSubcategoryName = subcategory.Name
-                    }
-                )
-                .SingleOrDefault();
+            var products = db.Set<Product>().Where(x => x.Id == id);
+            var prodSubCat = db.Set<ProductSubcategory>();
+
+            var result = products.Select(product => new ProductDto
+            {
+                Id = product.Id,
+                Name = product.Name,
+                ProductNumber = product.ProductNumber,
+                Color = product.Color,
+                ListPrice = product.ListPrice,
+                ProductSubcategoryId = product.ProductSubcategoryId,
+                ProductSubcategoryName = product.ProductSubcategory.Name
+
+            }).SingleOrDefault();
+            //var result = prodSubCat.Join(products,
+            //         subcategory => subcategory.Id,
+            //         product => product.ProductSubcategoryId,
+            //        (subcategory, product) => new ProductDto
+            //        {
+            //            Id = product.Id,
+            //            Name = product.Name,
+            //            ProductNumber = product.ProductNumber,
+            //            Color = product.Color,
+            //            ListPrice = product.ListPrice,
+            //            ProductSubcategoryId = subcategory.Id,
+            //            ProductSubcategoryName = subcategory.Name
+            //        }
+            //    )
+            //    .SingleOrDefault();
 
             if (result == null)
             {
@@ -52,7 +64,7 @@ namespace Demo.LinqApi.Controllers
             IQueryable<Product> products = db.Set<Product>();
             IQueryable<ProductSubcategory> prodSubCat = db.Set<ProductSubcategory>();
 
-            var s = products.Select(product => new ProductDto
+            IQueryable<ProductDto> queryDto = products.Select(product => new ProductDto
             {
                 Id = product.Id,
                 Name = product.Name,
@@ -61,25 +73,7 @@ namespace Demo.LinqApi.Controllers
                 ListPrice = product.ListPrice,
                 ProductSubcategoryId = product.ProductSubcategoryId,
                 ProductSubcategoryName = product.ProductSubcategory.Name
-            }).ToList();
-
-
-            IQueryable<ProductDto> queryDto = products.Join(prodSubCat,
-                product => product.ProductSubcategoryId,
-                subcategory => subcategory.Id,
-                
-                (product, subcategory) => new ProductDto
-                {
-                    Id = product.Id,
-                    Name = product.Name,
-                    ProductNumber = product.ProductNumber,
-                    Color = product.Color,
-                    ListPrice = product.ListPrice,
-                    ProductSubcategoryId = subcategory.Id,
-                    ProductSubcategoryName = subcategory.Name
-
-                }
-            );
+            });
 
             if (!string.IsNullOrEmpty(request.Search))
             {
@@ -99,10 +93,10 @@ namespace Demo.LinqApi.Controllers
                         ? queryDto.OrderBy(x => x.Id)
                         : queryDto.OrderByDescending(x => x.ProductSubcategoryId);
                     break;
-                case "Name":
+                case "ProductSubcategoryName":
                     queryDto = request.OrderDirection == DtOrderDirection.ASC
-                        ? queryDto.OrderBy(x => x.Name)
-                        : queryDto.OrderByDescending(x => x.Name);
+                        ? queryDto.OrderBy(x => x.ProductSubcategoryName)
+                        : queryDto.OrderByDescending(x => x.ProductSubcategoryName);
                     break;
                 case "Color":
                     queryDto = request.OrderDirection == DtOrderDirection.ASC
@@ -121,8 +115,8 @@ namespace Demo.LinqApi.Controllers
                     break;
                 default:
                     queryDto = request.OrderDirection == DtOrderDirection.ASC
-                        ? queryDto.OrderBy(x => x.ProductSubcategoryName)
-                        : queryDto.OrderByDescending(x => x.ProductSubcategoryName);
+                        ? queryDto.OrderBy(x => x.Name)
+                        : queryDto.OrderByDescending(x => x.Name);
                     break;
             }
 

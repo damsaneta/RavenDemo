@@ -107,6 +107,13 @@
     <Content Include="ApiTests\ProductSubcategories\GetAllOrderedByNameDesc.json.txt" />
     <Content Include="ApiTests\ProductSubcategories\GetBySubcategoryId.json.txt" />
     <Content Include="ApiTests\ProductSubcategories\Get_by_subcategoryName_or_categoryName.json.txt" />
+    <Content Include="ApiTests\Products\Get_all_ordered_by_subcategoryName_asc.json.txt" />
+    <Content Include="ApiTests\Products\Get_by_ProductSubcategory.json.txt" />
+    <Content Include="ApiTests\Products\GetAllOrderedByNameAsc.json.txt" />
+    <Content Include="ApiTests\Products\GetAllOrderedByNameDesc.json.txt" />
+    <Content Include="ApiTests\Products\Get_all_ordered_by_subcategoryName_desc.json.txt" />
+    <Content Include="ApiTests\Products\Get_by_ProductName.json.txt" />
+    <Content Include="ApiTests\Products\GetByProductId.json.txt" />
     <Content Include="ApiTests\Products\GetAll.json.txt" />
     <Content Include="ApiTests\UnitsMeasure\GetAll.json.txt" />
     <Content Include="ApiTests\UnitsMeasure\GetAllOrderByIdAsc.json.txt" />

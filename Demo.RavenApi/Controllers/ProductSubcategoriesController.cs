@@ -35,28 +35,13 @@ namespace Demo.RavenApi.Controllers
             IQueryable<ProductSubcategory> prodSubCat = this.session.Query<ProductSubcategory>()
                 .Include(x => x.ProductCategoryId);
 
-            var s = prodSubCat.Select(subcategory => new ProductSubcategoryDto
+            IQueryable<ProductSubcategoryDto> queryDto = prodSubCat.Select(subcategory => new ProductSubcategoryDto
             {
                 Id = subcategory.Id,
                 Name = subcategory.Name,
-                ProductCategoryId = subcategory.Id,
-                ProductCategoryName = subcategory.Name
-            }).ToList();
-
-
-
-            IQueryable<ProductSubcategoryDto> queryDto = productCat.Join(prodSubCat,
-                category => category.Id,
-                subcategory => subcategory.ProductCategoryId,
-                (category, subcategory) => new ProductSubcategoryDto
-                {
-                    Id = subcategory.Id,
-                    Name = subcategory.Name,
-                    ProductCategoryId = category.Id,
-                    ProductCategoryName = category.Name
-
-                }
-            );
+                ProductCategoryId = subcategory.ProductCategoryId,
+                ProductCategoryName = subcategory.ProductCategoryName
+            });
 
             if (!string.IsNullOrEmpty(request.Search))
             {

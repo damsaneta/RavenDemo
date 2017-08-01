@@ -17,21 +17,17 @@ namespace Demo.LinqApi.Controllers
         [ResponseType(typeof(ProductSubcategoryDto))]
         public IHttpActionResult Get(int id)
         {
-            var productCat = db.Set<ProductCategory>().ToList();
-            var prodSubCat = db.Set<ProductSubcategory>().Where(x => x.Id == id).ToList();
-            var productSubcategory = productCat.Join(prodSubCat,
-                    category => category.Id,
-                    subcategory => subcategory.ProductCategoryId,
-                    (category, subcategory) => new ProductSubcategoryDto
-                    {
-                        Id = subcategory.Id,
-                        Name = subcategory.Name,
-                        ProductCategoryId = category.Id,
-                        ProductCategoryName = category.Name
+            var productCat = db.Set<ProductCategory>();
+            var prodSubCat = db.Set<ProductSubcategory>().Where(x => x.Id == id);
 
-                    }
-                )
-                .SingleOrDefault();
+            var productSubcategory = prodSubCat.Select(subcategory => new ProductSubcategoryDto
+            {
+                Id = subcategory.Id,
+                Name = subcategory.Name,
+                ProductCategoryName = subcategory.ProductCategory.Name,
+                ProductCategoryId = subcategory.ProductCategoryId
+
+            }).SingleOrDefault();
 
             if (productSubcategory == null)
             {
@@ -47,19 +43,14 @@ namespace Demo.LinqApi.Controllers
      
             IQueryable<ProductCategory> productCat = db.Set<ProductCategory>();
             IQueryable<ProductSubcategory> prodSubCat = db.Set<ProductSubcategory>();
-         
-            IQueryable<ProductSubcategoryDto> queryDto = productCat.Join(prodSubCat,
-                category => category.Id,
-                subcategory => subcategory.ProductCategoryId,
-                (category, subcategory) => new ProductSubcategoryDto
-                {
-                    Id = subcategory.Id,
-                    Name = subcategory.Name,
-                    ProductCategoryId = category.Id,
-                    ProductCategoryName = category.Name
 
-                }
-            );
+            IQueryable<ProductSubcategoryDto> queryDto = prodSubCat.Select(subcategory => new ProductSubcategoryDto
+            {
+                Id = subcategory.Id,
+                Name = subcategory.Name,
+                ProductCategoryName = subcategory.ProductCategory.Name,
+                ProductCategoryId = subcategory.ProductCategoryId
+            });
 
             if (!string.IsNullOrEmpty(request.Search))
             {
@@ -91,24 +82,7 @@ namespace Demo.LinqApi.Controllers
             }
 
             var result = queryDto.ToList();
-            //var parameters = new List<object>();
-            //var sql = @"SELECT ps.ID
-            //        , ps.ProductCategoryID
-            //        , ps.Name
-            //        , pc.Name AS ProductCategoryName
-            //        , pc.ID AS ProductCategoryID
-            //        FROM dbo.ProductSubcategory ps
-            //        INNER JOIN dbo.ProductCategory pc ON ps.ProductCategoryID = pc.ID ";
-            //if (!string.IsNullOrEmpty(request.Search))
-            //{
-            //    sql += "WHERE ps.Name LIKE @p0  OR pc.Name LIKE @p0 ";
-            //    parameters.Add(request.Search);
-            //}
-
-            //request.OrderColumn = request.OrderColumn ?? "ProductCategoryName";
-            //sql += "ORDER BY " + request.OrderColumn + " " + request.OrderDirection;
-            //var result = db.Database.SqlQuery<ProductSubcategoryDto>(sql, parameters.ToArray()).ToList();
-
+    
             return this.Ok(result);
         }
 
