@@ -10,8 +10,9 @@ namespace Demo.Tests.Api.ApiTests.Products
     public class ProductsTests
     {
         [Test]
-        [TestCase(Consts.SqlApiRootUrl)]
-        [TestCase(Consts.LinqApiRootUrl)]
+        //[TestCase(Consts.SqlApiRootUrl)]
+        //[TestCase(Consts.LinqApiRootUrl)]
+        [TestCase(Consts.RavenApiRootUrl)]
         public void Get_all(string root)
         {
             using (var client = new HttpClient { BaseAddress = new Uri(root) })
@@ -21,6 +22,8 @@ namespace Demo.Tests.Api.ApiTests.Products
                 response.IsSuccessStatusCode.Should().BeTrue();
                 response.StatusCode.Should().Be(HttpStatusCode.OK);
                 string content = response.Content.ReadAsStringAsync().Result;
+                var r = content.Replace("Products/", "").Replace("ProductSubcategories/", "").Replace("\"", "").Trim();
+                var r2 = ProductsFiles.GetAll_json.Replace("\"", "").Trim();
                 content.Replace("Products/", "").Replace("ProductSubcategories/", "").Replace("\"", "").Trim()
                 .Should().Be(ProductsFiles.GetAll_json.Replace("\"", "").Trim());
                 //content.Should().Be(ProductsFiles.GetAll_json.Trim());

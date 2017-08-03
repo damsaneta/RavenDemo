@@ -33,21 +33,6 @@ namespace Demo.LinqApi.Controllers
                 ProductSubcategoryName = product.ProductSubcategory.Name
 
             }).SingleOrDefault();
-            //var result = prodSubCat.Join(products,
-            //         subcategory => subcategory.Id,
-            //         product => product.ProductSubcategoryId,
-            //        (subcategory, product) => new ProductDto
-            //        {
-            //            Id = product.Id,
-            //            Name = product.Name,
-            //            ProductNumber = product.ProductNumber,
-            //            Color = product.Color,
-            //            ListPrice = product.ListPrice,
-            //            ProductSubcategoryId = subcategory.Id,
-            //            ProductSubcategoryName = subcategory.Name
-            //        }
-            //    )
-            //    .SingleOrDefault();
 
             if (result == null)
             {

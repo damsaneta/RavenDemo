@@ -35,21 +35,32 @@ namespace Demo.RavenApi.Controllers
             IQueryable<Product> products = this.session.Query<Product>();
             IQueryable<ProductSubcategory> prodSubCat = this.session.Query<ProductSubcategory>();
 
-            IQueryable<ProductDto> queryDto = prodSubCat.Join(products,
-                subcategory => subcategory.Id,
-                product => product.ProductSubcategoryId,
-                (subcategory, product) => new ProductDto
-                {
-                    Id = product.Id,
-                    Name = product.Name,
-                    ProductNumber = product.ProductNumber,
-                    Color = product.Color,
-                    ListPrice = product.ListPrice,
-                    ProductSubcategoryId = subcategory.Id,
-                    ProductSubcategoryName = subcategory.Name
+            IQueryable<ProductDto> queryDto = products.Select(product => new ProductDto
+            {
+                Id = product.Id,
+                Name = product.Name,
+                ProductNumber = product.ProductNumber,
+                Color = product.Color,
+                ListPrice = product.ListPrice,
+                ProductSubcategoryId = product.ProductSubcategoryId,
+                ProductSubcategoryName = product.ProductSubcategoryName
+            });
 
-                }
-            );
+            //IQueryable<ProductDto> queryDto = prodSubCat.Join(products,
+            //    subcategory => subcategory.Id,
+            //    product => product.ProductSubcategoryId,
+            //    (subcategory, product) => new ProductDto
+            //    {
+            //        Id = product.Id,
+            //        Name = product.Name,
+            //        ProductNumber = product.ProductNumber,
+            //        Color = product.Color,
+            //        ListPrice = product.ListPrice,
+            //        ProductSubcategoryId = subcategory.Id,
+            //        ProductSubcategoryName = subcategory.Name
+
+            //    }
+            //);
 
             if (!string.IsNullOrEmpty(request.Search))
             {
@@ -91,12 +102,12 @@ namespace Demo.RavenApi.Controllers
                     break;
                 default:
                     queryDto = request.OrderDirection == DtOrderDirection.ASC
-                        ? queryDto.OrderBy(x => x.ProductSubcategoryName)
-                        : queryDto.OrderByDescending(x => x.ProductSubcategoryName);
+                        ? queryDto.OrderBy(x => x.Name)
+                        : queryDto.OrderByDescending(x => x.Name);
                     break;
             }
 
-            var result = queryDto.ToList();
+            var result = queryDto.Take(1024).ToList();
 
             return this.Ok(result);
         }
