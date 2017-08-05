@@ -46,7 +46,7 @@ namespace Demo.SqlApi.Controllers
             if (!string.IsNullOrEmpty(request.Search))
             {
                 sql += "WHERE ps.Name LIKE @p0  OR pc.Name LIKE @p0 ";
-                parameters.Add(request.Search + "%");
+                parameters.Add(request.Search);
             }
 
             request.OrderColumn = request.OrderColumn ?? "ProductCategoryName";

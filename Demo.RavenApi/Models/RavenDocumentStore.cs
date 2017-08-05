@@ -15,7 +15,10 @@ namespace Demo.RavenApi.Models
                 ConnectionStringName = "Server"
             };
             store.Conventions.RegisterIdConvention<UnitMeasure>(((database, commands, entity) => entity.UnitMeasureCode));
-            return store.Initialize();
+
+            store.Initialize();
+
+            return store;
         });
 
         public static IDocumentStore Store =>

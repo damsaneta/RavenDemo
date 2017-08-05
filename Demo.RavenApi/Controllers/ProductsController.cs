@@ -46,22 +46,6 @@ namespace Demo.RavenApi.Controllers
                 ProductSubcategoryName = product.ProductSubcategoryName
             });
 
-            //IQueryable<ProductDto> queryDto = prodSubCat.Join(products,
-            //    subcategory => subcategory.Id,
-            //    product => product.ProductSubcategoryId,
-            //    (subcategory, product) => new ProductDto
-            //    {
-            //        Id = product.Id,
-            //        Name = product.Name,
-            //        ProductNumber = product.ProductNumber,
-            //        Color = product.Color,
-            //        ListPrice = product.ListPrice,
-            //        ProductSubcategoryId = subcategory.Id,
-            //        ProductSubcategoryName = subcategory.Name
-
-            //    }
-            //);
-
             if (!string.IsNullOrEmpty(request.Search))
             {
                 queryDto = queryDto.Where(x => x.Name.StartsWith(request.Search) || x.ProductSubcategoryName.StartsWith(request.Search)
@@ -80,10 +64,10 @@ namespace Demo.RavenApi.Controllers
                         ? queryDto.OrderBy(x => x.Id)
                         : queryDto.OrderByDescending(x => x.ProductSubcategoryId);
                     break;
-                case "Name":
+                case "ProductSubcategoryName":
                     queryDto = request.OrderDirection == DtOrderDirection.ASC
-                        ? queryDto.OrderBy(x => x.Name)
-                        : queryDto.OrderByDescending(x => x.Name);
+                        ? queryDto.OrderBy(x => x.ProductSubcategoryName)
+                        : queryDto.OrderByDescending(x => x.ProductSubcategoryName);
                     break;
                 case "Color":
                     queryDto = request.OrderDirection == DtOrderDirection.ASC

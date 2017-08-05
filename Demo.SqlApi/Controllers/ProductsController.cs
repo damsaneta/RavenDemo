@@ -56,11 +56,13 @@ namespace Demo.SqlApi.Controllers
             if (!string.IsNullOrEmpty(request.Search))
             {
                 sql += " WHERE p.Name LIKE @p0 OR ps.Name LIKE @p0 OR p.Color LIKE @p0 OR p.ProductNumber LIKE @p0 ";
-                parameters.Add(request.Search + "%");
+                parameters.Add(request.Search);
             }
 
             request.OrderColumn = request.OrderColumn ?? "Name";
-            sql += " ORDER BY " + request.OrderColumn + " " + request.OrderDirection;
+            if (request.OrderColumn == "ProductSubcategoryId")
+                sql += " ORDER BY " + "p." + request.OrderColumn + " " + request.OrderDirection;
+            else sql += " ORDER BY " + request.OrderColumn + " " + request.OrderDirection;
 
             var result = db.Database.SqlQuery<ProductDto>(sql, parameters.ToArray()).ToList();
 

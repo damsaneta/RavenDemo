@@ -10,9 +10,9 @@ namespace Demo.Tests.Api.ApiTests.Products
     public class ProductsTests
     {
         [Test]
-        //[TestCase(Consts.SqlApiRootUrl)]
-        //[TestCase(Consts.LinqApiRootUrl)]
-        [TestCase(Consts.RavenApiRootUrl)]
+        [TestCase(Consts.SqlApiRootUrl)]
+        [TestCase(Consts.LinqApiRootUrl)]
+        //[TestCase(Consts.RavenApiRootUrl)]
         public void Get_all(string root)
         {
             using (var client = new HttpClient { BaseAddress = new Uri(root) })
@@ -237,8 +237,11 @@ namespace Demo.Tests.Api.ApiTests.Products
             var url = "Products?draw=1";
             url += "&" + WebUtility.UrlEncode("columns[0][name]") + "=Name";
             url += "&" + WebUtility.UrlEncode("columns[1][name]") + "=ProductSubcategoryName";
-            url += "&" + WebUtility.UrlEncode("columns[2][name]") + "=Id";
-            url += "&" + WebUtility.UrlEncode("columns[3][name]") + "=ProductSubcategoryId";
+            //url += "&" + WebUtility.UrlEncode("columns[2][name]") + "=Id";
+            url += "&" + WebUtility.UrlEncode("columns[2][name]") + "=ProductSubcategoryId";
+            url += "&" + WebUtility.UrlEncode("columns[3][name]") + "=Color";
+            url += "&" + WebUtility.UrlEncode("columns[4][name]") + "=ProductNumber";
+            url += "&" + WebUtility.UrlEncode("columns[5][name]") + "=ListPrice";
             if (orderColumn.HasValue)
             {
                 url += "&" + WebUtility.UrlEncode("order[0][column]") + "=" + orderColumn;

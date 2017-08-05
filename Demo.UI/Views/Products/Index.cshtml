@@ -2,13 +2,36 @@
 @{
     ViewBag.Title = "Produkty";
 }
+
 <div>
-    <table id="myTable"></table>
+    <table id="myTable">
+    </table>
 </div>
 
 <script>
     $(document).ready(function () {
-        $('#myTable').dataTable({
+
+      
+
+        //$('#myTable tfoot th').each(function (i) {
+        //    var title = $('#myTable thead th').eq($(this).index()).text();
+        //    var serach = '<input type="text" placeholder="Search ' + title + '" />';
+        //    $(this).html('');
+        //    $(serach).appendTo(this).keyup(function () {
+        //        table.fnFilter($(this).val(), i);
+
+        //    });
+        //});
+       // document.getElementById('myTable').createTFoot().insertRow(0);
+
+        //$('#myTable tfoot th').each(function () {
+        //    var title = $(this).text();
+        //    $(this).html('<input type="text" placeholder="Search ' + title + '" />');
+        //});
+
+  
+
+        var table =  $('#myTable').dataTable({
             serverSide: true,
             processing: false,
             paging: false,
@@ -23,7 +46,7 @@
                     data: "Name",
                     title: "Nazwa",
                     sortable: true,
-                    searchable: false
+                    searchable: true
                 },
                 {
                     name: 'ProductSubcategoryName',
@@ -31,9 +54,52 @@
                     title: "Podkategoria",
                     sortable: true,
                     searchable: false
+                },
+                {
+                    name: 'ProductSubcategoryId',
+                    data: "ProductSubcategoryId",
+                    title: "Id podkategorii",
+                    sortable: true,
+                    searchable: false
+                },
+                {
+                    name: 'Color',
+                    data: "Color",
+                    title: "Kolor",
+                    sortable: true,
+                    searchable: false
+                },
+                {
+                    name: 'ProductNumber',
+                    data: "ProductNumber",
+                    title: "Numer produktu",
+                    sortable: true,
+                    searchable: false
+                },
+                {
+                    name: 'ListPrice',
+                    data: "ListPrice",
+                    title: "Cena",
+                    sortable: true,
+                    searchable: false
                 }
+
             ]
-        });
+
+        }
+        );
+
+        //$('#myTable thead th').each(function () {
+        //    var title = $('#myTable thead th').eq($(this).index()).text();
+        //    $(this).html('&lt;input type=&quot;text&quot; placeholder=&quot;Search ' + title + '&quot; /&gt;');
+        //});
+
+
+        //$('#myTable tfoot th').each(function () {
+        //    var title = $(this).text();
+        //    $(this).html('<input type="text" placeholder="Search ' + title + '" />');
+        //});
+
     });
 
     function renderNameColumnFunc(data, type, full, meta) {

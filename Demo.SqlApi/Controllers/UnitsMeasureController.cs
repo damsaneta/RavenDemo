@@ -34,7 +34,7 @@ namespace Demo.SqlApi.Controllers
             if (!string.IsNullOrEmpty(request.Search))
             {
                 sql += " WHERE Name LIKE @p0 ";
-                parameters.Add(request.Search + "%");
+                parameters.Add(request.Search);
             }
 
             request.OrderColumn = request.OrderColumn ?? "Name";
