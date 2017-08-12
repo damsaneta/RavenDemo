@@ -8,12 +8,12 @@ namespace Demo.Model.Raven.Dtos
         {
         }
 
-        public ProductSubcategoryDto(ProductSubcategory entity)
+        public ProductSubcategoryDto(ProductSubcategory entity, string categoryName)
         {
             this.Id = entity.Id;
             this.ProductCategoryId = entity.ProductCategoryId;
             this.Name = entity.Name;
-            this.ProductCategoryName = entity.ProductCategoryName;
+            this.ProductCategoryName = categoryName;
         }
 
         public string Id { get; set; }

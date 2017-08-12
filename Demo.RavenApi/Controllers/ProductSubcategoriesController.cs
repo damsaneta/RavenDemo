@@ -24,14 +24,12 @@ namespace Demo.RavenApi.Controllers
                 return this.NotFound();
             }
 
-            return this.Ok(new ProductSubcategoryDto(result));
+            return this.Ok(new ProductSubcategoryDto(result, "TODO"));
         }
 
         [ResponseType(typeof (IList<ProductSubcategoryDto>))]
         public IHttpActionResult Get(DtRequest<ProductSubcategoryDto> request)
         {
-            IQueryable<ProductCategory> productCat = this.session.Query<ProductCategory>();
-
             IQueryable<ProductSubcategory> prodSubCat = this.session.Query<ProductSubcategory>()
                 .Include(x => x.ProductCategoryId);
 
@@ -39,8 +37,7 @@ namespace Demo.RavenApi.Controllers
             {
                 Id = subcategory.Id,
                 Name = subcategory.Name,
-                ProductCategoryId = subcategory.ProductCategoryId,
-                ProductCategoryName = subcategory.ProductCategoryName
+                ProductCategoryId = subcategory.ProductCategoryId
             });
 
             if (!string.IsNullOrEmpty(request.Search))
@@ -96,7 +93,6 @@ namespace Demo.RavenApi.Controllers
             }
 
             entity.Name = productSubcategoryDto.Name;
-            entity.ProductCategoryName = productSubcategoryDto.ProductCategoryName;
             entity.ProductCategoryId = productSubcategoryDto.ProductCategoryId;
             this.session.SaveChanges();
             return this.Ok();

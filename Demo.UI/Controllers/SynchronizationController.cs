@@ -180,7 +180,6 @@ namespace Demo.UI.Controllers
                         if (sqlEntity.Name != ravenEntity.Name || ("ProductCategories/" + sqlEntity.ProductCategoryId) != ravenEntity.ProductCategoryId)
                         {
                             ravenEntity.Name = sqlEntity.Name;
-                            ravenEntity.ProductCategoryName = sqlEntity.ProductCategoryName;
                             ravenEntity.ProductCategoryId = "ProductCategories/" + sqlEntity.ProductCategoryId;
                             response = client.PutAsJsonAsync("ProductSubcategories", ravenEntity).Result;
                             response.EnsureSuccessStatusCode();
@@ -193,8 +192,7 @@ namespace Demo.UI.Controllers
                         {
                             Name = sqlEntity.Name,
                             Id = "ProductSubcategories/" + sqlEntity.Id,
-                            ProductCategoryId = "ProductCategories/" + sqlEntity.ProductCategoryId,
-                            ProductCategoryName = sqlEntity.ProductCategoryName
+                            ProductCategoryId = "ProductCategories/" + sqlEntity.ProductCategoryId
                         };
                         response = client.PostAsJsonAsync("ProductSubcategories", ravenEntity).Result;
                         response.EnsureSuccessStatusCode();
@@ -229,7 +227,6 @@ namespace Demo.UI.Controllers
                             ravenEntity.Color = sqlEntity.Color;
                             ravenEntity.ListPrice = sqlEntity.ListPrice;
                             ravenEntity.ProductNumber = sqlEntity.ProductNumber;
-                            ravenEntity.ProductSubcategoryName = sqlEntity.ProductSubcategoryName;
                             ravenEntity.ProductSubcategoryId = "ProductSubcategories/" + sqlEntity.ProductSubcategoryId;
                             response = client.PutAsJsonAsync("Products", ravenEntity).Result;
                             response.EnsureSuccessStatusCode();
@@ -245,8 +242,7 @@ namespace Demo.UI.Controllers
                             Color = sqlEntity.Color,
                             ListPrice = sqlEntity.ListPrice,
                             ProductNumber = sqlEntity.ProductNumber,
-                            ProductSubcategoryId = "ProductSubcategories/" + sqlEntity.ProductSubcategoryId,
-                            ProductSubcategoryName = sqlEntity.ProductSubcategoryName
+                            ProductSubcategoryId = "ProductSubcategories/" + sqlEntity.ProductSubcategoryId
                         };
                         response = client.PostAsJsonAsync("Products", ravenEntity).Result;
                         response.EnsureSuccessStatusCode();

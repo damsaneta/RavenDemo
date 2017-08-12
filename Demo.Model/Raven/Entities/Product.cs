@@ -17,7 +17,6 @@ namespace Demo.Model.Raven.Entities
             this.Color = dto.Color;
             this.ListPrice = dto.ListPrice;
             this.ProductSubcategoryId = dto.ProductSubcategoryId;
-            this.ProductSubcategoryName = dto.ProductSubcategoryName;
         }
 
         public string Id { get; set; }
@@ -31,7 +30,5 @@ namespace Demo.Model.Raven.Entities
         public decimal ListPrice { get; set; }
 
         public string ProductSubcategoryId { get; set; }
-
-        public string ProductSubcategoryName { get; set; }
     }
 }

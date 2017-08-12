@@ -42,8 +42,7 @@ namespace Demo.RavenApi.Controllers
                 ProductNumber = product.ProductNumber,
                 Color = product.Color,
                 ListPrice = product.ListPrice,
-                ProductSubcategoryId = product.ProductSubcategoryId,
-                ProductSubcategoryName = product.ProductSubcategoryName
+                ProductSubcategoryId = product.ProductSubcategoryId
             });
 
             if (!string.IsNullOrEmpty(request.Search))
@@ -115,7 +114,6 @@ namespace Demo.RavenApi.Controllers
             entity.Color = productDto.Color;
             entity.ListPrice = productDto.ListPrice;
             entity.ProductNumber = productDto.ProductNumber;
-            entity.ProductSubcategoryName = productDto.ProductSubcategoryName;
             entity.ProductSubcategoryId =  productDto.ProductSubcategoryId;
             this.session.SaveChanges();
             return this.Ok();

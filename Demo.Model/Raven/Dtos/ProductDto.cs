@@ -17,7 +17,6 @@ namespace Demo.Model.Raven.Dtos
             this.Color = entity.Color;
             this.ListPrice = entity.ListPrice;
             this.ProductSubcategoryId = entity.ProductSubcategoryId;
-            this.ProductSubcategoryName = entity.ProductSubcategoryName;
 
         }
         public string Id { get; set; }
