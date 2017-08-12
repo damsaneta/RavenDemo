@@ -7,6 +7,7 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using Demo.Model.Raven.Dtos;
 using Demo.Model.Raven.Entities;
+using Demo.RavenApi.Infrastructure;
 using Demo.RavenApi.Models;
 using Demo.RavenApi.Models.DataTables;
 using Raven.Client;

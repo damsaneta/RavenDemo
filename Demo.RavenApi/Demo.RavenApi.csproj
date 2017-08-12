@@ -98,10 +98,17 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\Subcategories_ByCategoryName.cs" />
     <Compile Include="Models\DataTables\DtModelBinder.cs" />
     <Compile Include="Models\DataTables\DtOrderDirection.cs" />
     <Compile Include="Models\DataTables\DtRequest.cs" />
-    <Compile Include="Models\RavenDocumentStore.cs" />
+    <Compile Include="Infrastructure\Locations_ByNameSortByName.cs" />
+    <Compile Include="Infrastructure\ProductCategories_ByIdSortById.cs" />
+    <Compile Include="Infrastructure\ProductCategories_ByNameSortByIdName.cs" />
+    <Compile Include="Infrastructure\ProductSubcategories_ByNameAndProductCategoryNameSortByNameProductCategoryName.cs" />
+    <Compile Include="Infrastructure\Products_ByColorAndNameAndProductNumberAndProductSubcategoryNameSortByNameProductSubcategoryName.cs" />
+    <Compile Include="Infrastructure\RavenDocumentStore.cs" />
+    <Compile Include="Infrastructure\UnitMeasures_ByNameAndUnitMeasureCodeSortByNameUnitMeasureCode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -115,9 +122,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Demo.Model\Demo.Model.csproj">
       <Project>{dca69d33-3764-4120-9ed6-b84d28eb02bf}</Project>

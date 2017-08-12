@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Web.Http;
 using Demo.Model.Raven.Dtos;
 using Demo.Model.Raven.Entities;
+using Demo.RavenApi.Infrastructure;
 using Demo.RavenApi.Models;
 using Raven.Client;
 
@@ -89,7 +90,10 @@ namespace Demo.RavenApi.Controllers
         [Route("api/examples/subcategories/category")]
         public IHttpActionResult GetSubcategoriesByCategoryName(string name)
         {
-            throw new NotImplementedException();
+            var result = this.session.Query<Subcategories_ByCategoryName.Result, Subcategories_ByCategoryName>()
+                .Where(x => x.ProductCategoryName.StartsWith(name))
+                .OfType<ProductSubcategory>().ToList();
+            return this.Ok(result);
         }
 
         [Route("api/examples/griddata/subcategories")]
@@ -105,6 +109,24 @@ namespace Demo.RavenApi.Controllers
                 result.Add(new ProductSubcategoryDto(subcategory, category.Name));
             }
             
+            return this.Ok(result);
+        }
+
+        [Route("api/examples/griddata/subcategories/category")]
+        public IHttpActionResult GetSubcategoriesByCategoryNameWithRelations(string name)
+        {
+            var result = new List<ProductSubcategoryDto>();
+            var subcategories = this.session.Query<Subcategories_ByCategoryName.Result, Subcategories_ByCategoryName>()
+                .Customize(a => a.Include<ProductSubcategory>(x => x.ProductCategoryId))
+                .Where(x => x.ProductCategoryName.StartsWith(name))
+                .OfType<ProductSubcategory>()
+                .ToList();
+            foreach (var subcategory in subcategories)
+            {
+                var category = this.session.Load<ProductCategory>(subcategory.ProductCategoryId);
+                result.Add(new ProductSubcategoryDto(subcategory, category.Name));
+            }
+
             return this.Ok(result);
         }
     }

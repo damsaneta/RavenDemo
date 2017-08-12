@@ -8,6 +8,7 @@ using Demo.RavenApi.Models;
 using Demo.RavenApi.Models.DataTables;
 using Raven.Client;
 using Demo.Model.Raven.Dtos;
+using Demo.RavenApi.Infrastructure;
 
 namespace Demo.RavenApi.Controllers
 {
