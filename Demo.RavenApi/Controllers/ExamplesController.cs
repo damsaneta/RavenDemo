@@ -23,6 +23,15 @@ namespace Demo.RavenApi.Controllers
             return this.Ok(result);
         }
 
+        [Route("api/examples/categories")]
+        public IHttpActionResult GetCategoriesByTerm(string term)
+        {
+            var result = this.session.Query<ProductCategory>()
+                .Search(x => x.Name, term)
+                .ToList();
+            return this.Ok(result);
+        }
+
         [Route("api/examples/categories/{id}")]
         public IHttpActionResult GetCategoriesById(int id)
         {
@@ -48,6 +57,15 @@ namespace Demo.RavenApi.Controllers
         public IHttpActionResult GetSubcategoriesAll()
         {
             var result = this.session.Query<ProductSubcategory>().ToList();
+            return this.Ok(result);
+        }
+
+        [Route("api/examples/subcategories")]
+        public IHttpActionResult GetSubcategoriesByTerm(string term)
+        {
+            var result = this.session.Query<ProductSubcategory, ProductSubcategories_ByName>()
+                .Search(x => x.Name, term)
+                .ToList();
             return this.Ok(result);
         }
 
@@ -90,7 +108,7 @@ namespace Demo.RavenApi.Controllers
         [Route("api/examples/subcategories/category")]
         public IHttpActionResult GetSubcategoriesByCategoryName(string name)
         {
-            var result = this.session.Query<Subcategories_ByCategoryName.Result, Subcategories_ByCategoryName>()
+            var result = this.session.Query<ProductSubcategories_ByProductCategoryName.Result, ProductSubcategories_ByProductCategoryName>()
                 .Where(x => x.ProductCategoryName.StartsWith(name))
                 .OfType<ProductSubcategory>().ToList();
             return this.Ok(result);
@@ -118,7 +136,7 @@ namespace Demo.RavenApi.Controllers
         public IHttpActionResult GetSubcategoriesByCategoryNameWithRelations(string name)
         {
             var result = new List<ProductSubcategoryDto>();
-            var subcategories = this.session.Query<Subcategories_ByCategoryName.Result, Subcategories_ByCategoryName>()
+            var subcategories = this.session.Query<ProductSubcategories_ByProductCategoryName.Result, ProductSubcategories_ByProductCategoryName>()
                 .Customize(a => a.Include<ProductSubcategory>(x => x.ProductCategoryId))
                 .Where(x => x.ProductCategoryName.StartsWith(name))
                 .OfType<ProductSubcategory>()
@@ -277,7 +295,7 @@ namespace Demo.RavenApi.Controllers
             {
                 var subcategory = this.session.Load<ProductSubcategory>(product.ProductSubcategoryId);
                 result.Add(subcategory == null
-                    ? new ProductDto(product, "TODO")
+                    ? new ProductDto(product, "")
                     : new ProductDto(product, subcategory.Name));
             }
 
@@ -298,7 +316,7 @@ namespace Demo.RavenApi.Controllers
             {
                 var subcategory = this.session.Load<ProductSubcategory>(product.ProductSubcategoryId);
                 result.Add(subcategory == null
-                  ? new ProductDto(product, "TODO")
+                  ? new ProductDto(product, "")
                   : new ProductDto(product, subcategory.Name));
             }
 
@@ -312,7 +330,7 @@ namespace Demo.RavenApi.Controllers
                 .Load<Product>(id);
             var subcategory = this.session.Load<ProductSubcategory>(product.ProductSubcategoryId);
             var result = new ProductDto();
-            result = subcategory == null ? new ProductDto(product, "TODO") : new ProductDto(product, subcategory.Name);
+            result = subcategory == null ? new ProductDto(product, "") : new ProductDto(product, subcategory.Name);
             return this.Ok(result);
         }
 
@@ -323,7 +341,7 @@ namespace Demo.RavenApi.Controllers
                 .Load<Product>(id);
             var subcategory = this.session.Load<ProductSubcategory>(product.ProductSubcategoryId);
             var result = new ProductDto();
-            result = subcategory == null ? new ProductDto(product, "TODO") : new ProductDto(product, subcategory.Name);
+            result = subcategory == null ? new ProductDto(product, "") : new ProductDto(product, subcategory.Name);
             return this.Ok(result);
 
         }
@@ -341,7 +359,7 @@ namespace Demo.RavenApi.Controllers
             {
                 var subcategory = this.session.Load<ProductSubcategory>(product.ProductSubcategoryId);
                 result.Add(subcategory == null
-                   ? new ProductDto(product, "TODO")
+                   ? new ProductDto(product, "")
                    : new ProductDto(product, subcategory.Name));
             }
 
@@ -362,7 +380,7 @@ namespace Demo.RavenApi.Controllers
             {
                 var subcategory = this.session.Load<ProductSubcategory>(product.ProductSubcategoryId);
                 result.Add(subcategory == null
-                   ? new ProductDto(product, "TODO")
+                   ? new ProductDto(product, "")
                    : new ProductDto(product, subcategory.Name));
             }
 
@@ -382,7 +400,7 @@ namespace Demo.RavenApi.Controllers
             {
                 var subcategory = this.session.Load<ProductSubcategory>(product.ProductSubcategoryId);
                 result.Add(subcategory == null
-                   ? new ProductDto(product, "TODO")
+                   ? new ProductDto(product, "")
                    : new ProductDto(product, subcategory.Name));
             }
 

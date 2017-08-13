@@ -4,9 +4,9 @@ using Raven.Client.Indexes;
 
 namespace Demo.RavenApi.Infrastructure
 {
-    public class UnitMeasures_ByNameAndUnitMeasureCodeSortByNameUnitMeasureCode : AbstractIndexCreationTask<UnitMeasure>
+    public class UnitMeasures_ByNameAndUnitMeasureCode : AbstractIndexCreationTask<UnitMeasure>
     {
-        public UnitMeasures_ByNameAndUnitMeasureCodeSortByNameUnitMeasureCode()
+        public UnitMeasures_ByNameAndUnitMeasureCode()
         {
             Map = unitMeasures => from unitMeasure in unitMeasures
                 select new

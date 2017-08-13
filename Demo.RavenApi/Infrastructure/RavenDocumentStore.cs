@@ -2,6 +2,7 @@
 using Demo.Model.Raven.Entities;
 using Raven.Client;
 using Raven.Client.Document;
+using Raven.Client.Indexes;
 
 namespace Demo.RavenApi.Infrastructure
 {
@@ -15,30 +16,13 @@ namespace Demo.RavenApi.Infrastructure
                 ConnectionStringName = "Server"
             };
             store.Conventions.RegisterIdConvention<UnitMeasure>(((database, commands, entity) => entity.UnitMeasureCode));
+           
 
-            //store.getDatabaseCommands().deleteIndex("Orders/Totals");
-         
             store.Initialize();
-
-            new UnitMeasures_ByNameAndUnitMeasureCodeSortByNameUnitMeasureCode().Execute(store);
-
-            new ProductCategories_ByIdSortById().Execute(store);
-
-            new ProductSubcategories_ByNameAndProductCategoryNameSortByNameProductCategoryName().Execute(store);
-
-            new Locations_ByNameSortByName().Execute(store);
-
-            new Products_ByColorAndNameAndProductNumberAndProductSubcategoryNameSortByNameProductSubcategoryName().Execute(store);
-
-            new Subcategories_ByCategoryName().Execute(store);
-
-            new Products_BySubcategoryName().Execute(store);
-
+            IndexCreation.CreateIndexes(typeof(RavenDocumentStore).Assembly, store);
             return store;
         });
 
-        public static IDocumentStore Store =>
-            LazyStore.Value;
-
+        public static IDocumentStore Store => LazyStore.Value;
     }
 }

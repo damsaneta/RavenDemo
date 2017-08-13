@@ -4,9 +4,9 @@ using Raven.Client.Indexes;
 
 namespace Demo.RavenApi.Infrastructure
 {
-    public class ProductCategories_ByIdSortById : AbstractIndexCreationTask<ProductCategory>
+    public class ProductCategories_ByName : AbstractIndexCreationTask<ProductCategory>
     {
-        public ProductCategories_ByIdSortById()
+        public ProductCategories_ByName()
         {
             Map = productCategories => from productCategory in productCategories
                 select new

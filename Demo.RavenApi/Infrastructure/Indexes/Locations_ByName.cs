@@ -4,9 +4,9 @@ using Raven.Client.Indexes;
 
 namespace Demo.RavenApi.Infrastructure
 {
-    public class Locations_ByNameSortByName : AbstractIndexCreationTask<Location>
+    public class Locations_ByName : AbstractIndexCreationTask<Location>
     {
-        public Locations_ByNameSortByName()
+        public Locations_ByName()
         {
             Map = locations => from location in locations
                 select new

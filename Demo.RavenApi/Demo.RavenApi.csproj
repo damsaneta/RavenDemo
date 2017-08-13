@@ -98,18 +98,17 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Infrastructure\Products_BySubcategoryName.cs" />
-    <Compile Include="Infrastructure\Subcategories_ByCategoryName.cs" />
+    <Compile Include="Infrastructure\Indexes\Products_BySubcategoryName.cs" />
+    <Compile Include="Infrastructure\Indexes\ProductSubcategories_ByProductCategoryName.cs" />
     <Compile Include="Models\DataTables\DtModelBinder.cs" />
     <Compile Include="Models\DataTables\DtOrderDirection.cs" />
     <Compile Include="Models\DataTables\DtRequest.cs" />
-    <Compile Include="Infrastructure\Locations_ByNameSortByName.cs" />
-    <Compile Include="Infrastructure\ProductCategories_ByIdSortById.cs" />
-    <Compile Include="Infrastructure\ProductCategories_ByNameSortByIdName.cs" />
-    <Compile Include="Infrastructure\ProductSubcategories_ByNameAndProductCategoryNameSortByNameProductCategoryName.cs" />
-    <Compile Include="Infrastructure\Products_ByColorAndNameAndProductNumberAndProductSubcategoryNameSortByNameProductSubcategoryName.cs" />
+    <Compile Include="Infrastructure\Indexes\Locations_ByName.cs" />
+    <Compile Include="Infrastructure\Indexes\ProductCategories_ByName.cs" />
+    <Compile Include="Infrastructure\Indexes\ProductSubcategories_ByName.cs" />
+    <Compile Include="Infrastructure\Indexes\Products_ByNameAndColorAndProductNumber.cs" />
     <Compile Include="Infrastructure\RavenDocumentStore.cs" />
-    <Compile Include="Infrastructure\UnitMeasures_ByNameAndUnitMeasureCodeSortByNameUnitMeasureCode.cs" />
+    <Compile Include="Infrastructure\Indexes\UnitMeasures_ByNameAndUnitMeasureCode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
