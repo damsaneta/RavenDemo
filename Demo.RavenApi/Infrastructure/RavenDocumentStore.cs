@@ -29,7 +29,11 @@ namespace Demo.RavenApi.Infrastructure
             new Locations_ByNameSortByName().Execute(store);
 
             new Products_ByColorAndNameAndProductNumberAndProductSubcategoryNameSortByNameProductSubcategoryName().Execute(store);
+
             new Subcategories_ByCategoryName().Execute(store);
+
+            new Products_BySubcategoryName().Execute(store);
+
             return store;
         });
 

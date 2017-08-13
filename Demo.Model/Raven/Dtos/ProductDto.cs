@@ -9,7 +9,7 @@ namespace Demo.Model.Raven.Dtos
             
         }
 
-        public ProductDto(Product entity)
+        public ProductDto(Product entity, string productSubcategoryName)
         {
             this.Id = entity.Id;
             this.Name = entity.Name;
@@ -17,6 +17,7 @@ namespace Demo.Model.Raven.Dtos
             this.Color = entity.Color;
             this.ListPrice = entity.ListPrice;
             this.ProductSubcategoryId = entity.ProductSubcategoryId;
+            this.ProductSubcategoryName = productSubcategoryName;
 
         }
         public string Id { get; set; }

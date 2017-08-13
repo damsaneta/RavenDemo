@@ -29,21 +29,48 @@
        
     </div>
     <div class="col-md-4">
-        <h2>API</h2
+        <h2>API</h2>
         <p>
-            <a href="@(Consts.SqlApiRootUrl + "products")">api/Products/Get</a>
+            <a href="@(Consts.RavenApiRootUrl + "examples/griddata/subcategories")">Podkategorie: <br/>/subcategories</a>
         </p>
         <p>
-            <a href="@(Consts.SqlApiRootUrl + "productcategories")">api/ProductCategories/Get</a>
+            <a href="@(Consts.RavenApiRootUrl + "/examples/griddata/subcategories/2")">Podkategoria po id: <br />/subcategories/2</a>
         </p>
         <p>
-            <a href="@(Consts.SqlApiRootUrl + "productsubcategories")">api/ProductSubcategories/Get</a>
+            <a href="@(Consts.RavenApiRootUrl + "examples/griddata/subcategories?id=ProductSubcategories/1")">Podkategoria po id: <br />/subcategories?id=ProductSubcategories/1</a>
         </p>
         <p>
-            <a href="@(Consts.SqlApiRootUrl + "unitsmeasure")">api/UnitsMeasure/Get</a>
+            <a href="@(Consts.RavenApiRootUrl + "examples/griddata/subcategories/category?name=b")">Podkategorie po nazwie kategorii: <br/>/subcategories/category?name=b</a>
         </p>
         <p>
-            <a href="@(Consts.SqlApiRootUrl + "locations")">api/Locations/Get</a>
+            <a href="@(Consts.RavenApiRootUrl + "examples/griddata/subcategories?name=c")">Podkategorie po nazwie: <br/>/subcategories?name=c</a>
+        </p>
+        <p>
+            <a href="@(Consts.RavenApiRootUrl + "examples/griddata/subcategories/category/2")">Podkategorie po id kategorii: <br/>/subcategories/category/2</a>
+        </p>
+        <p>
+            <a href="@(Consts.RavenApiRootUrl + "examples/griddata/subcategories/category?id=ProductCategories/2")">Podkategorie po id kategorii: <br/>/subcategories/category?id=ProductCategories/2</a>
+        </p>
+        <p>
+            <a href="@(Consts.RavenApiRootUrl + "examples/griddata/products")">Produkty: <br/>/products</a>
+        </p>
+        <p>
+            <a href="@(Consts.RavenApiRootUrl + "examples/griddata/products/1")">Produkt po id: <br/>/products/1</a>
+        </p>
+        <p>
+            <a href="@(Consts.RavenApiRootUrl + "examples/griddata/products?id=Products/852")">Produkt po id: <br/>/products?id=Products/852</a>
+        </p>
+        <p>
+            <a href="@(Consts.RavenApiRootUrl + "examples/griddata/products?name=a")">Produkt po nazwie: <br/>/products?name=a"</a>
+        </p>
+        <p>
+            <a href="@(Consts.RavenApiRootUrl + "examples/griddata/products/subcategories/25")">Produkt po id podkategorii: <br/>/products/subcategories/25"</a>
+        </p>
+        <p>
+            <a href="@(Consts.RavenApiRootUrl + "examples/griddata/products/subcategories?id=ProductSubcategories/25")">Produkt po id podkategorii: <br/>/products/subcategories?id=ProductSubcategories/25"</a>
+        </p>
+        <p>
+            <a href="@(Consts.RavenApiRootUrl + "examples/griddata/products/subcategories?name=f")">Produkt po nazwie podkategorii: <br />/products/subcategories?name=f"</a>
         </p>
     </div>
 </div>

@@ -27,7 +27,7 @@ namespace Demo.RavenApi.Controllers
                 return this.NotFound();
             }
 
-            return this.Ok(new ProductDto(result));
+            return this.Ok(new ProductDto(result, "TODO"));
         }
 
         [ResponseType(typeof(IList<ProductDto>))]
