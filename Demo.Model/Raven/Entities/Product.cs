@@ -1,4 +1,5 @@
-﻿using Demo.Model.Raven.Dtos;
+﻿using System;
+using Demo.Model.Raven.Dtos;
 
 namespace Demo.Model.Raven.Entities
 {
@@ -17,6 +18,14 @@ namespace Demo.Model.Raven.Entities
             this.Color = dto.Color;
             this.ListPrice = dto.ListPrice;
             this.ProductSubcategoryId = dto.ProductSubcategoryId;
+            this.ReorderPoint = dto.ReorderPoint;
+            this.SafetyStockLevel = dto.SafetyStockLevel;
+            this.SellStartDate = dto.SellStartDate;
+            this.SellEndDate = dto.SellEndDate;
+            this.Size = dto.Size;
+            this.SizeUnitMeasureCode = dto.SizeUnitMeasureCode;
+            this.WeightUnitMeasureCode = WeightUnitMeasureCode;
+            this.Weight = dto.Weight;
         }
 
         public string Id { get; set; }
@@ -27,7 +36,23 @@ namespace Demo.Model.Raven.Entities
 
         public string Color { get; set; }
 
+        public short SafetyStockLevel { get; set; }
+ 
+        public short ReorderPoint { get; set; }
+
         public decimal ListPrice { get; set; }
+
+        public string Size { get; set; }
+
+        public string SizeUnitMeasureCode { get; set; }
+
+        public string WeightUnitMeasureCode { get; set; }
+
+        public decimal? Weight { get; set; }
+
+        public DateTime SellStartDate { get; set; }
+
+        public DateTime? SellEndDate { get; set; }
 
         public string ProductSubcategoryId { get; set; }
     }

@@ -16,10 +16,10 @@ namespace Demo.UI.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            this.SynchronizeProductCategories();
-            this.SynchronizeProductSubcategories();
-            this.SynchronizeLocations();
-            this.SynchronizeUnitsMeasure();
+            //this.SynchronizeProductCategories();
+            //this.SynchronizeProductSubcategories();
+            //this.SynchronizeLocations();
+            //this.SynchronizeUnitsMeasure();
             this.SynchronizeProducts();
             return View();
         }
@@ -226,7 +226,15 @@ namespace Demo.UI.Controllers
                             ravenEntity.Name = sqlEntity.Name;
                             ravenEntity.Color = sqlEntity.Color;
                             ravenEntity.ListPrice = sqlEntity.ListPrice;
+                            ravenEntity.SafetyStockLevel = sqlEntity.SafetyStockLevel;
+                            ravenEntity.ReorderPoint = sqlEntity.ReorderPoint;
                             ravenEntity.ProductNumber = sqlEntity.ProductNumber;
+                            ravenEntity.Size = sqlEntity.Size;
+                            ravenEntity.SizeUnitMeasureCode = sqlEntity.SizeUnitMeasureCode;
+                            ravenEntity.Weight = sqlEntity.Weight;
+                            ravenEntity.WeightUnitMeasureCode = sqlEntity.WeightUnitMeasureCode;
+                            ravenEntity.SellStartDate = sqlEntity.SellStartDate;
+                            ravenEntity.SellEndDate = sqlEntity.SellEndDate;
                             ravenEntity.ProductSubcategoryId = "ProductSubcategories/" + sqlEntity.ProductSubcategoryId;
                             response = client.PutAsJsonAsync("Products", ravenEntity).Result;
                             response.EnsureSuccessStatusCode();
@@ -241,7 +249,15 @@ namespace Demo.UI.Controllers
                             Id = "Products/" + sqlEntity.Id,
                             Color = sqlEntity.Color,
                             ListPrice = sqlEntity.ListPrice,
+                            SafetyStockLevel = sqlEntity.SafetyStockLevel,
+                            ReorderPoint = sqlEntity.ReorderPoint,
                             ProductNumber = sqlEntity.ProductNumber,
+                            Size = sqlEntity.Size,
+                            SizeUnitMeasureCode = sqlEntity.SizeUnitMeasureCode,
+                            Weight = sqlEntity.Weight,
+                            WeightUnitMeasureCode = sqlEntity.WeightUnitMeasureCode,
+                            SellStartDate = sqlEntity.SellStartDate,
+                            SellEndDate = sqlEntity.SellEndDate,
                             ProductSubcategoryId = "ProductSubcategories/" + sqlEntity.ProductSubcategoryId
                         };
                         response = client.PostAsJsonAsync("Products", ravenEntity).Result;

@@ -42,8 +42,17 @@ namespace Demo.RavenApi.Controllers
                 Name = product.Name,
                 ProductNumber = product.ProductNumber,
                 Color = product.Color,
+                SafetyStockLevel = product.SafetyStockLevel,
+                ReorderPoint = product.ReorderPoint,
                 ListPrice = product.ListPrice,
-                ProductSubcategoryId = product.ProductSubcategoryId
+                SellStartDate = product.SellStartDate,
+                SellEndDate = product.SellEndDate,
+                ProductSubcategoryId = product.ProductSubcategoryId,
+                Size = product.Size,
+                SizeUnitMeasureCode = product.SizeUnitMeasureCode,
+                Weight = product.Weight,
+                WeightUnitMeasureCode = product.WeightUnitMeasureCode
+
             });
 
             if (!string.IsNullOrEmpty(request.Search))
@@ -111,11 +120,21 @@ namespace Demo.RavenApi.Controllers
             {
                 return this.NotFound();
             }
+
             entity.Name = productDto.Name;
             entity.Color = productDto.Color;
             entity.ListPrice = productDto.ListPrice;
+            entity.SafetyStockLevel = productDto.SafetyStockLevel;
+            entity.ReorderPoint = productDto.ReorderPoint;
             entity.ProductNumber = productDto.ProductNumber;
+            entity.SellStartDate = productDto.SellStartDate;
+            entity.SellEndDate = productDto.SellEndDate;
             entity.ProductSubcategoryId =  productDto.ProductSubcategoryId;
+            entity.Size = productDto.Size;
+            entity.SizeUnitMeasureCode = productDto.SizeUnitMeasureCode;
+            entity.Weight = productDto.Weight;
+            entity.WeightUnitMeasureCode = productDto.WeightUnitMeasureCode;
+
             this.session.SaveChanges();
             return this.Ok();
         }

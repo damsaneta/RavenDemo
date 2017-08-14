@@ -24,7 +24,15 @@ namespace Demo.SqlApi.Controllers
                 , p.[Name]
                 , p.[ProductNumber]
                 , p.[Color]
+                , p.[SafetyStockLevel]
+                , p.[ReorderPoint]
                 , p.[ListPrice]
+                , p.[Size]
+                , p.[SizeUnitMeasureCode]
+                , p.[WeightUnitMeasureCode]
+                , p.[Weight]
+                , p.[SellStartDate]
+                , p.[SellEndDate]
                 , p.[ProductSubcategoryID]
                 , ps.ID as ProductSubcategoryID
                 , ps.Name as ProductSubcategoryName
@@ -46,7 +54,15 @@ namespace Demo.SqlApi.Controllers
                 , p.[Name]
                 , p.[ProductNumber]
                 , p.[Color]
+                , p.[SafetyStockLevel]
+                , p.[ReorderPoint]
                 , p.[ListPrice]
+                , p.[Size]
+                , p.[SizeUnitMeasureCode]
+                , p.[WeightUnitMeasureCode]
+                , p.[Weight]
+                , p.[SellStartDate]
+                , p.[SellEndDate]
                 , p.[ProductSubcategoryID]
                 , ps.ID as ProductSubcategoryID
                 , ps.Name as ProductSubcategoryName

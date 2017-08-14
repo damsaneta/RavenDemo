@@ -30,7 +30,15 @@ namespace Demo.LinqApi.Controllers
                 Color = product.Color,
                 ListPrice = product.ListPrice,
                 ProductSubcategoryId = product.ProductSubcategoryId,
-                ProductSubcategoryName = product.ProductSubcategory.Name
+                ProductSubcategoryName = product.ProductSubcategory.Name,
+                SafetyStockLevel = product.SafetyStockLevel,
+                ReorderPoint = product.ReorderPoint,
+                SellStartDate = product.SellStartDate,
+                SellEndDate = product.SellEndDate,
+                Size = product.Size,
+                SizeUnitMeasureCode = product.SizeUnitMeasureCode,
+                Weight = product.Weight,
+                WeightUnitMeasureCode = product.WeightUnitMeasureCode
 
             }).SingleOrDefault();
 
@@ -57,7 +65,15 @@ namespace Demo.LinqApi.Controllers
                 Color = product.Color,
                 ListPrice = product.ListPrice,
                 ProductSubcategoryId = product.ProductSubcategoryId,
-                ProductSubcategoryName = product.ProductSubcategory.Name
+                ProductSubcategoryName = product.ProductSubcategory.Name,
+                SafetyStockLevel = product.SafetyStockLevel,
+                ReorderPoint = product.ReorderPoint,
+                SellStartDate = product.SellStartDate,
+                SellEndDate = product.SellEndDate,
+                Size = product.Size,
+                SizeUnitMeasureCode = product.SizeUnitMeasureCode,
+                Weight = product.Weight,
+                WeightUnitMeasureCode = product.WeightUnitMeasureCode
             });
 
             if (!string.IsNullOrEmpty(request.Search))

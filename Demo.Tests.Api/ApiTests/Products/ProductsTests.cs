@@ -12,7 +12,7 @@ namespace Demo.Tests.Api.ApiTests.Products
         [Test]
         [TestCase(Consts.SqlApiRootUrl)]
         [TestCase(Consts.LinqApiRootUrl)]
-        //[TestCase(Consts.RavenApiRootUrl)]
+        [TestCase(Consts.RavenApiRootUrl)]
         public void Get_all(string root)
         {
             using (var client = new HttpClient { BaseAddress = new Uri(root) })
