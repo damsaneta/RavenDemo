@@ -23,6 +23,9 @@
         <p>
             @Html.ActionLink("Lokalizacje", "Index", "Locations")
         </p>
+        <p>
+            @Html.ActionLink("Spis produktów", "Index", "ProductInventories")
+        </p>
     </div>
     <div class="col-md-4">
         <h2>Raporty</h2>
@@ -70,7 +73,10 @@
             <a href="@(Consts.RavenApiRootUrl + "examples/griddata/products/subcategories?id=ProductSubcategories/25")">Produkt po id podkategorii: <br/>/products/subcategories?id=ProductSubcategories/25"</a>
         </p>
         <p>
-            <a href="@(Consts.RavenApiRootUrl + "examples/griddata/products/subcategories?name=f")">Produkt po nazwie podkategorii: <br />/products/subcategories?name=f"</a>
+            <a href="@(Consts.RavenApiRootUrl + "examples/griddata/products/subcategories?name=f")">Produkt po nazwie podkategorii: <br/>/products/subcategories?name=f"</a>
+        </p>
+        <p>
+            <a href="@(Consts.RavenApiRootUrl + "examples/griddata/products?descending=true")">Produkt po id podkategorii malejąco: <br />/products?descending=true"</a>
         </p>
     </div>
 </div>

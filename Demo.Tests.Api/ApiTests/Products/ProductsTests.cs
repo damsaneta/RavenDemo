@@ -26,7 +26,6 @@ namespace Demo.Tests.Api.ApiTests.Products
                 var r2 = ProductsFiles.GetAll_json.Replace("\"", "").Trim();
                 content.Replace("Products/", "").Replace("ProductSubcategories/", "").Replace("\"", "").Trim()
                 .Should().Be(ProductsFiles.GetAll_json.Replace("\"", "").Trim());
-                //content.Should().Be(ProductsFiles.GetAll_json.Trim());
             }
         }
 

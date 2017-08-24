@@ -20,7 +20,8 @@ namespace Demo.UI.Controllers
             //this.SynchronizeProductSubcategories();
             //this.SynchronizeLocations();
             //this.SynchronizeUnitsMeasure();
-            this.SynchronizeProducts();
+            //this.SynchronizeProducts();
+            this.SynchronizeProductInventories();
             return View();
         }
 
@@ -261,6 +262,56 @@ namespace Demo.UI.Controllers
                             ProductSubcategoryId = "ProductSubcategories/" + sqlEntity.ProductSubcategoryId
                         };
                         response = client.PostAsJsonAsync("Products", ravenEntity).Result;
+                        response.EnsureSuccessStatusCode();
+                    }
+                }
+            }
+        }
+
+        private void SynchronizeProductInventories()
+        {
+            List<ProductInventoryDto> result;
+            using (var client = new HttpClient { BaseAddress = new Uri(Consts.SqlApiRootUrl) })
+            {
+                HttpResponseMessage response = client.GetAsync("ProductInventories").Result;
+                string content = response.Content.ReadAsStringAsync().Result;
+                result = JsonConvert.DeserializeObject<List<Demo.Model.EF.Dtos.ProductInventoryDto>>(content);
+            }
+
+            using (var client = new HttpClient { BaseAddress = new Uri(Consts.RavenApiRootUrl) })
+            {
+                foreach (var sqlEntity in result)
+                {
+                    HttpResponseMessage response = client.GetAsync("ProductInventories?id=ProductInventories/" + sqlEntity.ProductId + "_" + sqlEntity.LocationId).Result;
+                    if (response.IsSuccessStatusCode)
+                    {
+                        //(put)
+                        string content = response.Content.ReadAsStringAsync().Result;
+                        var ravenEntity = JsonConvert.DeserializeObject<Demo.Model.Raven.Entities.ProductInventory>(content);
+                        if (ravenEntity.Bin != sqlEntity.Bin || ravenEntity.Quantity != sqlEntity.Quantity ||
+                            ravenEntity.Shelf != sqlEntity.Shelf)
+                        {
+                            ravenEntity.Bin = sqlEntity.Bin;
+                            ravenEntity.Quantity = sqlEntity.Quantity;
+                            ravenEntity.Shelf = sqlEntity.Shelf;
+                            //ravenEntity.ProductId = "Products/" + sqlEntity.ProductId;
+                            //ravenEntity.LocationId = "Locations/" + sqlEntity.LocationId;
+                            response = client.PutAsJsonAsync("ProductInventories", ravenEntity).Result;
+                            response.EnsureSuccessStatusCode();
+                        }
+                    }
+                    else
+                    {
+                        // insert (post)
+                        var ravenEntity = new Demo.Model.Raven.Entities.ProductInventory()
+                        {
+                            ProductId = "Products/" + sqlEntity.ProductId,
+                            LocationId = "Locations/" + sqlEntity.LocationId,
+                            Bin = sqlEntity.Bin,
+                            Quantity = sqlEntity.Quantity,
+                            Shelf = sqlEntity.Shelf
+                        };
+                        response = client.PostAsJsonAsync("ProductInventories", ravenEntity).Result;
                         response.EnsureSuccessStatusCode();
                     }
                 }

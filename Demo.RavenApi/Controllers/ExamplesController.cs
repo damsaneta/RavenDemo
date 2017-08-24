@@ -406,5 +406,25 @@ namespace Demo.RavenApi.Controllers
 
             return this.Ok(result);
         }
+
+        [Route("api/examples/griddata/products")]
+        public IHttpActionResult GetProductsWithRelationsOrderedBySubcategoryId(bool descending)
+        {
+            var result = new List<ProductDto>();
+            var products = this.session.Query<Product>()
+                .Customize(x => x.AlphaNumericOrdering<Product>(y => y.ProductSubcategoryId, descending: descending))
+                .Include(x => x.ProductSubcategoryId).Take(1024)
+                .ToList();
+
+            foreach (var product in products)
+            {
+                var subcategory = this.session.Load<ProductSubcategory>(product.ProductSubcategoryId);
+                result.Add(subcategory == null
+                    ? new ProductDto(product, "")
+                    : new ProductDto(product, subcategory.Name));
+            }
+
+            return this.Ok(result);
+        }
     }
 }

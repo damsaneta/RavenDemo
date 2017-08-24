@@ -17,6 +17,7 @@ namespace Demo.LinqApi.Model
             modelBuilder.Entity<UnitMeasure>();
             modelBuilder.Entity<Location>();
             modelBuilder.Entity<Product>();
+            modelBuilder.Entity<ProductInventory>();
             //modelBuilder.Entity<ProductCategory>()
             //    .HasMany(e => e.ProductSubcategory)
             //    .WithRequired(e => e.ProductCategory)

@@ -45,6 +45,7 @@ namespace Demo.SqlApi.Controllers
 
             return Ok(produtcDto);
         }
+
         [ResponseType(typeof(IList<ProductDto>))]
         public IHttpActionResult Get(DtRequest<ProductDto> request)
         {

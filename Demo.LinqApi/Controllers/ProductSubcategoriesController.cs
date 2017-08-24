@@ -66,7 +66,7 @@ namespace Demo.LinqApi.Controllers
                     break;
                 case "ProductCategoryId":
                     queryDto = request.OrderDirection == DtOrderDirection.ASC
-                        ? queryDto.OrderBy(x => x.Id)
+                        ? queryDto.OrderBy(x => x.ProductCategoryId)
                         : queryDto.OrderByDescending(x => x.ProductCategoryId);
                     break;
                 case "Name":

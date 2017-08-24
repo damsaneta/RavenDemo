@@ -1,0 +1,71 @@
+﻿@using Demo.UI.Models
+
+@{
+    ViewBag.Title = "Spis produktów";
+}
+<div>
+    <table id="myTable"></table>
+</div>
+
+<script>
+    $(document).ready(function () {
+
+       $('#myTable').dataTable({
+            serverSide: true,
+            processing: false,
+            paging: false,
+            info: false,
+            ajax: {
+                url: '@Consts.RavenApiRootUrl' + "ProductInventories",
+                dataSrc: ''
+            },
+            columns: [
+                {
+                    name: 'ProductName',
+                    data: "ProductName",
+                    title: "Nazwa produktu",
+                    sortable: true,
+                    searchable: true
+                },
+                {
+                    name: 'LocationName',
+                    data: "LocationName",
+                    title: "Lokalizacja",
+                    sortable: true,
+                    searchable: true
+                },
+                {
+                    name: 'Shelf',
+                    data: "Shelf",
+                    title: "Schowek",
+                    sortable: true,
+                    searchable: false
+                },
+                {
+                    name: 'Bin',
+                    data: "Bin",
+                    title: "Pojemnik",
+                    sortable: true,
+                    searchable: false
+                },
+                {
+                    name: 'Quantity',
+                    data: "Quantity",
+                    title: "Ilość",
+                    sortable: true,
+                    searchable: false
+                }
+
+            ]
+
+        }
+        );
+
+    });
+
+    function renderNameColumnFunc(data, type, full, meta) {
+        // TODO
+        var txt = "<button>Edytuj</button>";
+        return txt;
+    }
+</script>

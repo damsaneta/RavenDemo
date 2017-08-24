@@ -16,7 +16,8 @@ namespace Demo.RavenApi.Infrastructure
                 ConnectionStringName = "Server"
             };
             store.Conventions.RegisterIdConvention<UnitMeasure>(((database, commands, entity) => entity.UnitMeasureCode));
-           
+            store.Conventions.RegisterIdConvention<ProductInventory>(((database, commands, entity) => "ProductInventories/" + entity.ProductId.Replace("Products/", "") + "_" + entity.LocationId.Replace("Locations/", "")));
+
 
             store.Initialize();
             IndexCreation.CreateIndexes(typeof(RavenDocumentStore).Assembly, store);
