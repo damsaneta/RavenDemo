@@ -14,6 +14,7 @@ namespace Demo.RavenApi.Infrastructure
                 {
                     Name = productSubcategory.Name
                 };
+
             this.Index(x => x.Name, FieldIndexing.Analyzed);
         }
     }

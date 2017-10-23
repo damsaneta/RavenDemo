@@ -29,6 +29,12 @@
     </div>
     <div class="col-md-4">
         <h2>Raporty</h2>
+        <p>
+            <a href="@(Consts.RavenApiRootUrl + "examples/raports/products/groupByProductSubcategoryId")">Produkty pogrupowane po id podkategorii: <br />/products/groupByProductSubcategoryId</a>
+        </p>
+        <p>
+            <a href="@(Consts.RavenApiRootUrl + "examples/raports/productInventories/groupByProductId")">Spis produktów pogrupowany po id produktu: <br/>/productInventories/groupByProductId</a>
+        </p>
        
     </div>
     <div class="col-md-4">
@@ -47,6 +53,24 @@
         </p>
         <p>
             <a href="@(Consts.RavenApiRootUrl + "examples/griddata/subcategories?name=c")">Podkategorie po nazwie: <br/>/subcategories?name=c</a>
+        </p>
+        <p>
+            <a href="@(Consts.RavenApiRootUrl + "examples/griddata/subcategories?term=Bikes Frames")">Podkategorie wyszukiwane po nazwie: <br/>/subcategories?term=Bikes Frames</a>
+        </p>
+        <p>
+            <a href="@(Consts.RavenApiRootUrl + "examples/griddata/subcategories?exactMatchTerm=Headsets")">Podkategorie wyszukiwane po nazwie dokładnie: <br/>/subcategories?exactMatchTerm=Headsets</a>
+        </p>
+        <p>
+            <a href="@(Consts.RavenApiRootUrl + "examples/products?name=Chain Washer&color=Silver")">Produkty wyszukiwane po nazwie i kolorze: <br/>/products?name=Chain Washer&color=Silver</a>
+        </p>
+        <p>
+            <a href="@(Consts.RavenApiRootUrl + "examples/products/boost")">Produkty wyszukiwane po nazwie i kolorze z wykorzystaniem boost: <br/>/products/boost</a>
+        </p>
+        <p>
+            <a href="@(Consts.RavenApiRootUrl + "examples/products/searchOption")">Produkty wyszukiwane po nazwie i kolorze z wykorzystaniem searchOption: <br />/products/searchOption</a>
+        </p>
+        <p>
+            <a href="@(Consts.RavenApiRootUrl + "examples/griddata/subcategories?name=Bi")">Podkategorie rozpoczynające się na "Bi": <br />/subcategories?name=Bi</a>
         </p>
         <p>
             <a href="@(Consts.RavenApiRootUrl + "examples/griddata/subcategories/category/2")">Podkategorie po id kategorii: <br/>/subcategories/category/2</a>
@@ -76,7 +100,19 @@
             <a href="@(Consts.RavenApiRootUrl + "examples/griddata/products/subcategories?name=f")">Produkt po nazwie podkategorii: <br/>/products/subcategories?name=f"</a>
         </p>
         <p>
-            <a href="@(Consts.RavenApiRootUrl + "examples/griddata/products?descending=true")">Produkt po id podkategorii malejąco: <br />/products?descending=true"</a>
+            <a href="@(Consts.RavenApiRootUrl + "examples/griddata/products?descending=true")">Produkt po id podkategorii malejąco: <br/>/products?descending=true"</a>
+        </p>
+        <p>
+            <a href="@(Consts.RavenApiRootUrl + "examples/griddata/products?listPriceMoreThan=500")">Produkty z ceną większą niż 500, posortowany malejąco wzgledem ceny: <br/>/products?listPriceMoreThan=500"</a>
+        </p>
+        <p>
+            <a href="@(Consts.RavenApiRootUrl + "examples/griddata/productInventories")"> Spis wszystkich produktów: <br/>/productInventories</a>
+        </p>
+        <p>
+            <a href="@(Consts.RavenApiRootUrl + "examples/griddata/productInventories?place=A 6")"> Spis wszystkich produktów po shelf i bin: <br/>/productInventories?place=A 6</a>
+        </p>
+        <p>
+            <a href="@(Consts.RavenApiRootUrl + "examples/griddata/products?year=2007")"> Produkty po roku rozpoczecia sprzedaży: <br />/products?year=2007</a>
         </p>
     </div>
 </div>
