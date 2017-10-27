@@ -41,19 +41,9 @@ namespace Demo.RavenApi.Controllers
                 Id = x.Id,
                 Name = x.Name
             });
-            switch (request.OrderColumn)
-            {
-                case "Id":
-                    queryDto = request.OrderDirection == DtOrderDirection.ASC
-                        ? queryDto.OrderBy(x => x.Id)
-                        : queryDto.OrderByDescending(x => x.Id);
-                    break;
-                default:
-                    queryDto = request.OrderDirection == DtOrderDirection.ASC
+            queryDto = request.OrderDirection == DtOrderDirection.ASC
                         ? queryDto.OrderBy(x => x.Name)
                         : queryDto.OrderByDescending(x => x.Name);
-                    break;
-            }
             var result = queryDto.ToList(); 
             return this.Ok(result);
         }

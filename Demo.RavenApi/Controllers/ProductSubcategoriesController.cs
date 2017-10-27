@@ -9,6 +9,7 @@ using Demo.RavenApi.Models.DataTables;
 using Raven.Client;
 using Demo.Model.Raven.Dtos;
 using Demo.RavenApi.Infrastructure;
+using Raven.Client.Linq;
 
 namespace Demo.RavenApi.Controllers
 {
@@ -31,35 +32,32 @@ namespace Demo.RavenApi.Controllers
         [ResponseType(typeof (IList<ProductSubcategoryDto>))]
         public IHttpActionResult Get(DtRequest<ProductSubcategoryDto> request)
         {
-            IQueryable<ProductSubcategory> prodSubCat = this.session.Query<ProductSubcategory>()
+            var result = new List<ProductSubcategoryDto>();
+            IQueryable<ProductSubcategory> subcategoriesQuery;
+            if (!string.IsNullOrEmpty(request.Search))
+            {
+                subcategoriesQuery = this.session.Query<ProductSubcategory, ProductSubcategories_ByName>()
+                    .Include(x => x.ProductCategoryId)
+                    .Search(x => x.Name, request.Search);
+            }
+            else
+            {
+                subcategoriesQuery = this.session.Query<ProductSubcategory, ProductSubcategories_ByName>()
                 .Include(x => x.ProductCategoryId);
+            }
 
-            IQueryable<ProductSubcategoryDto> queryDto = prodSubCat.Select(subcategory => new ProductSubcategoryDto
+
+
+            
+            IQueryable<ProductSubcategoryDto> queryDto = subcategoriesQuery.Select(subcategory => new ProductSubcategoryDto
             {
                 Id = subcategory.Id,
                 Name = subcategory.Name,
                 ProductCategoryId = subcategory.ProductCategoryId
             });
-
-            if (!string.IsNullOrEmpty(request.Search))
-            {
-                queryDto =
-                    queryDto.Where(
-                        x => x.Name.StartsWith(request.Search) || x.ProductCategoryName.StartsWith(request.Search));
-            }
-
+            
             switch (request.OrderColumn)
             {
-                case "Id":
-                    queryDto = request.OrderDirection == DtOrderDirection.ASC
-                        ? queryDto.OrderBy(x => x.Id)
-                        : queryDto.OrderByDescending(x => x.Id);
-                    break;
-                case "ProductCategoryId":
-                    queryDto = request.OrderDirection == DtOrderDirection.ASC
-                        ? queryDto.OrderBy(x => x.Id)
-                        : queryDto.OrderByDescending(x => x.ProductCategoryId);
-                    break;
                 case "Name":
                     queryDto = request.OrderDirection == DtOrderDirection.ASC
                         ? queryDto.OrderBy(x => x.Name)
@@ -72,7 +70,12 @@ namespace Demo.RavenApi.Controllers
                     break;
             }
 
-            var result = queryDto.ToList();
+            result = queryDto.ToList();
+            foreach (ProductSubcategoryDto dto in result)
+            {
+                var category = this.session.Load<ProductCategory>(dto.ProductCategoryId);
+                dto.ProductCategoryName = category.Name;
+            }
 
             return this.Ok(result);
         }
