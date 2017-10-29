@@ -102,6 +102,7 @@
     <Compile Include="Infrastructure\Indexes\ProductInventories_ByShelfAndBin.cs" />
     <Compile Include="Infrastructure\Indexes\ProductInventories_ByBinAndLocationNameAndProductNameAndQuantityAndShelf.cs" />
     <Compile Include="Infrastructure\Indexes\ProductInventories_GroupByProdctId.cs" />
+    <Compile Include="Infrastructure\Indexes\ProductSubcategories_ByNameAndProductCategoryName.cs" />
     <Compile Include="Infrastructure\Indexes\ProductSubcategories_ByNameExactMatchTerm.cs" />
     <Compile Include="Infrastructure\Indexes\ProductSubcategories_ByNameAndProductCategoryId.cs" />
     <Compile Include="Infrastructure\Indexes\Products_ByNameAndColor.cs" />

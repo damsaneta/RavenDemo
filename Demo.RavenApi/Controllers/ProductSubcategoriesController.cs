@@ -9,6 +9,7 @@ using Demo.RavenApi.Models.DataTables;
 using Raven.Client;
 using Demo.Model.Raven.Dtos;
 using Demo.RavenApi.Infrastructure;
+using Demo.RavenApi.Infrastructure.Indexes;
 using Raven.Client.Linq;
 
 namespace Demo.RavenApi.Controllers
@@ -32,51 +33,16 @@ namespace Demo.RavenApi.Controllers
         [ResponseType(typeof (IList<ProductSubcategoryDto>))]
         public IHttpActionResult Get(DtRequest<ProductSubcategoryDto> request)
         {
-            var result = new List<ProductSubcategoryDto>();
-            IQueryable<ProductSubcategory> subcategoriesQuery;
+            IRavenQueryable<ProductSubcategories_ByNameAndProductCategoryName.Result> indexQuery = this.session.Query<ProductSubcategories_ByNameAndProductCategoryName.Result,
+                        ProductSubcategories_ByNameAndProductCategoryName>();
             if (!string.IsNullOrEmpty(request.Search))
             {
-                subcategoriesQuery = this.session.Query<ProductSubcategory, ProductSubcategories_ByName>()
-                    .Include(x => x.ProductCategoryId)
-                    .Search(x => x.Name, request.Search);
-            }
-            else
-            {
-                subcategoriesQuery = this.session.Query<ProductSubcategory, ProductSubcategories_ByName>()
-                .Include(x => x.ProductCategoryId);
+                indexQuery = indexQuery.Where(
+                        x => x.Name.StartsWith(request.Search) || x.ProductCategoryName.StartsWith(request.Search));
             }
 
-
-
-            
-            IQueryable<ProductSubcategoryDto> queryDto = subcategoriesQuery.Select(subcategory => new ProductSubcategoryDto
-            {
-                Id = subcategory.Id,
-                Name = subcategory.Name,
-                ProductCategoryId = subcategory.ProductCategoryId
-            });
-            
-            switch (request.OrderColumn)
-            {
-                case "Name":
-                    queryDto = request.OrderDirection == DtOrderDirection.ASC
-                        ? queryDto.OrderBy(x => x.Name)
-                        : queryDto.OrderByDescending(x => x.Name);
-                    break;
-                default:
-                    queryDto = request.OrderDirection == DtOrderDirection.ASC
-                        ? queryDto.OrderBy(x => x.ProductCategoryName)
-                        : queryDto.OrderByDescending(x => x.ProductCategoryName);
-                    break;
-            }
-
-            result = queryDto.ToList();
-            foreach (ProductSubcategoryDto dto in result)
-            {
-                var category = this.session.Load<ProductCategory>(dto.ProductCategoryId);
-                dto.ProductCategoryName = category.Name;
-            }
-
+            indexQuery = indexQuery.Customize(x => x.AddOrder(request.OrderColumn ?? "ProductCategoryName", request.OrderDirection == DtOrderDirection.DESC));
+            List<ProductSubcategoryDto> result = indexQuery.ProjectFromIndexFieldsInto<ProductSubcategoryDto>().ToList();
             return this.Ok(result);
         }
 
