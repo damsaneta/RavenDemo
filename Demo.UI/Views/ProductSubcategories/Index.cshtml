@@ -23,7 +23,7 @@
                     data: "ProductCategoryName",
                     title: "Kategoria",
                     sortable: true,
-                    searchable: false
+                    searchable: true
                 },
                 {
                     name: 'Name',
@@ -34,11 +34,25 @@
                 }
             ]
         });
+
+        //$('#myTable thead th').each(function () { 
+        //    $(this).html($(this).html() + '<br /><input type="text" placeholder="Szukaj" />');
+        //});
+
+        //// DataTable
+        //var table = $('#myTable').DataTable();
+        //// Apply the search
+        //table.columns().every(function () {
+        //    var that = this;
+
+        //    $('input', this.footer()).on('keyup change', function () {
+        //        if (that.search() !== this.value) {
+        //            that
+        //                .search(this.value)
+        //                .draw();
+        //        }
+        //    });
+        //});
     });
 
-    function renderNameColumnFunc(data, type, full, meta) {
-        // TODO
-        var txt = "<button>Edytuj</button>";
-        return txt;
-    }
 </script>

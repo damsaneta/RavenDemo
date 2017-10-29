@@ -42,7 +42,8 @@ namespace Demo.RavenApi.Controllers
             }
 
             indexQuery = indexQuery.Customize(x => x.AddOrder(request.OrderColumn ?? "ProductCategoryName", request.OrderDirection == DtOrderDirection.DESC));
-            List<ProductSubcategoryDto> result = indexQuery.ProjectFromIndexFieldsInto<ProductSubcategoryDto>().ToList();
+            List<ProductSubcategoryDto> result = indexQuery.ProjectFromIndexFieldsInto<ProductSubcategoryDto>()
+                .ToList();
             return this.Ok(result);
         }
 
