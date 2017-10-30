@@ -99,6 +99,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\Indexes\ProductInventories_ByProductNameAndLocationName.cs" />
     <Compile Include="Infrastructure\Indexes\ProductInventories_ByShelfAndBin.cs" />
     <Compile Include="Infrastructure\Indexes\ProductInventories_ByBinAndLocationNameAndProductNameAndQuantityAndShelf.cs" />
     <Compile Include="Infrastructure\Indexes\ProductInventories_GroupByProdctId.cs" />
@@ -107,6 +108,7 @@
     <Compile Include="Infrastructure\Indexes\ProductSubcategories_ByNameAndProductCategoryId.cs" />
     <Compile Include="Infrastructure\Indexes\Products_ByNameAndColor.cs" />
     <Compile Include="Infrastructure\Indexes\Products_ByListPrice.cs" />
+    <Compile Include="Infrastructure\Indexes\Products_ByNameAndSubcategoryNameAndColorAndProductNumber.cs" />
     <Compile Include="Infrastructure\Indexes\Products_ByProductSubcategoryId.cs" />
     <Compile Include="Infrastructure\Indexes\Products_BySellStartDate.cs" />
     <Compile Include="Infrastructure\Indexes\Products_GroupByProductSubcategoryId.cs" />

@@ -11,26 +11,6 @@
 <script>
     $(document).ready(function () {
 
-      
-
-        //$('#myTable tfoot th').each(function (i) {
-        //    var title = $('#myTable thead th').eq($(this).index()).text();
-        //    var serach = '<input type="text" placeholder="Search ' + title + '" />';
-        //    $(this).html('');
-        //    $(serach).appendTo(this).keyup(function () {
-        //        table.fnFilter($(this).val(), i);
-
-        //    });
-        //});
-       // document.getElementById('myTable').createTFoot().insertRow(0);
-
-        //$('#myTable tfoot th').each(function () {
-        //    var title = $(this).text();
-        //    $(this).html('<input type="text" placeholder="Search ' + title + '" />');
-        //});
-
-  
-
         var table =  $('#myTable').dataTable({
             serverSide: true,
             processing: false,
@@ -53,42 +33,42 @@
                     data: "ProductSubcategoryName",
                     title: "Podkategoria",
                     sortable: true,
-                    searchable: false
+                    searchable: true
                 },
                 {
                     name: 'Color',
                     data: "Color",
                     title: "Kolor",
                     sortable: true,
-                    searchable: false
+                    searchable: true
                 },
                 {
                     name: 'ProductNumber',
                     data: "ProductNumber",
                     title: "Numer produktu",
                     sortable: true,
-                    searchable: false
+                    searchable: true
                 },
                 {
                     name: 'ListPrice',
                     data: "ListPrice",
                     title: "Cena",
-                    sortable: true,
+                    sortable: false,
                     searchable: false
                     }
                     ,
                 {
                     name: 'ReorderPoint',
                     data: "ReorderPoint",
-                    title: "ReorderPoint",
-                    sortable: true,
+                    title: "Punkt zamawiania",
+                    sortable: false,
                     searchable: false
                 },
                 {
                     name: 'SafetyStockLevel',
                     data: "SafetyStockLevel",
-                    title: "SafetyStockLevel",
-                    sortable: true,
+                    title: "Poziom zapasów",
+                    sortable: false,
                     searchable: false
                 }
             ]
@@ -96,22 +76,6 @@
         }
         );
 
-        //$('#myTable thead th').each(function () {
-        //    var title = $('#myTable thead th').eq($(this).index()).text();
-        //    $(this).html('&lt;input type=&quot;text&quot; placeholder=&quot;Search ' + title + '&quot; /&gt;');
-        //});
-
-
-        //$('#myTable tfoot th').each(function () {
-        //    var title = $(this).text();
-        //    $(this).html('<input type="text" placeholder="Search ' + title + '" />');
-        //});
-
     });
 
-    function renderNameColumnFunc(data, type, full, meta) {
-        // TODO
-        var txt = "<button>Edytuj</button>";
-        return txt;
-    }
 </script>

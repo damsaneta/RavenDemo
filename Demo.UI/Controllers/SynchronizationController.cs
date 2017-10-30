@@ -19,9 +19,9 @@ namespace Demo.UI.Controllers
             //this.SynchronizeProductCategories();
             //this.SynchronizeProductSubcategories();
             //this.SynchronizeLocations();
-            //this.SynchronizeUnitsMeasure();
+            this.SynchronizeUnitsMeasure();
             //this.SynchronizeProducts();
-            this.SynchronizeProductInventories();
+           // this.SynchronizeProductInventories();
             return View();
         }
 
@@ -130,7 +130,7 @@ namespace Demo.UI.Controllers
             {
                 foreach (var sqlEntity in result)
                 {
-                    HttpResponseMessage response = client.GetAsync("UnitsMeasure?id=UnitsMeasures/" + sqlEntity.UnitMeasureCode).Result;
+                    HttpResponseMessage response = client.GetAsync("UnitsMeasure?id=UnitsMeasures/UnitsMeasures" + sqlEntity.UnitMeasureCode).Result;
                     if (response.IsSuccessStatusCode)
                     {
                         // update (put)
@@ -149,7 +149,7 @@ namespace Demo.UI.Controllers
                         var ravenEntity = new Demo.Model.Raven.Entities.UnitMeasure
                         {
                             Name = sqlEntity.Name,
-                            UnitMeasureCode = "UnitsMeasures/" + sqlEntity.UnitMeasureCode
+                            UnitMeasureCode =  sqlEntity.UnitMeasureCode
                         };
                         response = client.PostAsJsonAsync("UnitsMeasure", ravenEntity).Result;
                         response.EnsureSuccessStatusCode();

@@ -22,12 +22,15 @@ namespace Demo.RavenApi.Controllers
         public IHttpActionResult Get(string id)
         {
             var result = this.session.Load<ProductSubcategory>(id);
+
             if (result == null)
             {
                 return this.NotFound();
             }
 
-            return this.Ok(new ProductSubcategoryDto(result, "TODO"));
+            var productCategoryName = this.session.Load<ProductCategory>(result.ProductCategoryId).Name;
+
+            return this.Ok(new ProductSubcategoryDto(result, productCategoryName));
         }
 
         [ResponseType(typeof (IList<ProductSubcategoryDto>))]
@@ -35,6 +38,7 @@ namespace Demo.RavenApi.Controllers
         {
             IRavenQueryable<ProductSubcategories_ByNameAndProductCategoryName.Result> indexQuery = this.session.Query<ProductSubcategories_ByNameAndProductCategoryName.Result,
                         ProductSubcategories_ByNameAndProductCategoryName>();
+
             if (!string.IsNullOrEmpty(request.Search))
             {
                 indexQuery = indexQuery.Where(

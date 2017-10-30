@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Demo.RavenApi.Infrastructure;
+using Raven.Client.Linq;
 
 namespace Demo.RavenApi.Controllers
 {
@@ -29,40 +30,25 @@ namespace Demo.RavenApi.Controllers
         [ResponseType(typeof(IList<UnitMeasureDto>))]
         public IHttpActionResult Get(DtRequest<UnitMeasureDto> request)
         {
-            IQueryable<UnitMeasure> query = this.session.Query<UnitMeasure>();
+            IRavenQueryable<UnitMeasure> indexQuery = this.session.Query<UnitMeasure,
+                       UnitMeasures_ByNameAndUnitMeasureCode>();
 
             if (!string.IsNullOrEmpty(request.Search))
             {
-                query = query.Where(x => x.Name.StartsWith(request.Search));
+                indexQuery = indexQuery.Where(x => x.Name.StartsWith(request.Search) || x.UnitMeasureCode.StartsWith(request.Search));
             }
 
-            var queryDto = query.Select(x => new UnitMeasureDto
-            {
-                UnitMeasureCode = x.UnitMeasureCode,
-                Name = x.Name
-            });
+            indexQuery = indexQuery.Customize(x => x.AddOrder(request.OrderColumn ?? "Name", request.OrderDirection == DtOrderDirection.DESC));
+            List<UnitMeasureDto> result = indexQuery.ProjectFromIndexFieldsInto<UnitMeasureDto>()
+                .ToList();
 
-            switch (request.OrderColumn)
-            {
-                case "UnitMeasureCode":
-                    queryDto = request.OrderDirection == DtOrderDirection.ASC
-                        ? queryDto.OrderBy(x => x.UnitMeasureCode)
-                        : queryDto.OrderByDescending(x => x.UnitMeasureCode);
-                    break;
-                default:
-                    queryDto = request.OrderDirection == DtOrderDirection.ASC
-                        ? queryDto.OrderBy(x => x.Name)
-                        : queryDto.OrderByDescending(x => x.Name);
-                    break;
-            }
-            var result = queryDto.ToList();
             return Ok(result);
         }
 
         public IHttpActionResult Post([FromBody]UnitMeasureDto unitMeasureDto)
         {
             var entity = new UnitMeasure(unitMeasureDto);
-            this.session.Store(entity);
+            this.session.Store(entity, "UnitsMeasures/" + unitMeasureDto.UnitMeasureCode);
             this.session.SaveChanges();
 
             return Ok(entity.UnitMeasureCode);
@@ -70,7 +56,7 @@ namespace Demo.RavenApi.Controllers
 
         public IHttpActionResult Put([FromBody]UnitMeasureDto unitMeasureDto)
         {
-            UnitMeasure entity = session.Load<UnitMeasure>(unitMeasureDto.UnitMeasureCode);
+            UnitMeasure entity = session.Load<UnitMeasure>("UnitsMeasures/" + unitMeasureDto.UnitMeasureCode);
             if (entity == null)
             {
                 return NotFound();

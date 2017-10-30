@@ -8,8 +8,10 @@ using System.Web.Http.Description;
 using Demo.Model.Raven.Dtos;
 using Demo.Model.Raven.Entities;
 using Demo.RavenApi.Infrastructure;
+using Demo.RavenApi.Infrastructure.Indexes;
 using Demo.RavenApi.Models.DataTables;
 using Raven.Client;
+using Raven.Client.Linq;
 
 namespace Demo.RavenApi.Controllers
 {
@@ -26,71 +28,27 @@ namespace Demo.RavenApi.Controllers
                 return this.NotFound();
             }
 
-            return this.Ok(new ProductInventoryDto(result, "", ""));
+            var productName = this.session.Load<Product>(result.ProductId).Name;
+            var locationName = this.session.Load<Location>(result.LocationId).Name;
+
+            return this.Ok(new ProductInventoryDto(result, productName, locationName));
         }
 
         [ResponseType(typeof (IList<ProductInventoryDto>))]
         public IHttpActionResult Get(DtRequest<ProductInventoryDto> request)
         {
-            IQueryable<ProductInventory> prodInventory = this.session.Query<ProductInventory>()
-                .Include(x => x.ProductId).Include(x => x.LocationId);
-
-            IQueryable<ProductInventoryDto> queryDto = prodInventory.Select(inventory => new ProductInventoryDto
-            {
-                ProductId = inventory.ProductId,
-                LocationId = inventory.LocationId,
-                Shelf = inventory.Shelf,
-                Bin = inventory.Bin,
-                Quantity = inventory.Quantity
-            });
+            IRavenQueryable<ProductInventories_ByProductNameAndLocationName.Result> indexQuery = this.session.Query<ProductInventories_ByProductNameAndLocationName.Result,
+                       ProductInventories_ByProductNameAndLocationName>();
 
             if (!string.IsNullOrEmpty(request.Search))
             {
-                queryDto =
-                    queryDto.Where(
-                        x => x.ProductName.StartsWith(request.Search) || x.LocationName.StartsWith(request.Search));
+                indexQuery = indexQuery.Where(x => x.ProductName.StartsWith(request.Search) || x.LocationName.StartsWith(request.Search));
             }
 
-            switch (request.OrderColumn)
-            {
-                case "ProductId":
-                    queryDto = request.OrderDirection == DtOrderDirection.ASC
-                        ? queryDto.OrderBy(x => x.ProductId)
-                        : queryDto.OrderByDescending(x => x.ProductId);
-                    break;
-                case "LocationId":
-                    queryDto = request.OrderDirection == DtOrderDirection.ASC
-                        ? queryDto.OrderBy(x => x.LocationId)
-                        : queryDto.OrderByDescending(x => x.LocationId);
-                    break;
-                case "Bin":
-                    queryDto = request.OrderDirection == DtOrderDirection.ASC
-                        ? queryDto.OrderBy(x => x.Bin)
-                        : queryDto.OrderByDescending(x => x.Bin);
-                    break;
-                case "Shelf":
-                    queryDto = request.OrderDirection == DtOrderDirection.ASC
-                        ? queryDto.OrderBy(x => x.Shelf)
-                        : queryDto.OrderByDescending(x => x.Shelf);
-                    break;
-                case "Quantity":
-                    queryDto = request.OrderDirection == DtOrderDirection.ASC
-                        ? queryDto.OrderBy(x => x.Quantity)
-                        : queryDto.OrderByDescending(x => x.Quantity);
-                    break;
-                case "LocationName":
-                    queryDto = request.OrderDirection == DtOrderDirection.ASC
-                        ? queryDto.OrderBy(x => x.LocationName)
-                        : queryDto.OrderByDescending(x => x.LocationName);
-                    break;
-                //default:
-                //    queryDto = request.OrderDirection == DtOrderDirection.ASC
-                //        ? queryDto.OrderBy(x => x.ProductName)
-                //        : queryDto.OrderByDescending(x => x.ProductName);
-                //    break;
-            }
-
-            var result = queryDto.Take(2048).ToList();
+            indexQuery = indexQuery.Customize(x => x.AddOrder(request.OrderColumn ?? "ProductName", request.OrderDirection == DtOrderDirection.DESC));
+            List<ProductInventoryDto> result = indexQuery.ProjectFromIndexFieldsInto<ProductInventoryDto>()
+                .Take(1024)
+                .ToList();
 
             return this.Ok(result);
         }

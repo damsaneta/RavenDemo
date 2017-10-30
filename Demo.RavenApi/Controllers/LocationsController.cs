@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Demo.RavenApi.Infrastructure;
+using Raven.Client.Linq;
 
 namespace Demo.RavenApi.Controllers
 {
@@ -29,33 +30,18 @@ namespace Demo.RavenApi.Controllers
         [ResponseType(typeof(IList<LocationDto>))]
         public IHttpActionResult Get(DtRequest<LocationDto> request)
         {
-            IQueryable<Location> query = this.session.Query<Location>();
+            IRavenQueryable<Location> indexQuery = this.session.Query<Location,
+                       Locations_ByName>();
 
             if (!string.IsNullOrEmpty(request.Search))
             {
-                query = query.Where(x => x.Name.StartsWith(request.Search));
+                indexQuery = indexQuery.Where(x => x.Name.StartsWith(request.Search));
             }
 
-            var queryDto = query.Select(x => new LocationDto
-            {
-                Id = x.Id,
-                Name = x.Name
-            });
-
-            switch (request.OrderColumn)
-            {
-                case "Id":
-                    queryDto = request.OrderDirection == DtOrderDirection.ASC
-                        ? queryDto.OrderBy(x => x.Id)
-                        : queryDto.OrderByDescending(x => x.Id);
-                    break;
-                default:
-                    queryDto = request.OrderDirection == DtOrderDirection.ASC
-                        ? queryDto.OrderBy(x => x.Name)
-                        : queryDto.OrderByDescending(x => x.Name);
-                    break;
-            }
-            var result = queryDto.ToList();
+            indexQuery = indexQuery.Customize(x => x.AddOrder(request.OrderColumn ?? "Name", request.OrderDirection == DtOrderDirection.DESC));
+            List<LocationDto> result = indexQuery.ProjectFromIndexFieldsInto<LocationDto>()
+                .ToList();
+            
             return Ok(result);
         }
 

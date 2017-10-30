@@ -23,21 +23,10 @@
                     data: "Name",
                     title: "Nazwa",
                     sortable: true,
-                    searchable: false
-                },
-                {
-                    render: renderNameColumnFunc,
-                    title: "Akcje",
-                    sortable: false,
-                    searchable: false
+                    searchable: true
                 }
             ]
         });
     });
 
-    function renderNameColumnFunc(data, type, full, meta) {
-        // TODO
-        var txt = "<button>Edytuj</button>";
-        return txt;
-    }
 </script>

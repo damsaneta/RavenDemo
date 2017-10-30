@@ -1,7 +1,7 @@
 ﻿@using Demo.UI.Models
 
 @{
-    ViewBag.Title = "Spis produktów";
+    ViewBag.Title = "Stan produktów";
 }
 <div>
     <table id="myTable"></table>
@@ -38,21 +38,21 @@
                     name: 'Shelf',
                     data: "Shelf",
                     title: "Schowek",
-                    sortable: true,
+                    sortable: false,
                     searchable: false
                 },
                 {
                     name: 'Bin',
                     data: "Bin",
                     title: "Pojemnik",
-                    sortable: true,
+                    sortable: false,
                     searchable: false
                 },
                 {
                     name: 'Quantity',
                     data: "Quantity",
                     title: "Ilość",
-                    sortable: true,
+                    sortable: false,
                     searchable: false
                 }
 

@@ -8,6 +8,7 @@ using Demo.RavenApi.Models.DataTables;
 using Raven.Client;
 using Demo.Model.Raven.Dtos;
 using Demo.RavenApi.Infrastructure;
+using Raven.Client.Linq;
 
 namespace Demo.RavenApi.Controllers
 {
@@ -30,21 +31,18 @@ namespace Demo.RavenApi.Controllers
         [ResponseType(typeof(IList<ProductCategoryDto>))]
         public IHttpActionResult Get(DtRequest<ProductCategoryDto> request)
         {
-            IQueryable<ProductCategory> query = this.session.Query<ProductCategory>();
+            IRavenQueryable<ProductCategory> indexQuery = this.session.Query<ProductCategory,
+           ProductCategories_ByName>();
+
             if (!string.IsNullOrEmpty(request.Search))
             {
-                query = query.Where(x => x.Name.StartsWith(request.Search));
+                indexQuery = indexQuery.Where(x => x.Name.StartsWith(request.Search));
             }
 
-            var queryDto = query.Select(x => new ProductCategoryDto
-            {
-                Id = x.Id,
-                Name = x.Name
-            });
-            queryDto = request.OrderDirection == DtOrderDirection.ASC
-                        ? queryDto.OrderBy(x => x.Name)
-                        : queryDto.OrderByDescending(x => x.Name);
-            var result = queryDto.ToList(); 
+            indexQuery = indexQuery.Customize(x => x.AddOrder(request.OrderColumn ?? "Name", request.OrderDirection == DtOrderDirection.DESC));
+            List<ProductCategoryDto> result = indexQuery.ProjectFromIndexFieldsInto<ProductCategoryDto>()
+                .ToList();
+           
             return this.Ok(result);
         }
 
