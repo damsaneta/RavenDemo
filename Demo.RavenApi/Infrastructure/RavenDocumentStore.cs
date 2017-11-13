@@ -20,7 +20,9 @@ namespace Demo.RavenApi.Infrastructure
 
 
             store.Initialize();
+
             IndexCreation.CreateIndexes(typeof(RavenDocumentStore).Assembly, store);
+
             return store;
         });
 

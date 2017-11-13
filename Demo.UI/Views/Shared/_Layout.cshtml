@@ -27,6 +27,14 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Produkty", "Index", "Products")</li>
+                    <li>@Html.ActionLink("Kategorie", "Index", "ProductCategories")</li>
+                    <li>@Html.ActionLink("Podkategorie", "Index", "ProductSubcategories")</li>
+                    <li>@Html.ActionLink("Jednostki miar", "Index", "UnitsMeasure")</li>
+                    <li>@Html.ActionLink("Lokalizacje", "Index", "Locations")</li>
+                    <li>@Html.ActionLink("Stan produktów", "Index", "ProductInventories")</li>
+                    <li>@Html.ActionLink("Raport produktów", "Index", "ProductsGroupBySubcategoryRaport")</li>
+                    <li>@Html.ActionLink("Raport stanu produktów", "Index", "ProductInventoriesGroupByProdctId")</li>
                 </ul>
             </div>
         </div>
@@ -35,7 +43,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - RavenDemo - Aneta Dams</p>
         </footer>
     </div>
 

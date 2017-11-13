@@ -8,7 +8,13 @@ namespace Demo.RavenApi.Models.DataTables
     [ModelBinder(typeof(DtModelBinder))]
     public class DtRequest
     {
+        public DtRequest()
+        {
+            this.SearchByColumnValues = new Dictionary<string, string>();    
+        }
+
         private string orderColumn;
+
         public int Draw { get; set; }
 
         public int Length { get; set; }
@@ -16,6 +22,8 @@ namespace Demo.RavenApi.Models.DataTables
         public int Start { get; set; }
 
         public string Search { get; set; }
+
+        public IDictionary<string, string> SearchByColumnValues { get; private set; } 
 
         public string OrderColumn
         {

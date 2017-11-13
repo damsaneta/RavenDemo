@@ -355,6 +355,20 @@ namespace Demo.RavenApi.Controllers
             return this.Ok(result);
         }
 
+        [Route("api/examples/products/byNameAndColorAndProductNumber")]
+        public IHttpActionResult GetProductsByNameAndColorAndProductNumber()
+        {
+            var result = this.session.Query<Product, Products_ByNameAndColorAndProductNumber>()
+                .Select(x => new
+                {
+                    Name = x.Name,
+                    ProductNumber = x.ProductNumber,
+                    Color = x.Color
+
+                }).ToList();
+
+            return this.Ok(result);
+        }
         //---------------------------------------------------------------
 
         [Route("api/examples/griddata/products")]

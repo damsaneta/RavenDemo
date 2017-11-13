@@ -22,3 +22,6 @@ select,
 textarea {
     max-width: 280px;
 }
+.dataTables_wrapper {
+    padding-top: 13px;
+}

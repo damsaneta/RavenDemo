@@ -127,6 +127,8 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProductInventoriesGroupByProdctIdController.cs" />
+    <Compile Include="Controllers\ProductsGroupBySubcategoryRaportController.cs" />
     <Compile Include="Controllers\LocationsController.cs" />
     <Compile Include="Controllers\ProductCategoriesController.cs" />
     <Compile Include="Controllers\ProductInventoriesController.cs" />
@@ -416,6 +418,8 @@
     <Content Include="Views\Products\Index.cshtml" />
     <Content Include="Views\Synchronization\Index.cshtml" />
     <Content Include="Views\ProductInventories\Index.cshtml" />
+    <Content Include="Views\ProductsGroupBySubcategoryRaport\Index.cshtml" />
+    <Content Include="Views\ProductInventoriesGroupByProdctId\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Demo.Model\Demo.Model.csproj">

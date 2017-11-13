@@ -45,6 +45,13 @@ namespace Demo.RavenApi.Models.DataTables
                 }
 
                 columnNames.Add(colName);
+                var colSearchKey = string.Format("columns[{0}].search.value", colIdx);
+                string searchValue = GetValue<string>(valueProvider, colSearchKey);
+                if (!string.IsNullOrEmpty(searchValue))
+                {
+                    result.SearchByColumnValues.Add(colName, searchValue);    
+                }
+
                 colIdx++;
             }
 

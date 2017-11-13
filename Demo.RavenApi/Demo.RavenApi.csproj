@@ -91,6 +91,8 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\ExamplesController.cs" />
     <Compile Include="Controllers\ProductInventoriesController.cs" />
+    <Compile Include="Controllers\ProductInventoriesGroupByProdctIdController.cs" />
+    <Compile Include="Controllers\ProductsGroupBySubcategoryRaportController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\ProductSubcategoriesController.cs" />
     <Compile Include="Controllers\UnitsMeasureController.cs" />

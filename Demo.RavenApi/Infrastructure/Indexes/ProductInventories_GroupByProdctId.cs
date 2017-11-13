@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Demo.Model.Raven.Entities;
+using Raven.Abstractions.Indexing;
 using Raven.Client.Indexes;
 
 namespace Demo.RavenApi.Infrastructure.Indexes
@@ -32,6 +33,11 @@ namespace Demo.RavenApi.Infrastructure.Indexes
                     QuantityCount = (short) g.Sum(y => y.QuantityCount)
 
                 };
+
+            this.Store("ProductId", FieldStorage.Yes);
+            this.Store("ProductName", FieldStorage.Yes);
+            this.Store("LocationCount", FieldStorage.Yes);
+            this.Store("QuantityCount", FieldStorage.Yes);
         }
 
         public class Result

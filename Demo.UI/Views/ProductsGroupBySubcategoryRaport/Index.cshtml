@@ -1,35 +1,37 @@
 ﻿@using Demo.UI.Models
 @{
-    ViewBag.Title = "Podkategorie produktów";
+    ViewBag.Title = "Produkty pogrupowane po podkategorii";
 }
+
 <div>
     <table id="myTable"></table>
 </div>
 
 <script>
     $(document).ready(function () {
-        $('#myTable').dataTable({
+
+        var table =  $('#myTable').dataTable({
             serverSide: true,
             processing: false,
             paging: false,
             info: false,
             ajax: {
-                url: '@Consts.RavenApiRootUrl' + "ProductSubcategories",
+                url: '@Consts.RavenApiRootUrl' + "ProductsGroupBySubcategoryRaport",
                 dataSrc: ''
             },
             columns: [
                 {
-                    name: 'ProductCategoryName',
-                    data: "ProductCategoryName",
-                    title: "Kategoria",
+                    name: 'ProductSubcategoryName',
+                    data: "ProductSubcategoryName",
+                    title: "Podkategoria",
                     sortable: true,
                     searchable: true
                 },
                 {
-                    name: 'Name',
-                    data: "Name",
-                    title: "Podkategoria",
-                    sortable: true,
+                    name: 'Count',
+                    data: "Count",
+                    title: "Ilość",
+                    sortable: false,
                     searchable: false
                 }
             ],
@@ -50,23 +52,11 @@
                     next: "Następna",
                     last: "Ostatnia"
                 }
-            },
-            initComplete: function () {
-                this.api().columns().every(function () {
-                    var column = this;
-                    $('#myTable .head .head_hide').html('');
-                    $('<br /><input type="text" placeholder="Szukaj">')
-                        .appendTo($(column.header()))
-                        .on('click', function (e) {
-                            e.stopPropagation();
-                        }).on('keyup', function () {
-                            var val = $(this).val();
-                            column.search(val).draw();
-
-                        });
-                });
             }
-        });
+
+        }
+        );
+
     });
 
 </script>

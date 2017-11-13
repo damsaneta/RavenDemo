@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Demo.Model.Raven.Entities;
+using Raven.Abstractions.Indexing;
 using Raven.Client.Indexes;
 
 namespace Demo.RavenApi.Infrastructure.Indexes
@@ -27,6 +28,10 @@ namespace Demo.RavenApi.Infrastructure.Indexes
                     Count = g.Sum(x => x.Count),
                     ProductSubcategoryName = g.Key.ProductSubcategoryName
                 };
+
+            this.Store("ProductSubcategoryId", FieldStorage.Yes);
+            this.Store("ProductSubcategoryName", FieldStorage.Yes);
+            this.Store("Count", FieldStorage.Yes);
         }
 
         public class Result

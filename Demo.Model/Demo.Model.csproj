@@ -71,6 +71,8 @@
     <Compile Include="Raven\Dtos\ProductCategoryDto.cs" />
     <Compile Include="Raven\Dtos\ProductDto.cs" />
     <Compile Include="Raven\Dtos\ProductInventoryDto.cs" />
+    <Compile Include="Raven\Dtos\ProductInventoriesGroupByProdctIdDto.cs" />
+    <Compile Include="Raven\Dtos\ProductsGroupBySubcategoryRaportDto.cs" />
     <Compile Include="Raven\Dtos\ProductSubcategoryDto.cs" />
     <Compile Include="Raven\Dtos\UnitMeasureDto.cs" />
     <Compile Include="Raven\Entities\Location.cs" />

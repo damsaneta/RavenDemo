@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Demo.Model.Raven.Entities;
@@ -11,6 +13,7 @@ using Demo.Model.Raven.Dtos;
 using Demo.RavenApi.Infrastructure;
 using Demo.RavenApi.Infrastructure.Indexes;
 using Raven.Client.Linq;
+using Raven.Client.Linq.Indexing;
 
 namespace Demo.RavenApi.Controllers
 {
@@ -43,6 +46,24 @@ namespace Demo.RavenApi.Controllers
             {
                 indexQuery = indexQuery.Where(
                         x => x.Name.StartsWith(request.Search) || x.ProductCategoryName.StartsWith(request.Search));
+            }
+            else if(request.SearchByColumnValues.Any())
+            {
+                foreach (var searchByColumnValue in request.SearchByColumnValues)
+                {
+                    var columnName = searchByColumnValue.Key;
+                    var searchValue = searchByColumnValue.Value;
+                    switch (columnName)
+                    {
+                        case "Name":
+                            indexQuery = indexQuery.Where(x => x.Name.StartsWith(searchValue));
+                            break;
+                        case "ProductCategoryName":
+                            indexQuery = indexQuery.Where(x => x.ProductCategoryName.StartsWith(searchValue));
+                            break;
+                        default: throw new ArgumentException("Nieznana kolumna", columnName);
+                    }
+                }
             }
 
             indexQuery = indexQuery.Customize(x => x.AddOrder(request.OrderColumn ?? "ProductCategoryName", request.OrderDirection == DtOrderDirection.DESC));

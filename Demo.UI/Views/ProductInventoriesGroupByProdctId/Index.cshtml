@@ -1,6 +1,7 @@
 ﻿@using Demo.UI.Models
+
 @{
-    ViewBag.Title = "Podkategorie produktów";
+    ViewBag.Title = "Stan produktów"; 
 }
 <div>
     <table id="myTable"></table>
@@ -8,30 +9,39 @@
 
 <script>
     $(document).ready(function () {
-        $('#myTable').dataTable({
+
+       $('#myTable').dataTable({
             serverSide: true,
             processing: false,
             paging: false,
             info: false,
             ajax: {
-                url: '@Consts.RavenApiRootUrl' + "ProductSubcategories",
+                url: '@Consts.RavenApiRootUrl' + "ProductInventoriesGroupByProdctId",
                 dataSrc: ''
             },
             columns: [
                 {
-                    name: 'ProductCategoryName',
-                    data: "ProductCategoryName",
-                    title: "Kategoria",
+                    name: 'ProductName',
+                    data: "ProductName",
+                    title: "Nazwa produktu",
                     sortable: true,
                     searchable: true
                 },
                 {
-                    name: 'Name',
-                    data: "Name",
-                    title: "Podkategoria",
-                    sortable: true,
+                    name: 'LocationCount',
+                    data: "LocationCount",
+                    title: "Liczba lokalizacji",
+                    sortable: false,
+                    searchable: false
+                },
+                {
+                    name: 'QuantityCount',
+                    data: "QuantityCount",
+                    title: "Ilość",
+                    sortable: false,
                     searchable: false
                 }
+
             ],
             "language": {
                 processing: "Przetwarzanie...",
@@ -50,23 +60,10 @@
                     next: "Następna",
                     last: "Ostatnia"
                 }
-            },
-            initComplete: function () {
-                this.api().columns().every(function () {
-                    var column = this;
-                    $('#myTable .head .head_hide').html('');
-                    $('<br /><input type="text" placeholder="Szukaj">')
-                        .appendTo($(column.header()))
-                        .on('click', function (e) {
-                            e.stopPropagation();
-                        }).on('keyup', function () {
-                            var val = $(this).val();
-                            column.search(val).draw();
-
-                        });
-                });
             }
-        });
-    });
 
+        }
+        );
+
+    });
 </script>
