@@ -44,6 +44,24 @@ namespace Demo.RavenApi.Controllers
             {
                 indexQuery = indexQuery.Where(x => x.ProductName.StartsWith(request.Search) || x.LocationName.StartsWith(request.Search));
             }
+            else if (request.SearchByColumnValues.Any())
+            {
+                foreach (var searchByColumnValue in request.SearchByColumnValues)
+                {
+                    var columnName = searchByColumnValue.Key;
+                    var searchValue = searchByColumnValue.Value;
+                    switch (columnName)
+                    {
+                        case "ProductName":
+                            indexQuery = indexQuery.Where(x => x.ProductName.StartsWith(searchValue));
+                            break;
+                        case "LocationName":
+                            indexQuery = indexQuery.Where(x => x.LocationName.StartsWith(searchValue));
+                            break;
+                        default: throw new ArgumentException("Nieznana kolumna", columnName);
+                    }
+                }
+            }
 
             indexQuery = indexQuery.Customize(x => x.AddOrder(request.OrderColumn ?? "ProductName", request.OrderDirection == DtOrderDirection.DESC));
             List<ProductInventoryDto> result = indexQuery.ProjectFromIndexFieldsInto<ProductInventoryDto>()

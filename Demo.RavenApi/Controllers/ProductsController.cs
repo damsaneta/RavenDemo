@@ -50,6 +50,30 @@ namespace Demo.RavenApi.Controllers
                 indexQuery = indexQuery.Where(x => x.Name.StartsWith(request.Search) || x.ProductSubcategoryName.StartsWith(request.Search)
                || x.ProductNumber.StartsWith(request.Search) || x.Color.StartsWith(request.Search));
             }
+            else if (request.SearchByColumnValues.Any())
+            {
+                foreach (var searchByColumnValue in request.SearchByColumnValues)
+                {
+                    var columnName = searchByColumnValue.Key;
+                    var searchValue = searchByColumnValue.Value;
+                    switch (columnName)
+                    {
+                        case "Name":
+                            indexQuery = indexQuery.Where(x => x.Name.StartsWith(searchValue));
+                            break;
+                        case "ProductSubcategoryName":
+                            indexQuery = indexQuery.Where(x => x.ProductSubcategoryName.StartsWith(searchValue));
+                            break;
+                        case "Color":
+                            indexQuery = indexQuery.Where(x => x.Color.StartsWith(searchValue));
+                            break;
+                        case "ProductNumber":
+                            indexQuery = indexQuery.Where(x => x.ProductNumber.StartsWith(searchValue));
+                            break;
+                        default: throw new ArgumentException("Nieznana kolumna", columnName);
+                    }
+                }
+            }
 
             indexQuery = indexQuery.Customize(x => x.AddOrder(request.OrderColumn ?? "Name", request.OrderDirection == DtOrderDirection.DESC));
             List<ProductDto> result = indexQuery.ProjectFromIndexFieldsInto<ProductDto>()

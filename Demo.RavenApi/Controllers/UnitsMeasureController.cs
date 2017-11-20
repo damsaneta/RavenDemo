@@ -1,4 +1,5 @@
-﻿using Demo.Model.Raven.Entities;
+﻿using System;
+using Demo.Model.Raven.Entities;
 using Demo.RavenApi.Models;
 using Demo.RavenApi.Models.DataTables;
 using Raven.Client;
@@ -36,6 +37,24 @@ namespace Demo.RavenApi.Controllers
             if (!string.IsNullOrEmpty(request.Search))
             {
                 indexQuery = indexQuery.Where(x => x.Name.StartsWith(request.Search) || x.UnitMeasureCode.StartsWith(request.Search));
+            }
+            else if (request.SearchByColumnValues.Any())
+            {
+                foreach (var searchByColumnValue in request.SearchByColumnValues)
+                {
+                    var columnName = searchByColumnValue.Key;
+                    var searchValue = searchByColumnValue.Value;
+                    switch (columnName)
+                    {
+                        case "Name":
+                            indexQuery = indexQuery.Where(x => x.Name.StartsWith(searchValue));
+                            break;
+                        case "UnitMeasureCode":
+                            indexQuery = indexQuery.Where(x => x.UnitMeasureCode.StartsWith(searchValue));
+                            break;
+                        default: throw new ArgumentException("Nieznana kolumna", columnName);
+                    }
+                }
             }
 
             indexQuery = indexQuery.Customize(x => x.AddOrder(request.OrderColumn ?? "Name", request.OrderDirection == DtOrderDirection.DESC));

@@ -8,7 +8,7 @@
 
 <script>
     $(document).ready(function () {
-        $('#myTable').dataTable({
+        var table = $('#myTable').dataTable({
             serverSide: true,
             processing: false,
             paging: false,
@@ -55,17 +55,26 @@
                 this.api().columns().every(function () {
                     var column = this;
                     $('#myTable .head .head_hide').html('');
-                    $('<br /><input type="text" placeholder="Szukaj">')
+                    $('<br /><input class="searchColumn" type="text" placeholder="Szukaj">')
                         .appendTo($(column.header()))
                         .on('click', function (e) {
                             e.stopPropagation();
                         }).on('keyup', function () {
                             var val = $(this).val();
+                             $('#myTable_filter').find('input').val("");
+                            $('#myTable').DataTable().search('');
                             column.search(val).draw();
 
                         });
                 });
             }
+        });
+
+        $('#myTable_filter input').on('keyup', function() {
+            $('.searchColumn').each(function() {
+                $(this).val("");
+            });
+            $('#myTable').DataTable().columns().search('').draw();
         });
     });
 
