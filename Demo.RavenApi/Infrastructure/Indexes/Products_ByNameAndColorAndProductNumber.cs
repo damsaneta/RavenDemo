@@ -1,5 +1,6 @@
 using System.Linq;
 using Demo.Model.Raven.Entities;
+using Raven.Abstractions.Indexing;
 using Raven.Client.Indexes;
 
 namespace Demo.RavenApi.Infrastructure
@@ -15,6 +16,11 @@ namespace Demo.RavenApi.Infrastructure
                     ProductNumber = product.ProductNumber,
                     Color = product.Color                   
                 };
+
+            this.Store("Name", FieldStorage.Yes);
+            this.Store("ProductNumber", FieldStorage.Yes);
+            this.Store("Color", FieldStorage.Yes);
+
         }
     }
 }
