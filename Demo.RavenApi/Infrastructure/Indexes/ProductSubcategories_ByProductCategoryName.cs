@@ -18,10 +18,12 @@ namespace Demo.RavenApi.Infrastructure
         public ProductSubcategories_ByProductCategoryName()
         {
             Map = productSubcategories => from subcategory in productSubcategories
-                                          select new 
-                                          {
-                                              ProductCategoryName = LoadDocument<ProductCategory>(subcategory.ProductCategoryId).Name
-                                          };
+                select new 
+                {
+                    ProductCategoryName = LoadDocument<ProductCategory>
+                    (subcategory.ProductCategoryId).Name
+                };
+
             this.Index("ProductCategoryName", FieldIndexing.Analyzed);
         }
     }

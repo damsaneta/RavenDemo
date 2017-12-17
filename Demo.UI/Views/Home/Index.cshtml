@@ -40,10 +40,46 @@
     <div class="col-md-3">
         <h2>Przykłady</h2>
         <p>
-            <a href="@(Consts.RavenApiRootUrl + "examples/raports/products/groupByProductSubcategoryId")">Produkty pogrupowane po id podkategorii: <br />/products/groupByProductSubcategoryId</a>
+            <a href="@(Consts.RavenApiRootUrl + "examples/subcategories?term=Road")">1. Wyszukiwanie podkategorii produktów zawierających słowo kluczowe "Road" w nazwie: <br />/subcategories?term=Road</a>
         </p>
         <p>
-            <a href="@(Consts.RavenApiRootUrl + "examples/raports/productInventories/groupByProductId")">Stan produktów pogrupowany po id produktu: <br />/productInventories/groupByProductId</a>
+            <a href="@(Consts.RavenApiRootUrl + "examples/categories?name=C")">2. Filtrowanie kategorii, których nazwa rozpoczyna się od "C": <br/>/categories?name=C</a>
+        </p>
+        <p>
+            <a href="@(Consts.RavenApiRootUrl + "examples/griddata/subcategories?firstTerm=Components&secondTerm=Bikes")">3. Filtrowanie podkategorii po nazwie kategorii przy użyciu Where i In: <br/>/subcategories?firstTerm=Components&secondTerm=Bikes</a>
+        </p>
+        <p>
+            <a href="@(Consts.RavenApiRootUrl + "examples/griddata/products?listPriceMoreThan=500")">4. Produkty z ceną większą niż 500, posortowane malejąco wzgledem ceny: <br/>/products?listPriceMoreThan=500"</a>
+        </p>
+        <p>
+            <a href="@(Consts.RavenApiRootUrl + "examples/griddata/subcategories?name=Bi")">5. Wyszukiwanie podkategorii po nazwie rozpoczynającej się od "Bi": <br/>/subcategories?name=Bi</a>
+        </p>
+        <p>
+            <a href="@(Consts.RavenApiRootUrl + "examples/griddata/subcategories?term=Bikes Frames")">6. Podkategorie wyszukiwane po nazwie "Bikes Frames": <br/>/subcategories?term=Bikes Frames</a>
+        </p>
+        <p>
+            <a href="@(Consts.RavenApiRootUrl + "examples/products?name=Chain Washer&color=Silver")">7. Produkty wyszukiwane po nazwie zawierające "Chain" lub "Washer" lub kolorze "Silver": <br/>/products?name=Chain Washer&color=Silver</a>
+        </p>
+        <p>
+            <a href="@(Consts.RavenApiRootUrl + "examples/products/boost")">8. Produkty wyszukiwane po nazwie lub kolorze z wykorzystaniem boost: <br/>/products/boost</a>
+        </p>
+        <p>
+            <a href="@(Consts.RavenApiRootUrl + "examples/products/searchOption")">9. Produkty wyszukiwane po nazwie i kolorze z wykorzystaniem searchOption: <br/>/products/searchOption</a>
+        </p>
+        <p>
+            <a href="@(Consts.RavenApiRootUrl + "examples/griddata/subcategories?id=ProductSubcategories/25")">10. Podkategoria po id: <br/>/subcategories?id=ProductSubcategories/25</a>
+        </p>
+        <p>
+            <a href="@(Consts.RavenApiRootUrl + "examples/griddata/subcategories/category?name=F")">11. Podkategorie po nazwie kategorii zaczynającej się od "F" z relacjami: <br/>/subcategories/category?name=F</a>
+        </p>
+        <p>
+            <a href="@(Consts.RavenApiRootUrl + "examples/products/byNameAndColorAndProductNumber")">12. Projekcja produktów z użyciem Select: <br/>/products/byNameAndColorAndProductNumber</a>
+        </p>
+        <p>
+            <a href="@(Consts.RavenApiRootUrl + "examples/products/ByNameAndSubcategoryNameAndColorAndProductNumber?search=b")">13. Projekcja produktów z użyciem ProjectFromIndexFieldsInto: <br/>/products/ByNameAndSubcategoryNameAndColorAndProductNumber?search=b</a>
+        </p>
+        <p>
+            <a href="@(Consts.RavenApiRootUrl + "examples/products/subcategories?name=M")">14. Projekcja produktów z użyciem OfType: <br />/products/subcategories?name=M</a>
         </p>
 
     </div>
@@ -55,12 +91,8 @@
         <p>
             <a href="@(Consts.RavenApiRootUrl + "/examples/griddata/subcategories/2")">Podkategoria po id: <br />/subcategories/2</a>
         </p>
-        <p>
-            <a href="@(Consts.RavenApiRootUrl + "examples/griddata/subcategories?id=ProductSubcategories/1")">Podkategoria po id: <br />/subcategories?id=ProductSubcategories/1</a>
-        </p>
-        <p>
-            <a href="@(Consts.RavenApiRootUrl + "examples/griddata/subcategories/category?name=b")">Podkategorie po nazwie kategorii: <br/>/subcategories/category?name=b</a>
-        </p>
+
+
         <p>
             <a href="@(Consts.RavenApiRootUrl + "examples/griddata/subcategories?name=c")">Podkategorie po nazwie: <br/>/subcategories?name=c</a>
         </p>
@@ -70,18 +102,10 @@
         <p>
             <a href="@(Consts.RavenApiRootUrl + "examples/griddata/subcategories?exactMatchTerm=Headsets")">Podkategorie wyszukiwane po nazwie dokładnie: <br/>/subcategories?exactMatchTerm=Headsets</a>
         </p>
-        <p>
-            <a href="@(Consts.RavenApiRootUrl + "examples/products?name=Chain Washer&color=Silver")">Produkty wyszukiwane po nazwie i kolorze: <br/>/products?name=Chain Washer&color=Silver</a>
-        </p>
-        <p>
-            <a href="@(Consts.RavenApiRootUrl + "examples/products/boost")">Produkty wyszukiwane po nazwie i kolorze z wykorzystaniem boost: <br/>/products/boost</a>
-        </p>
-        <p>
-            <a href="@(Consts.RavenApiRootUrl + "examples/products/searchOption")">Produkty wyszukiwane po nazwie i kolorze z wykorzystaniem searchOption: <br/>/products/searchOption</a>
-        </p>
-        <p>
-            <a href="@(Consts.RavenApiRootUrl + "examples/products/byNameAndColorAndProductNumber")">Produkty- projekcja z wykorzystaniem Select: <br />/products/byNameAndColorAndProductNumber</a>
-        </p>
+       
+       
+       
+
         <p>
             <a href="@(Consts.RavenApiRootUrl + "examples/griddata/subcategories?name=Bi")">Podkategorie rozpoczynające się na "Bi": <br />/subcategories?name=Bi</a>
         </p>

@@ -16,7 +16,7 @@ namespace Demo.RavenApi.Infrastructure.Indexes
             Map = products => from product in products
                 select new
                 {
-                    Name = product.Name.Boost(10),
+                    Name = product.Name.Boost(15),
                     Color = product.Color.Boost(5)
                 };
 
