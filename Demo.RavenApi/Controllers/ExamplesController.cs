@@ -10,6 +10,7 @@ using Demo.RavenApi.Infrastructure;
 using Demo.RavenApi.Infrastructure.Indexes;
 using Demo.RavenApi.Models;
 using Raven.Client;
+using Raven.Client.Linq;
 
 namespace Demo.RavenApi.Controllers
 {
@@ -187,6 +188,25 @@ namespace Demo.RavenApi.Controllers
             return this.Ok(result);
         }
 
+        //Where + In
+        [Route("api/examples/griddata/subcategories")]
+        public IHttpActionResult GetSubcategoriesByCategoryNameByWhereAndInWithRelations(string firstTerm, string secondTerm)
+        {
+            var result = new List<ProductSubcategoryDto>();
+            var subcategories = this.session.Query<ProductSubcategories_ByProductCategoryName.Result, ProductSubcategories_ByProductCategoryName>()
+                .Customize(a => a.Include<ProductSubcategory>(x => x.ProductCategoryId))
+                .Where(x => x.ProductCategoryName.In(firstTerm, secondTerm))
+                .OfType<ProductSubcategory>()
+                .ToList();
+            foreach (var subcategory in subcategories)
+            {
+                var category = this.session.Load<ProductCategory>(subcategory.ProductCategoryId);
+                result.Add(new ProductSubcategoryDto(subcategory, category.Name));
+            }
+
+            return this.Ok(result);
+        }
+
         [Route("api/examples/griddata/subcategories/{id}")]
         public IHttpActionResult GetSubcategoriesByIdWithRelations(int id)
         {
@@ -260,8 +280,6 @@ namespace Demo.RavenApi.Controllers
             }
             return this.Ok(result);
         }
-
-
 
 
         //------------------produkty------------------
@@ -436,7 +454,7 @@ namespace Demo.RavenApi.Controllers
 
             return this.Ok(result);
         }
-
+       
         [Route("api/examples/griddata/products")]
         public IHttpActionResult GetProductsBySellStartYear(int year)
         {
