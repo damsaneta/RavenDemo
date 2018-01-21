@@ -233,6 +233,198 @@ namespace Demo.RavenApi.Controllers
             return this.Ok(result);
         }
 
+        //Przykład 15
+        [Route("api/examples/griddata/productInventories")]
+        public IHttpActionResult GetProductInventoriesWithRelations(string place)
+        {
+            var result = new List<ProductInventoryDto>();
+            var productInventories = this.session.Query<ProductInventories_ByShelfAndBin.Result, ProductInventories_ByShelfAndBin>()
+                .Customize(a => a.Include<ProductInventory>(x => x.ProductId))
+                .Customize(a => a.Include<ProductInventory>(x => x.LocationId))
+                .Take(1024)
+                .Where(x => x.Place == place)
+                .OfType<ProductInventory>()
+                .ToList();
+
+            foreach (var productInventory in productInventories)
+            {
+                var product = this.session.Load<Product>(productInventory.ProductId);
+                var location = this.session.Load<Location>(productInventory.LocationId);
+                result.Add(new ProductInventoryDto(productInventory, product.Name, location.Name));
+            }
+
+            return this.Ok(result);
+        }
+
+        //Przykład 16
+        [Route("api/examples/griddata/products/subcategories")]
+        public IHttpActionResult GetProductsBySubcategoryNameWithRelations(string name)
+        {
+            var result = new List<ProductDto>();
+            var products = this.session.Query<Products_BySubcategoryName.Result, Products_BySubcategoryName>()
+                .Customize(a => a.Include<Product>(x => x.ProductSubcategoryId))
+                .Where(x => x.ProductSubcategoryName.StartsWith(name))
+                .Take(1024)
+                .OfType<Product>()
+                .ToList();
+
+            foreach (var product in products)
+            {
+                var subcategory = this.session.Load<ProductSubcategory>(product.ProductSubcategoryId);
+                result.Add(subcategory == null
+                  ? new ProductDto(product, "")
+                  : new ProductDto(product, subcategory.Name));
+            }
+
+            return this.Ok(result);
+        }
+
+        //Przykład 17
+        [Route("api/examples/griddata/products")]
+        public IHttpActionResult GetProductsBySellStartYear(int year)
+        {
+            var result = new List<ProductDto>();
+            var products = this.session.Query<Products_BySellStartDate.Result, Products_BySellStartDate>()
+                .Customize(a => a.Include<Product>(x => x.ProductSubcategoryId))
+                .Where(x => x.YearOfSell == year)
+                .Take(1024)
+                .OfType<Product>()
+                .ToList();
+
+            foreach (var product in products)
+            {
+                var subcategory = this.session.Load<ProductSubcategory>(product.ProductSubcategoryId);
+                result.Add(subcategory == null
+                  ? new ProductDto(product, "")
+                  : new ProductDto(product, subcategory.Name));
+            }
+
+            return this.Ok(result);
+        }
+
+        //Przykład 18
+        [Route("api/examples/raports/products/groupByProductSubcategoryId")]
+        public IHttpActionResult GetProductsGroupByProductSubcategoryId()
+        {
+            var result = this.session.Query<Products_GroupByProductSubcategoryId.Result, Products_GroupByProductSubcategoryId>()
+               .Take(1024)
+               .ToList();
+            return this.Ok(result);
+        }
+
+        //Przykład 19
+        [Route("api/examples/raports/productInventories/groupByProductId")]
+        public IHttpActionResult GetProductInventoriesGroupByProductId()
+        {
+            var result = this.session.Query<ProductInventories_GroupByProdctId.Result, ProductInventories_GroupByProdctId>()
+               .Take(1024)
+               .ToList();
+            return this.Ok(result);
+        }
+
+        // IsStale
+        [Route("api/examples/griddata/products/IsStale")]
+        public IHttpActionResult CheckStaleData()
+        {
+            var result = new List<ProductDto>();
+            RavenQueryStatistics statistics;
+
+            var products = this.session.Query<Product>()
+            .Statistics(out statistics)
+            .Include(x => x.ProductSubcategoryId).Take(1024)
+            .ToList();
+
+            if (statistics.IsStale)
+            {
+                //dane nieaktualne
+            }
+            else
+            {
+                //dane aktualne   
+            }
+
+            foreach (var product in products)
+            {
+                var subcategory = this.session.Load<ProductSubcategory>(product.ProductSubcategoryId);
+                result.Add(subcategory == null
+                    ? new ProductDto(product, "")
+                    : new ProductDto(product, subcategory.Name));
+            }
+
+            return this.Ok(result);
+        }
+
+        // WaitForNonStaleResultsAsOfNow 
+        [Route("api/examples/griddata/products/WaitForNonStaleResultsAsOfNow")]
+        public IHttpActionResult WaitForNonStaleResultsAsOfNow()
+        {
+            var result = new List<ProductDto>();
+            RavenQueryStatistics statistics;
+
+            var products = this.session.Query<Product>()
+                .Statistics(out statistics)
+                .Customize(x => x.WaitForNonStaleResultsAsOfNow(TimeSpan.FromSeconds(3)))
+                .Include(x => x.ProductSubcategoryId).Take(1024)
+                .ToList();
+
+            foreach (var product in products)
+            {
+                var subcategory = this.session.Load<ProductSubcategory>(product.ProductSubcategoryId);
+                result.Add(subcategory == null
+                    ? new ProductDto(product, "")
+                    : new ProductDto(product, subcategory.Name));
+            }
+
+            return this.Ok(result);
+        }
+
+        // WaitForNonStaleResultsAsOf
+        [Route("api/examples/griddata/products/WaitForNonStaleResultsAsOf")]
+        public IHttpActionResult WaitForNonStaleResultsAsOf()
+        {
+            var result = new List<ProductDto>();
+            RavenQueryStatistics statistics;
+
+            var products = this.session.Query<Product>()
+                .Statistics(out statistics)
+                .Customize(x => x.WaitForNonStaleResultsAsOf(new DateTime(2017, 10, 31, 10, 0, 0)))
+                .Include(x => x.ProductSubcategoryId).Take(1024)
+                .ToList();
+
+            foreach (var product in products)
+            {
+                var subcategory = this.session.Load<ProductSubcategory>(product.ProductSubcategoryId);
+                result.Add(subcategory == null
+                    ? new ProductDto(product, "")
+                    : new ProductDto(product, subcategory.Name));
+            }
+
+            return this.Ok(result);
+        }
+
+        // WaitForNonStaleResultsAsOfLastWrite
+        [Route("api/examples/griddata/products/WaitForNonStaleResultsAsOfLastWrite")]
+        public IHttpActionResult WaitForNonStaleResultsAsOfLastWrite()
+        {
+            var result = new List<ProductDto>();
+            RavenQueryStatistics statistics;
+
+            var products = this.session.Query<Product>()
+                .Statistics(out statistics)
+                .Customize(x => x.WaitForNonStaleResultsAsOfLastWrite())
+                .Include(x => x.ProductSubcategoryId).Take(1024)
+                .ToList();
+
+            foreach (var product in products)
+            {
+                var subcategory = this.session.Load<ProductSubcategory>(product.ProductSubcategoryId);
+                result.Add(subcategory == null
+                    ? new ProductDto(product, "")
+                    : new ProductDto(product, subcategory.Name));
+            }
+
+            return this.Ok(result);
+        }
         //    [Route("api/examples/categories")]
         //    public IHttpActionResult GetCategoriesAll()
         //    {
@@ -470,93 +662,7 @@ namespace Demo.RavenApi.Controllers
 
         //    //---------------------------------------------------------------
 
-        //    [Route("api/examples/griddata/products")]
-        //    public IHttpActionResult GetProductsWithRelations()
-        //    {
-        //        var result = new List<ProductDto>();
-        //        RavenQueryStatistics statistics;
-        //        var products = this.session.Query<Product>()
-        //            .Statistics(out statistics)
-        //            .Customize(x => x.WaitForNonStaleResultsAsOfNow(TimeSpan.FromSeconds(3)))
-        //            .Include(x => x.ProductSubcategoryId).Take(1024)
-        //            .ToList();
 
-        //        //var products = this.session.Query<Product>()
-        //        //    .Statistics(out statistics)
-        //        //    .Customize(x => x.WaitForNonStaleResultsAsOf(new DateTime(2017, 10, 31, 10, 0, 0)))
-        //        //    .Include(x => x.ProductSubcategoryId).Take(1024)
-        //        //    .ToList();
-
-
-        //        //var products = this.session.Query<Product>()
-        //        //    .Statistics(out statistics)
-        //        //    .Customize(x => x.WaitForNonStaleResultsAsOfLastWrite())
-        //        //    .Include(x => x.ProductSubcategoryId).Take(1024)
-        //        //    .ToList();
-
-        //        if (statistics.IsStale)
-        //        {
-        //            //dane nie są aktualne
-        //        }
-        //        else
-        //        {
-        //          //dane są aktualne   
-        //        }
-
-        //        foreach (var product in products)
-        //        {
-        //            var subcategory = this.session.Load<ProductSubcategory>(product.ProductSubcategoryId);
-        //            result.Add(subcategory == null
-        //                ? new ProductDto(product, "")
-        //                : new ProductDto(product, subcategory.Name));
-        //        }
-
-        //        return this.Ok(result);
-        //    }
-
-        //    [Route("api/examples/griddata/products/subcategories")]
-        //    public IHttpActionResult GetProductsBySubcategoryNameWithRelations(string name)
-        //    {
-        //        var result = new List<ProductDto>();
-        //        var products = this.session.Query<Products_BySubcategoryName.Result, Products_BySubcategoryName>()
-        //            .Customize(a => a.Include<Product>(x => x.ProductSubcategoryId))
-        //            .Where(x => x.ProductSubcategoryName.StartsWith(name))
-        //            .Take(1024)
-        //            .OfType<Product>()
-        //            .ToList();
-
-        //        foreach (var product in products)
-        //        {
-        //            var subcategory = this.session.Load<ProductSubcategory>(product.ProductSubcategoryId);
-        //            result.Add(subcategory == null
-        //              ? new ProductDto(product, "")
-        //              : new ProductDto(product, subcategory.Name));
-        //        }
-
-        //        return this.Ok(result);
-        //    }
-
-        //    [Route("api/examples/griddata/products")]
-        //    public IHttpActionResult GetProductsBySellStartYear(int year)
-        //    {
-        //        var result = new List<ProductDto>();
-        //        var products = this.session.Query<Products_BySellStartDate.Result, Products_BySellStartDate>()
-        //            .Customize(a => a.Include<Product>(x => x.ProductSubcategoryId))
-        //            .Where(x => x.YearOfSell == year)
-        //            .Take(1024)
-        //            .OfType<Product>()
-        //            .ToList();
-
-        //        foreach (var product in products)
-        //        {
-        //            var subcategory = this.session.Load<ProductSubcategory>(product.ProductSubcategoryId);
-        //            result.Add(subcategory == null
-        //              ? new ProductDto(product, "")
-        //              : new ProductDto(product, subcategory.Name));
-        //        }
-
-        //        return this.Ok(result);
-        //    }
 
         //    [Route("api/examples/griddata/products/{id}")]
         //    public IHttpActionResult GetProductsByIdWithRelations(int id)
@@ -689,48 +795,11 @@ namespace Demo.RavenApi.Controllers
         //        return this.Ok(result);
         //    }
 
-        //    [Route("api/examples/griddata/productInventories")]
-        //    public IHttpActionResult GetProductInventoriesWithRelations(string place)
-        //    {
-        //        var result = new List<ProductInventoryDto>();
-        //        var productInventories = this.session.Query<ProductInventories_ByShelfAndBin.Result, ProductInventories_ByShelfAndBin>()
-        //            .Customize(a => a.Include<ProductInventory>(x => x.ProductId))
-        //            .Customize(a => a.Include<ProductInventory>(x => x.LocationId))
-        //            .Take(1024)
-        //            .Where(x => x.Place == place)
-        //            .OfType<ProductInventory>()
-        //            .ToList();
-
-        //        foreach (var productInventory in productInventories)
-        //        {
-        //            var product = this.session.Load<Product>(productInventory.ProductId);
-        //            var location = this.session.Load<Location>(productInventory.LocationId);
-        //            result.Add(new ProductInventoryDto(productInventory, product.Name, location.Name));
-        //        }
-
-        //        return this.Ok(result);
-        //    }
 
 
-        //    //RAPORTY
 
-        //    [Route("api/examples/raports/products/groupByProductSubcategoryId")]
-        //    public IHttpActionResult GetProductsGroupByProductSubcategoryId()
-        //    {
-        //        var result = this.session.Query<Products_GroupByProductSubcategoryId.Result, Products_GroupByProductSubcategoryId>()
-        //           .Take(1024)
-        //           .ToList();
-        //        return this.Ok(result);
-        //    }
 
-        //    [Route("api/examples/raports/productInventories/groupByProductId")]
-        //    public IHttpActionResult GetProductInventoriesGroupByProductId()
-        //    {
-        //        var result = this.session.Query<ProductInventories_GroupByProdctId.Result, ProductInventories_GroupByProdctId>()
-        //           .Take(1024)
-        //           .ToList();
-        //        return this.Ok(result);
-        //    }
+
 
     }
 }
